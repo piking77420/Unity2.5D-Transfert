@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private float m_Speed;
 
     [SerializeField]
-    public Vector3 movement { get; private set;  }
+    public Vector3 movement;
 
 
     public void OnMovement(InputAction.CallbackContext _context) 

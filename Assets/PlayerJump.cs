@@ -15,6 +15,8 @@ public class PlayerJump : MonoBehaviour
     [SerializeField]
     private PlayerMovement m_PlayerMovement;
 
+    [SerializeField]
+    private bool m_IsGrounded = false;
 
     [Header("JumpValues")]
 
@@ -22,7 +24,7 @@ public class PlayerJump : MonoBehaviour
     private float m_JumpStrengt;
 
 
-    [Tooltip("Falling acceleration after he start falling")]
+    [Tooltip("Falling acceleration after he start falling (cant' be superior to")]
     [SerializeField, Range(0, 180)]
     private float fallAcceleration;
 
@@ -39,14 +41,34 @@ public class PlayerJump : MonoBehaviour
     private float CoyoteTime;
 
 
-    [SerializeField]
-    private bool m_IsGrounded = false;
 
 
+    [Header("Apex Value")]
+
+    [SerializeField, Range(1, 10)]
+    private float m_ApexModifiers;
+
+    [SerializeField, Range(0, 5)]
+    private float m_ApexTimerNoGravity;
 
 
-    private bool m_Exit;
     private float m_MaxCoyoteTime;
+
+
+    [Header("NbrOfCollision")]
+
+    private List<Collider> m_Colliders;
+    [SerializeField]
+    private int m_nbrOfColldier;
+
+    IEnumerator ApexModifers() 
+    {
+        
+        m_Rigidbody.useGravity = false;
+        m_PlayerMovement.movement = new Vector3(m_PlayerMovement.movement.x * m_ApexModifiers, m_PlayerMovement.movement.y, m_PlayerMovement.movement.z); 
+        yield return new WaitForSeconds(m_ApexTimerNoGravity);
+        m_Rigidbody.useGravity = true;
+    }
 
 
 
@@ -54,6 +76,7 @@ public class PlayerJump : MonoBehaviour
     {
         if (m_IsGrounded)
         {
+            StartCoroutine(ApexModifers());
             m_Rigidbody.velocity = Vector3.up * m_JumpStrengt;
         }
         m_IsGrounded = false;
@@ -68,7 +91,7 @@ public class PlayerJump : MonoBehaviour
         {
             float getangle = Vector3.Angle(collision.contacts[i].normal, Vector3.up);
 
-
+            Debug.Log(getangle);
 
             if (getangle < DesiredAngle)
             {
@@ -76,37 +99,24 @@ public class PlayerJump : MonoBehaviour
             }
         }
 
-        return true;
+        return false;
 
     }
 
     private void OnCollisionExit(Collision collision)
     {
-
-        if (m_IsGrounded)
-        {
-
-            m_Exit = true;
-          
-
-        }
-        else
-        {
-            m_Exit = false;
-            CoyoteTime = m_MaxCoyoteTime;
-        }
-
-
+       m_Colliders.Remove(collision.collider);
     }
 
 
 
     private void OnCollisionEnter(Collision collision)
     {
-       
+        m_Colliders.Add(collision.collider);
+
 
         if (!m_IsGrounded) 
-        {
+        {  
             m_IsGrounded = CheckCollsion(collision);
         }
     }
@@ -117,6 +127,8 @@ public class PlayerJump : MonoBehaviour
         m_PlayerMovement = GetComponent<PlayerMovement>();
         m_Rigidbody = GetComponent<Rigidbody>();
         m_MaxCoyoteTime = CoyoteTime;
+        m_Colliders = new List<Collider>();
+        
     }
 
     void Start()
@@ -144,24 +156,30 @@ public class PlayerJump : MonoBehaviour
 
     void InCoyoteTime() 
     {
-        if (m_Exit) 
+      
+
+        if(m_Colliders.Count == 0 && m_IsGrounded) 
         {
             CoyoteTime -= Time.deltaTime;
-            if (CoyoteTime <= 0)
+
+            if (CoyoteTime < 0) 
             {
                 m_IsGrounded = false;
-                m_Exit = false;
                 CoyoteTime = m_MaxCoyoteTime;
             }
-        }
 
-        
+
+        }
     }
+
+    
+
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        m_nbrOfColldier = m_Colliders.Count;
         FallClamping();
         InCoyoteTime();
     }
