@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Events;
 
-public class PlayerDimension : MonoBehaviour
+public class DimensionScipt : MonoBehaviour
 {
     public enum Dimension 
     {
@@ -17,7 +17,7 @@ public class PlayerDimension : MonoBehaviour
 
 
     [SerializeField]
-    public float DimensionSize;
+    public float DimensionSize = 2;
 
    public UnityEvent OnClamping;
 
@@ -55,7 +55,6 @@ public class PlayerDimension : MonoBehaviour
 
         if (CurrentDimension == Dimension.Normal) 
         {
-            Debug.Log("here");
 
             if (transform.position.z < -DimensionSize) 
             {
