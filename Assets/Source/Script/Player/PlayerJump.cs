@@ -91,7 +91,7 @@ public class PlayerJump : MonoBehaviour
         {
             float getangle = Vector3.Angle(collision.contacts[i].normal, Vector3.up);
 
-            Debug.Log(getangle);
+
             if (getangle < DesiredAngle)
             {
                 return true;
@@ -112,6 +112,7 @@ public class PlayerJump : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         m_Colliders.Add(collision.collider);
+        CoyoteTime = m_MaxCoyoteTime;
 
 
         if (!m_IsGrounded) 

@@ -11,7 +11,6 @@ public class PlayerSelectObject : MonoBehaviour
     // Start is called before the first frame update
 
 
-   private Camera m_mainCam;
     [SerializeField]
     private List<SelectableObject> m_SelectableObejct;
 
@@ -46,7 +45,7 @@ public class PlayerSelectObject : MonoBehaviour
 
     private void Awake()
     {
-        m_mainCam = Camera.main;
+
     }
 
 
@@ -56,14 +55,5 @@ public class PlayerSelectObject : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        Vector3 ScreenMin = new Vector3(0, 0, 0);
-        Vector3 ScreenMax = new Vector3(m_mainCam.scaledPixelWidth, m_mainCam.scaledPixelHeight, 0);
-
-        ScreenMax = m_mainCam.ScreenToViewportPoint(ScreenMax);
-        ScreenMin = m_mainCam.ScreenToViewportPoint(ScreenMin);
-
-
-    }
+  
 }

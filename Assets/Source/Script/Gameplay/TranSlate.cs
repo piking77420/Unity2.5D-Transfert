@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 using Unity.Jobs;
 using UnityEngine.Events;
 
+
+[RequireComponent(typeof(DimensionScipt))]
 public class TranSlate : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -29,9 +31,7 @@ public class TranSlate : MonoBehaviour
     public bool m_isTranslate;
 
 
-    /// <summary>
-    /// here the provblem
-    /// </summary>
+
     public Vector3 startPos;
 
 
@@ -63,6 +63,7 @@ public class TranSlate : MonoBehaviour
 
 
 
+    // need to change it 
     public void Translation() 
     {
         CurrentObjectDimension.OnClamping.RemoveAllListeners();
