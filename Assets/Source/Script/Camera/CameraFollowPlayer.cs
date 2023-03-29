@@ -22,7 +22,10 @@ public class CameraFollowPlayer : MonoBehaviour
     private float m_DistanceZ;
 
 
+    [SerializeField, Range(0, 20)]
+    private float m_smoothValue;
 
+    private Vector3 velocityRef;
 
     private void OnValidate()
     {
@@ -43,7 +46,7 @@ public class CameraFollowPlayer : MonoBehaviour
     void Update()
     {
        
-        this.transform.position = m_PlayerTransform.position + new Vector3(-m_DistanceX , m_Height , -m_DistanceZ);
+        this.transform.position =  Vector3.SmoothDamp( transform.position ,m_PlayerTransform.position + new Vector3(-m_DistanceX , m_Height , -m_DistanceZ), ref velocityRef, m_smoothValue);
 
         transform.LookAt(m_PlayerTransform);
         

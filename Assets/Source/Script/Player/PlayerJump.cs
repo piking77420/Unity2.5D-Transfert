@@ -92,7 +92,6 @@ public class PlayerJump : MonoBehaviour
             float getangle = Vector3.Angle(collision.contacts[i].normal, Vector3.up);
 
             Debug.Log(getangle);
-
             if (getangle < DesiredAngle)
             {
                 return true;
