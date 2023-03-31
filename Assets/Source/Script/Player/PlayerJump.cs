@@ -22,7 +22,7 @@ public class PlayerJump : MonoBehaviour
 
 
     [SerializeField]
-    private bool m_IsGravityApplie = true;
+    public bool isGravityApplie = true;
 
     [SerializeField,Range(1,10)]
     private float m_GravityValue = 1;
@@ -92,10 +92,10 @@ public class PlayerJump : MonoBehaviour
     IEnumerator ApexModifers() 
     {
 
-        m_IsGravityApplie = false;
+        isGravityApplie = false;
         m_PlayerMovement.movement = new Vector3(m_PlayerMovement.movement.x * m_ApexModifiers, m_PlayerMovement.movement.y, m_PlayerMovement.movement.z); 
         yield return new WaitForSeconds(m_ApexTimerNoGravity);
-        m_IsGravityApplie = true;
+        isGravityApplie = true;
     }
 
 
@@ -216,7 +216,7 @@ public class PlayerJump : MonoBehaviour
     void FallClamping() 
     {
         
-        if (m_Rigidbody.velocity.y < 0 && m_IsGravityApplie)
+        if (m_Rigidbody.velocity.y < 0 && isGravityApplie)
         {
             if (m_Rigidbody.velocity.y < -FallClampValue && !m_IsGrounded)
             {
@@ -252,7 +252,7 @@ public class PlayerJump : MonoBehaviour
 
     private void AddGravity() 
     {
-        if (m_IsGravityApplie) 
+        if (isGravityApplie) 
         {
             Vector3 gravity =  (m_Rigidbody.velocity);
             gravity.y = Physics.gravity.y * m_GravityValue; 
@@ -304,7 +304,7 @@ public class PlayerJump : MonoBehaviour
     void FixedUpdate()
     {
 
-        m_Rigidbody.useGravity = !m_IsGravityApplie;
+        m_Rigidbody.useGravity = !isGravityApplie;
         m_nbrOfColldier = m_Colliders.Count;
         JumpBuffer();
         CalculateCustomGavrity();

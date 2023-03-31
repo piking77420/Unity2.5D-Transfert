@@ -61,32 +61,37 @@ public class TranSlate : MonoBehaviour
 
     }
 
+    protected void PlayerGravityStatut(bool value)
+    {
+        if(gameObject.TryGetComponent<PlayerJump>(out var playerJump)) 
+        {
+            playerJump.isGravityApplie = value;
+        }
+
+    }
+
+    //void private
     protected void Start()
     {
         
     }
 
-
-
-
     // need to change it 
     public void Translation() 
     {
+
+
+        PlayerGravityStatut(false);
         CurrentObjectDimension.OnClamping.RemoveAllListeners();
-
         DimensionScipt.Dimension currentDimension = CurrentObjectDimension.CurrentDimension;
-
         Vector3 swapVector = startPos;
+
+
+
 
         swapVector.z = -startPos.z;
 
-     
         gameObject.transform.position = Vector3.Lerp(startPos, swapVector, m_SwapDimensionTimer);
-
-
-
-
-      
 
         m_SwapDimensionTimer += Time.deltaTime  ;
 
@@ -96,6 +101,8 @@ public class TranSlate : MonoBehaviour
             m_isTranslate = false;
             CurrentObjectDimension.SwapDimension();
             CurrentObjectDimension.OnClamping.AddListener(CurrentObjectDimension.ClampPositionPlayer);
+            PlayerGravityStatut(true);
+
 
         }
 

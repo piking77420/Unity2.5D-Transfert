@@ -25,7 +25,9 @@ public class CameraFollowPlayer : MonoBehaviour
     [SerializeField, Range(0, 1)]
     private float m_smoothValue;
 
-    private Vector3 velocityRef;
+    [SerializeField]
+    private float FollowSpeed;
+
 
     private void OnValidate()
     {
@@ -47,7 +49,7 @@ public class CameraFollowPlayer : MonoBehaviour
     {
 
         Vector3 newPos = m_PlayerTransform.position + new Vector3(-m_DistanceX, m_Height, -m_DistanceZ);
-        Vector3 smoothedPos = Vector3.Lerp(transform.position, newPos, m_smoothValue);
+        Vector3 smoothedPos = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
 
         this.transform.position = smoothedPos;
 
