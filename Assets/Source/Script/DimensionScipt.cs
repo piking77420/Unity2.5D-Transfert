@@ -95,5 +95,6 @@ public class DimensionScipt : MonoBehaviour
     void Update()
     {
         OnClamping.Invoke();
+       
     }
 }

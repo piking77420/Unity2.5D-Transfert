@@ -18,10 +18,13 @@ public class TranSlate : MonoBehaviour
     protected DimensionScipt CurrentObjectDimension;
 
 
-    protected float m_SwapDimensionTime;
 
     [SerializeField]
-    protected float m_SwapDimensionTimeMax;
+    protected float m_SwapDimensionTime;
+
+
+    protected float m_SwapDimensionTimer;
+    protected float m_SwapDimensionTimerMax;
 
 
 
@@ -51,7 +54,10 @@ public class TranSlate : MonoBehaviour
 
     protected void Awake()
     {
-        CurrentObjectDimension= GetComponent<DimensionScipt>();
+        CurrentObjectDimension = GetComponent<DimensionScipt>();
+        m_SwapDimensionTimer = 1;
+        m_SwapDimensionTimerMax = m_SwapDimensionTimer;
+        m_SwapDimensionTimer = 0;
 
     }
 
@@ -76,23 +82,23 @@ public class TranSlate : MonoBehaviour
 
         Debug.Log(swapVector);
      
-        gameObject.transform.position = Vector3.Lerp(startPos, swapVector, m_SwapDimensionTime);
+        gameObject.transform.position = Vector3.Lerp(startPos, swapVector, m_SwapDimensionTimer);
 
 
 
 
-        if(m_SwapDimensionTime >= m_SwapDimensionTimeMax) 
+      
+
+        m_SwapDimensionTimer += Time.deltaTime  ;
+
+        if (m_SwapDimensionTimer >= m_SwapDimensionTimerMax)
         {
-            m_SwapDimensionTime = 0;
+            m_SwapDimensionTimer = 0;
             m_isTranslate = false;
             CurrentObjectDimension.SwapDimension();
             CurrentObjectDimension.OnClamping.AddListener(CurrentObjectDimension.ClampPositionPlayer);
 
         }
-
-        m_SwapDimensionTime += Time.deltaTime;
-
-
 
     }
 

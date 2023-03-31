@@ -18,14 +18,23 @@ public class PlayerJump : MonoBehaviour
     [SerializeField]
     private bool m_IsGrounded = false;
 
+
+    [SerializeField]
+    private bool m_IsGravityApplie = true;
+
+    [SerializeField,Range(1,10)]
+    private float m_GravityValue = 1;
+
     [Header("JumpValues")]
 
     [SerializeField]
     private float m_JumpStrengt;
 
+    [SerializeField]
+    private bool m_JumpBuffer;
 
     [Tooltip("Falling acceleration after he start falling (cant' be superior to")]
-    [SerializeField, Range(0, 180)]
+    [SerializeField, Range(0, 10)]
     private float fallAcceleration;
 
 
@@ -56,31 +65,67 @@ public class PlayerJump : MonoBehaviour
 
 
     [Header("NbrOfCollision")]
-
     private List<Collider> m_Colliders;
     [SerializeField]
     private int m_nbrOfColldier;
 
+
+    [HideInInspector]
+    public Vector3 customGravity;
+
     IEnumerator ApexModifers() 
     {
-        
-        m_Rigidbody.useGravity = false;
+
+        m_IsGravityApplie = false;
         m_PlayerMovement.movement = new Vector3(m_PlayerMovement.movement.x * m_ApexModifiers, m_PlayerMovement.movement.y, m_PlayerMovement.movement.z); 
         yield return new WaitForSeconds(m_ApexTimerNoGravity);
-        m_Rigidbody.useGravity = true;
+        m_IsGravityApplie = true;
+    }
+
+
+    private void DoJump() 
+    {
+        StartCoroutine(ApexModifers());
+        m_Rigidbody.velocity = Vector3.up * m_JumpStrengt;
+        m_IsGrounded = false;
+        m_JumpBuffer = false;
     }
 
 
 
+
+  
     public void OnJumping(InputAction.CallbackContext _callbackContext)
     {
-        if (m_IsGrounded)
-        {
-            StartCoroutine(ApexModifers());
-            m_Rigidbody.velocity = Vector3.up * m_JumpStrengt;
-        }
-        m_IsGrounded = false;
+        bool Onpress = _callbackContext.performed;
 
+        JumpBuffer();
+
+
+
+
+        if (Onpress) 
+        {
+
+            if (m_IsGrounded && !m_JumpBuffer)
+            {
+                DoJump();
+
+            }
+
+            if (!m_IsGrounded && !m_JumpBuffer)
+            {   
+                m_JumpBuffer = true;
+            }
+
+        }
+        else
+        {
+            return;
+        }
+
+
+      
     }
 
   
@@ -140,7 +185,8 @@ public class PlayerJump : MonoBehaviour
 
     void FallClamping() 
     {
-        if (m_Rigidbody.velocity.y < 0)
+        
+        if (m_Rigidbody.velocity.y < 0 && m_IsGravityApplie)
         {
             if (m_Rigidbody.velocity.y < -FallClampValue && !m_IsGrounded)
             {
@@ -148,7 +194,7 @@ public class PlayerJump : MonoBehaviour
             }
             else
             {
-                m_Rigidbody.velocity += Vector3.up * Physics.gravity.y * (fallAcceleration - 1) * Time.deltaTime;
+                m_Rigidbody.velocity += Vector3.up * customGravity.y * (fallAcceleration - 1) * Time.deltaTime;
             }
         }
     }
@@ -172,14 +218,50 @@ public class PlayerJump : MonoBehaviour
         }
     }
 
-    
 
+
+    private void AddGravity() 
+    {
+        if (m_IsGravityApplie) 
+        {
+            Vector3 gravity =  (m_Rigidbody.velocity);
+            gravity.y = Physics.gravity.y * m_GravityValue; 
+            m_Rigidbody.AddForce(customGravity);
+        }
+    }
+
+    private void CalculateCustomGavrity() 
+    {
+        customGravity = m_Rigidbody.velocity;
+        customGravity.y = m_GravityValue * Physics.gravity.y * m_Rigidbody.mass ;
+    }
+    private void JumpBuffer()
+    {
+        if (m_IsGrounded && m_JumpBuffer)
+        {
+            DoJump();
+        }
+
+        if (m_IsGrounded)
+        {
+            m_JumpBuffer = false;
+        }
+
+
+      
+
+    }
 
 
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        m_Rigidbody.useGravity = !m_IsGravityApplie;
         m_nbrOfColldier = m_Colliders.Count;
+        JumpBuffer();
+        CalculateCustomGavrity();
+        AddGravity();
         FallClamping();
         InCoyoteTime();
     }

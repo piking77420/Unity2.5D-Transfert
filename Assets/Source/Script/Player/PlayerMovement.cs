@@ -11,8 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Rigidbody m_Rigidbody;
 
-    [SerializeField,Range(1,0)]
-    private float m_CustomGravity;
+
     [SerializeField, Range(0, 100)]
     private float m_Speed;
 
@@ -45,11 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    private void FixedUpdate()
-    {
-        m_Rigidbody.useGravity = false;
-        m_Rigidbody.AddForce(Physics.gravity * m_Rigidbody.mass * m_CustomGravity);
-    }
+ 
     // Update is called once per frame
     void Update()
     {

@@ -22,7 +22,7 @@ public class CameraFollowPlayer : MonoBehaviour
     private float m_DistanceZ;
 
 
-    [SerializeField, Range(0, 20)]
+    [SerializeField, Range(0, 1)]
     private float m_smoothValue;
 
     private Vector3 velocityRef;
@@ -45,8 +45,11 @@ public class CameraFollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        this.transform.position =  Vector3.SmoothDamp( transform.position ,m_PlayerTransform.position + new Vector3(-m_DistanceX , m_Height , -m_DistanceZ), ref velocityRef, m_smoothValue);
+
+        Vector3 newPos = m_PlayerTransform.position + new Vector3(-m_DistanceX, m_Height, -m_DistanceZ);
+        Vector3 smoothedPos = Vector3.Lerp(transform.position, newPos, m_smoothValue);
+
+        this.transform.position = smoothedPos;
 
         transform.LookAt(m_PlayerTransform);
         
