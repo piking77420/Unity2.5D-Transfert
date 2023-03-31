@@ -9,7 +9,7 @@
                     "name": "Movment",
                     "type": "Value",
                     "id": "e8c22d4d-ba44-432c-ba9b-00abbfae8bfd",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -44,9 +44,9 @@
             ],
             "bindings": [
                 {
-                    "name": "2D Vector",
+                    "name": "1D Axis",
                     "id": "d43560be-8d80-4499-9363-b434bf87c4d4",
-                    "path": "2DVector",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -55,30 +55,8 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "cf9a25b7-d144-4ff4-ae2c-269e595fe74e",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movment",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "ffff6212-f6c0-4c47-95b8-d8b00fb01f7c",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movment",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "03c46f75-7722-4bb4-93b7-c45643833f15",
+                    "name": "Negative",
+                    "id": "f00abd14-697c-4c4d-b4d0-22457641d724",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -88,9 +66,42 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
-                    "id": "d140d18a-8ad5-4ceb-b6bf-4aa34c8734e0",
+                    "name": "Positive",
+                    "id": "857c0561-3230-43e5-881b-c85ec54c4307",
                     "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movment",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "3937d574-7ab7-46d4-a6ad-b513e0ca9ece",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movment",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Negative",
+                    "id": "b4b5bcee-f691-453b-99e5-59fc5384051c",
+                    "path": "<XInputController>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movment",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Positive",
+                    "id": "1e40a493-666b-438a-9ae1-b8f8131839ad",
+                    "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -103,6 +114,17 @@
                     "id": "f9bab597-db3b-43d0-b1aa-7b92c233500f",
                     "path": "<Keyboard>/space",
                     "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jumping",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "085ed82b-449b-4f36-9220-ec50dc805131",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Jumping",
@@ -124,6 +146,17 @@
                     "name": "",
                     "id": "375da7e0-5fe8-4bf9-81c3-64d8c417c400",
                     "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TransPlanage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "89026a6a-feb0-4653-8d5b-e12ae6617d46",
+                    "path": "<XInputController>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

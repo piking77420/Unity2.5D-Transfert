@@ -1823,7 +1823,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734006399}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 9f66aa1b9a5801e4f84b60b49ab2ed54, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -1853,7 +1853,7 @@ MonoBehaviour:
   fallAcceleration: 6
   FallClampValue: 70.4
   DesiredAngle: 25
-  CoyoteTime: 1
+  CoyoteTime: 0.2
   m_ApexModifiers: 1.35
   m_ApexTimerNoGravity: 0.1
   m_nbrOfColldier: 0

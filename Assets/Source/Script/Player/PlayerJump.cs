@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -33,6 +34,10 @@ public class PlayerJump : MonoBehaviour
     private bool m_HasPressButton;
     private bool m_WillJump;
 
+
+    [Tooltip("Max Player Multipaction of the Jump Streght ")]
+    [SerializeField,Range(1,4)]
+    private float m_MaxJumpMultiplication;
 
 
     [SerializeField,Range(1,2)]
@@ -281,10 +286,10 @@ public class PlayerJump : MonoBehaviour
         if (m_HasPressButton)
         {
             m_JumpMultiplactation += (m_JumpMultiplactation) *  Time.deltaTime;
+            Mathf.Clamp(m_JumpMultiplactation, 1, m_MaxJumpMultiplication);
             Debug.Log(m_JumpMultiplactation);
         }
 
-        Mathf.Clamp(m_JumpMultiplactation, 1, 3);
     }
 
 

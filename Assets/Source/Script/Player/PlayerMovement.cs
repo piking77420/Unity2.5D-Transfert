@@ -22,10 +22,11 @@ public class PlayerMovement : MonoBehaviour
     public void OnMovement(InputAction.CallbackContext _context) 
     {
         
-        Vector3 movementInput =  new Vector3(_context.ReadValue<Vector2>().x ,0,0);
+        Vector3 movementInput =  new Vector3(_context.ReadValue<float>(),0,0);
+        Debug.Log(_context.ReadValue<float>());
         movement = movementInput;
        
-
+            
     }
 
 
