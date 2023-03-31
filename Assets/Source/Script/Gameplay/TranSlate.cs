@@ -80,7 +80,6 @@ public class TranSlate : MonoBehaviour
 
         swapVector.z = -startPos.z;
 
-        Debug.Log(swapVector);
      
         gameObject.transform.position = Vector3.Lerp(startPos, swapVector, m_SwapDimensionTimer);
 

@@ -21,7 +21,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "PlayerDash",
@@ -102,7 +102,7 @@
                     "name": "",
                     "id": "f9bab597-db3b-43d0-b1aa-7b92c233500f",
                     "path": "<Keyboard>/space",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "",
                     "action": "Jumping",

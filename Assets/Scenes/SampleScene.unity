@@ -1847,7 +1847,9 @@ MonoBehaviour:
   m_IsGrounded: 1
   m_IsGravityApplie: 1
   m_GravityValue: 3
-  m_JumpStrengt: 20
+  m_JumpStrengt: 10
+  m_JumpMultiplactation: 1
+  m_JumpBuffer: 0
   fallAcceleration: 6
   FallClampValue: 70.4
   DesiredAngle: 25

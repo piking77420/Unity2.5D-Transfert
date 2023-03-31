@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 [RequireComponent(typeof(PlayerMovement))]
 public class PlayerJump : MonoBehaviour
@@ -29,11 +30,21 @@ public class PlayerJump : MonoBehaviour
 
     [SerializeField]
     private float m_JumpStrengt;
+    private bool m_HasPressButton;
+    private bool m_WillJump;
+
+
+
+    [SerializeField,Range(1,2)]
+    private float m_JumpMultiplactation;
+
+
+
 
     [SerializeField]
     private bool m_JumpBuffer;
 
-    [Tooltip("Falling acceleration after he start falling (cant' be superior to")]
+    [Tooltip("Falling acceleration after he start falling (cant' be superior to Climping")]
     [SerializeField, Range(0, 10)]
     private float fallAcceleration;
 
@@ -43,13 +54,13 @@ public class PlayerJump : MonoBehaviour
     private float FallClampValue;
 
 
+    [Space]
+
     [SerializeField, Range(0, 180)]
     private float DesiredAngle;
 
     [SerializeField, Range(0, 10)]
     private float CoyoteTime;
-
-
 
 
     [Header("Apex Value")]
@@ -83,12 +94,14 @@ public class PlayerJump : MonoBehaviour
     }
 
 
-    private void DoJump() 
+    public void DoJump(float JumpStrenght) 
     {
         StartCoroutine(ApexModifers());
-        m_Rigidbody.velocity = Vector3.up * m_JumpStrengt;
+        m_Rigidbody.velocity = Vector3.up * JumpStrenght;
         m_IsGrounded = false;
         m_JumpBuffer = false;
+        m_WillJump = false;
+        m_JumpMultiplactation = 1;
     }
 
 
@@ -98,15 +111,28 @@ public class PlayerJump : MonoBehaviour
     public void OnJumping(InputAction.CallbackContext _callbackContext)
     {
         bool Onpress = _callbackContext.performed;
-
-        JumpBuffer();
-
-
-
-
-        if (Onpress) 
+        float time = (float)_callbackContext.duration;
+       
+        switch (_callbackContext.phase) 
         {
+            case InputActionPhase.Started:
+                // Debug.Log(_callbackContext.interaction.ToString() + " Started");
+                m_HasPressButton = true;
 
+                break;
+            case InputActionPhase.Performed:
+               
+                break;
+            case InputActionPhase.Canceled:
+                m_HasPressButton = false;
+                m_WillJump = true;
+                break;
+        }
+
+        
+
+        if (m_WillJump) 
+        {
             if (!m_IsGrounded && !m_JumpBuffer)
             {
                 m_JumpBuffer = true;
@@ -115,17 +141,13 @@ public class PlayerJump : MonoBehaviour
 
             if (m_IsGrounded && !m_JumpBuffer)
             {
-                DoJump();
+                DoJump(m_JumpStrengt * m_JumpMultiplactation);
 
             }
 
-          
-
         }
-        else
-        {
-            return;
-        }
+     
+        
 
 
       
@@ -242,7 +264,7 @@ public class PlayerJump : MonoBehaviour
     {
         if (m_IsGrounded && m_JumpBuffer)
         {
-            DoJump();
+            DoJump(m_JumpStrengt);
         }
 
         if (m_IsGrounded)
@@ -250,13 +272,30 @@ public class PlayerJump : MonoBehaviour
             m_JumpBuffer = false;
         }
 
-
-      
-
     }
 
 
+
+    private void GetJumpMultiplication() 
+    {
+        if (m_HasPressButton)
+        {
+            m_JumpMultiplactation += (m_JumpMultiplactation) *  Time.deltaTime;
+            Debug.Log(m_JumpMultiplactation);
+        }
+
+        Mathf.Clamp(m_JumpMultiplactation, 1, 3);
+    }
+
+
+
     // Update is called once per frame
+    private void Update()
+    {
+        GetJumpMultiplication();
+    }
+
+
     void FixedUpdate()
     {
 
