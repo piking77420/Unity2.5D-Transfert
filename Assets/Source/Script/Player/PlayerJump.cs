@@ -107,16 +107,19 @@ public class PlayerJump : MonoBehaviour
         if (Onpress) 
         {
 
+            if (!m_IsGrounded && !m_JumpBuffer)
+            {
+                m_JumpBuffer = true;
+                return;
+            }
+
             if (m_IsGrounded && !m_JumpBuffer)
             {
                 DoJump();
 
             }
 
-            if (!m_IsGrounded && !m_JumpBuffer)
-            {   
-                m_JumpBuffer = true;
-            }
+          
 
         }
         else
