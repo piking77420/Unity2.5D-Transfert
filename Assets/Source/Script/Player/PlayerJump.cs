@@ -294,10 +294,11 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
     private void GetJumpMultiplication() 
     {
-        if (m_HasPressButton)
+        if (m_HasPressButton && m_JumpMultiplactation <= m_MaxJumpMultiplication)
         {
+           
             m_JumpMultiplactation += (m_JumpMultiplactation) *  Time.deltaTime;
-            Mathf.Clamp(m_JumpMultiplactation, 1, m_MaxJumpMultiplication);        }
+        }
 
     }
 
