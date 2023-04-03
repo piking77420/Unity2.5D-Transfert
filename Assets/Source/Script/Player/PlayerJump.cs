@@ -7,11 +7,19 @@ using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
 [RequireComponent(typeof(PlayerMovement))]
-public class PlayerJump : MonoBehaviour
+public class PlayerJump : MonoBehaviour, PlayableAudioScript
 {
     // Start is called before the first frame update
 
     [SerializeField]
+    public SelectAudioSource selectAudioSource;
+
+
+
+    [Header("Physics Part")]
+
+
+    [Space,SerializeField]
     private Rigidbody m_Rigidbody;
 
     [SerializeField]
@@ -77,6 +85,8 @@ public class PlayerJump : MonoBehaviour
     private float m_ApexTimerNoGravity;
 
 
+
+
     private float m_MaxCoyoteTime;
 
 
@@ -93,7 +103,7 @@ public class PlayerJump : MonoBehaviour
     {
 
         isGravityApplie = false;
-        m_PlayerMovement.movement = new Vector3(m_PlayerMovement.movement.x * m_ApexModifiers, m_PlayerMovement.movement.y, m_PlayerMovement.movement.z); 
+        m_PlayerMovement.movement = new Vector3(m_PlayerMovement.movement.x * m_ApexModifiers, m_PlayerMovement.movement.y, m_PlayerMovement.movement.z);
         yield return new WaitForSeconds(m_ApexTimerNoGravity);
         isGravityApplie = true;
     }
@@ -101,6 +111,7 @@ public class PlayerJump : MonoBehaviour
 
     public void DoJump(float JumpStrenght) 
     {
+
         StartCoroutine(ApexModifers());
         m_Rigidbody.velocity = Vector3.up * JumpStrenght;
         m_IsGrounded = false;
@@ -197,7 +208,7 @@ public class PlayerJump : MonoBehaviour
     }
 
 
-    private void Awake()
+    private  void Awake()
     {
         m_PlayerMovement = GetComponent<PlayerMovement>();
         m_Rigidbody = GetComponent<Rigidbody>();
@@ -286,9 +297,7 @@ public class PlayerJump : MonoBehaviour
         if (m_HasPressButton)
         {
             m_JumpMultiplactation += (m_JumpMultiplactation) *  Time.deltaTime;
-            Mathf.Clamp(m_JumpMultiplactation, 1, m_MaxJumpMultiplication);
-            Debug.Log(m_JumpMultiplactation);
-        }
+            Mathf.Clamp(m_JumpMultiplactation, 1, m_MaxJumpMultiplication);        }
 
     }
 
@@ -298,8 +307,19 @@ public class PlayerJump : MonoBehaviour
     private void Update()
     {
         GetJumpMultiplication();
+        
     }
 
+    public void PlayAudio()
+    {
+        throw new System.NotImplementedException();
+    }
+
+
+
+
+
+    
 
     void FixedUpdate()
     {
@@ -311,5 +331,10 @@ public class PlayerJump : MonoBehaviour
         AddGravity();
         FallClamping();
         InCoyoteTime();
+
+        
     }
+
+   
+
 }

@@ -8,10 +8,15 @@ public class PlayerTranslate : TranSlate
     // Start is called before the first frame update
 
 
+    
 
     public override void OnChangingDimension(InputAction.CallbackContext _context)
     {
-        if (_context.performed && !m_isTranslate)
+
+        
+
+
+        if (_context.canceled && !m_isTranslate)
         {
             m_isTranslate = true;
             startPos = transform.position;
@@ -20,7 +25,7 @@ public class PlayerTranslate : TranSlate
     }
 
 
-    new void Awake()
+     private void Awake()
     {
         base.Awake();
     }

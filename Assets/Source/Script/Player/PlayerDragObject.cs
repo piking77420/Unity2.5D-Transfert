@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerDragObject : MonoBehaviour
 {
@@ -15,11 +16,20 @@ public class PlayerDragObject : MonoBehaviour
     private bool m_ShowRadius;
 
 
-    [SerializeField, Range(1, 15)]
+    [SerializeField, Range(0, 15)]
     private float m_SelectionRadius;
+
+    [Tooltip("Value of radius increase each second")]
+    [SerializeField, Range(1, 5)]
+    private float m_SelectRadiusMultiplicator;
 
     [SerializeField]
     List<SelectableObject> DragAbleObject;
+
+
+
+    [SerializeField]    
+    private bool m_TranslateButton;
 
     private void OnDrawGizmos()
     {
@@ -38,6 +48,7 @@ public class PlayerDragObject : MonoBehaviour
 
         foreach (Collider collider in sphereDrag)
         {
+            
             if(collider.gameObject.TryGetComponent<SelectableObject>(out SelectableObject selectable)) 
             {
                 DragAbleObject.Add(selectable);
@@ -47,22 +58,43 @@ public class PlayerDragObject : MonoBehaviour
 
     }
 
+    private void TransSlateObject(InputAction.CallbackContext _context) 
+    {
+
+        foreach (var item in DragAbleObject)
+        {
+            item.gameObject.GetComponent<TranSlate>().OnChangingDimension(_context);
+        }
+    }
+
+    private void GetPlayerRadius(InputAction.CallbackContext _context) 
+    {
+        switch (_context.phase)
+        {
+            case InputActionPhase.Started:
+                m_TranslateButton = true;
+                break;
+            case InputActionPhase.Performed:
+                break;
+            case InputActionPhase.Canceled:
+                m_TranslateButton = false;
+                FindAllDragableObject();
+                TransSlateObject(_context);
+                m_SelectionRadius= 0;
+                DragAbleObject.Clear();
+                break;
+        }
+
+
+    }
+
 
 
     public void OnChangingDimension(InputAction.CallbackContext _context)
     {
-        FindAllDragableObject();
 
+        GetPlayerRadius(_context);
 
-        if (_context.performed)
-        {
-            foreach (var item in DragAbleObject)
-            {
-                item.gameObject.GetComponent<TranSlate>().OnChangingDimension(_context);
-            }
-        }
-
-        DragAbleObject.Clear();
     }
 
 
@@ -82,6 +114,9 @@ public class PlayerDragObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (m_TranslateButton) 
+        {
+            m_SelectionRadius += Time.deltaTime * m_SelectRadiusMultiplicator;
+        }
     }
 }

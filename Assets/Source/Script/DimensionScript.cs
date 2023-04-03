@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Events;
 
-public class DimensionScipt : MonoBehaviour
+public class DimensionScript : MonoBehaviour
 {
     public enum Dimension 
     {
@@ -51,14 +51,14 @@ public class DimensionScipt : MonoBehaviour
         Vector3 offsetVector = transform.position;
 
         
-
+        
 
         if (CurrentDimension == Dimension.Normal) 
         {
 
             if (transform.position.z < -DimensionSize) 
             {
-                offsetVector.z = -DimensionSize ;
+                offsetVector.z = -offsetVector.z;
                 transform.position = offsetVector;
             }else if (transform.position.z > 0) 
             {
@@ -70,7 +70,7 @@ public class DimensionScipt : MonoBehaviour
         {
             if (transform.position.z > DimensionSize)
             {
-                offsetVector.z = DimensionSize ;
+                offsetVector.z = -offsetVector.z; ;
                 transform.position = offsetVector;
             }
             else if (transform.position.z < 0)
@@ -79,6 +79,8 @@ public class DimensionScipt : MonoBehaviour
                 transform.position = offsetVector;
             }
         }
+
+
     }
 
 

@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static DimensionScipt;
+using static DimensionScript;
 using UnityEngine.InputSystem;
 using Unity.Jobs;
 using UnityEngine.Events;
+using Unity.VisualScripting;
 
-
-[RequireComponent(typeof(DimensionScipt))]
+[RequireComponent(typeof(DimensionScript))]
 public class TranSlate : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -15,7 +15,7 @@ public class TranSlate : MonoBehaviour
     
 
     [SerializeField]
-    protected DimensionScipt CurrentObjectDimension;
+    protected DimensionScript CurrentObjectDimension;
 
 
 
@@ -40,7 +40,8 @@ public class TranSlate : MonoBehaviour
 
         public virtual void OnChangingDimension(InputAction.CallbackContext _context)
         {
-            if (_context.performed && !m_isTranslate)
+
+            if (_context.canceled && !m_isTranslate)
             {
                 m_isTranslate = true;
                 startPos = transform.position;
@@ -54,7 +55,7 @@ public class TranSlate : MonoBehaviour
 
     protected void Awake()
     {
-        CurrentObjectDimension = GetComponent<DimensionScipt>();
+        CurrentObjectDimension= gameObject.GetComponent<DimensionScript>();
         m_SwapDimensionTimer = 1;
         m_SwapDimensionTimerMax = m_SwapDimensionTimer;
         m_SwapDimensionTimer = 0;
@@ -83,7 +84,7 @@ public class TranSlate : MonoBehaviour
 
         PlayerGravityStatut(false);
         CurrentObjectDimension.OnClamping.RemoveAllListeners();
-        DimensionScipt.Dimension currentDimension = CurrentObjectDimension.CurrentDimension;
+        DimensionScript.Dimension currentDimension = CurrentObjectDimension.CurrentDimension;
         Vector3 swapVector = startPos;
 
 
