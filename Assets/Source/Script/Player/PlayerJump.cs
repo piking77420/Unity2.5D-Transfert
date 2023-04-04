@@ -12,7 +12,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
     // Start is called before the first frame update
 
     [SerializeField]
-    public SelectAudioSource selectAudioSource;
+    private AudioSource m_AudioSource;
 
 
 
@@ -26,7 +26,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
     private PlayerMovement m_PlayerMovement;
 
     [SerializeField]
-    private bool m_IsGrounded = false;
+    public bool isGrounded = false;
 
 
     [SerializeField]
@@ -111,10 +111,10 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
     public void DoJump(float JumpStrenght) 
     {
-
+        m_AudioSource.Play();
         StartCoroutine(ApexModifers());
         m_Rigidbody.velocity = Vector3.up * JumpStrenght;
-        m_IsGrounded = false;
+        isGrounded = false;
         m_JumpBuffer = false;
         m_WillJump = false;
         m_JumpMultiplactation = 1;
@@ -149,13 +149,13 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
         if (m_WillJump) 
         {
-            if (!m_IsGrounded && !m_JumpBuffer)
+            if (!isGrounded && !m_JumpBuffer)
             {
                 m_JumpBuffer = true;
                 return;
             }
 
-            if (m_IsGrounded && !m_JumpBuffer)
+            if (isGrounded && !m_JumpBuffer)
             {
                 DoJump(m_JumpStrengt * m_JumpMultiplactation);
 
@@ -201,9 +201,9 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
         CoyoteTime = m_MaxCoyoteTime;
 
 
-        if (!m_IsGrounded) 
+        if (!isGrounded) 
         {  
-            m_IsGrounded = CheckCollsion(collision);
+            isGrounded = CheckCollsion(collision);
         }
     }
 
@@ -229,7 +229,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
         
         if (m_Rigidbody.velocity.y < 0 && isGravityApplie)
         {
-            if (m_Rigidbody.velocity.y < -FallClampValue && !m_IsGrounded)
+            if (m_Rigidbody.velocity.y < -FallClampValue && !isGrounded)
             {
                 m_Rigidbody.velocity = new Vector3(m_PlayerMovement.movement.x, -FallClampValue, m_PlayerMovement.movement.y);
             }
@@ -245,13 +245,13 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
     {
       
 
-        if(m_Colliders.Count == 0 && m_IsGrounded) 
+        if(m_Colliders.Count == 0 && isGrounded) 
         {
             CoyoteTime -= Time.deltaTime;
 
             if (CoyoteTime < 0) 
             {
-                m_IsGrounded = false;
+                isGrounded = false;
                 CoyoteTime = m_MaxCoyoteTime;
             }
 
@@ -278,12 +278,12 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
     }
     private void JumpBuffer()
     {
-        if (m_IsGrounded && m_JumpBuffer)
+        if (isGrounded && m_JumpBuffer)
         {
             DoJump(m_JumpStrengt);
         }
 
-        if (m_IsGrounded)
+        if (isGrounded)
         {
             m_JumpBuffer = false;
         }

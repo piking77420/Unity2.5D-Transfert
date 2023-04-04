@@ -10,6 +10,9 @@ public class PlayerWallJump : MonoBehaviour
     [SerializeField]
     private PlayerMovement m_movement;
 
+    [SerializeField]
+    private PlayerJump m_PlayerJump;
+
 
     [SerializeField]
     private Rigidbody m_Rigidbody;
@@ -21,13 +24,15 @@ public class PlayerWallJump : MonoBehaviour
 
     private void Awake()
     {
-        m_movement= GetComponent<PlayerMovement>();
+        m_PlayerJump = GetComponent<PlayerJump>();
+        m_movement = GetComponent<PlayerMovement>();
         m_Rigidbody = GetComponent<Rigidbody>();
     }
 
 
     private void OnCollisionStay(Collision collision)
     {
+        if(!m_PlayerJump.isGrounded)
         for (int i = 0; i < collision.contacts.Length; i++)
         {
             if(Vector3.Angle(collision.contacts[i].normal,Vector3.up) >= 90f) 
