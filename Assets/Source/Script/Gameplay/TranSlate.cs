@@ -6,13 +6,16 @@ using UnityEngine.InputSystem;
 using Unity.Jobs;
 using UnityEngine.Events;
 using Unity.VisualScripting;
+using static UnityEngine.Rendering.DebugUI;
+using System;
 
 [RequireComponent(typeof(DimensionScript))]
 public class TranSlate : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    
+    [SerializeField]
+    protected EffectSpwaner m_EffectSpwaner;
 
     [SerializeField]
     protected DimensionScript CurrentObjectDimension;
@@ -29,8 +32,6 @@ public class TranSlate : MonoBehaviour
 
 
 
-
-    private GameObject TranslatioEffect;
     [SerializeField]
     private Animator m_animator;
 
@@ -42,7 +43,66 @@ public class TranSlate : MonoBehaviour
 
     public Vector3 startPos;
 
-    
+
+
+
+
+
+
+
+
+    private bool CheckIfIsPlayer(out PlayerMovement movementPlayer , out PlayerJump playerJump) 
+    {
+        if(TryGetComponent<PlayerJump>(out playerJump) && TryGetComponent<PlayerMovement>(out movementPlayer) )
+        {
+
+            return true;
+        }
+        else 
+        {
+            movementPlayer = null;
+            playerJump = null;
+            return false;
+        }
+       
+
+    }
+
+
+
+    IEnumerator PlayerBecommingGhosted(float seconds) 
+    {   
+        gameObject.TryGetComponent<Renderer>(out Renderer renderer);
+        gameObject.TryGetComponent<Collider>(out Collider collider);
+
+        bool ifIsPlayer = CheckIfIsPlayer(out PlayerMovement movementPlayer, out PlayerJump jump);
+
+
+
+
+
+       if (ifIsPlayer) 
+       {
+            movementPlayer.enabled = false;
+            jump.enabled = false;
+       }
+
+        collider.enabled = false;
+        renderer.enabled = false;
+
+        yield return new WaitForSeconds(seconds);
+
+        collider.enabled = true;
+        if (ifIsPlayer)
+        {
+            movementPlayer.enabled = true;
+            jump.enabled = true;
+        }
+        renderer.enabled = true;
+    }
+
+
+
 
 
 
@@ -53,17 +113,14 @@ public class TranSlate : MonoBehaviour
 
     public virtual void OnChangingDimension(InputAction.CallbackContext _context)
     {
+                
+
 
             if (_context.canceled && !m_isTranslate)
             {
-                m_animator.SetTrigger("Translate");
                 m_isTranslate = true;
                 startPos = transform.position;
-            
-
-                TranslatioEffect.TryGetComponent<DistortionScriptEffect>(out var effect);
-                effect.clockDirection = DistortionScriptEffect.ClockDirection.ClockWise;
-                Instantiate(TranslatioEffect);
+                
             }
 
     }
@@ -79,10 +136,12 @@ public class TranSlate : MonoBehaviour
         m_SwapDimensionTimer = 1;
         m_SwapDimensionTimerMax = m_SwapDimensionTimer;
         m_SwapDimensionTimer = 0;
+        m_EffectSpwaner = GetComponent<EffectSpwaner>();
 
+        /*
         TranslatioEffect = new GameObject();
 
-        TranslatioEffect.AddComponent<DistortionScriptEffect>();    
+        TranslatioEffect.AddComponent<DistortionScriptEffect>();    */
 
     }
 
@@ -98,11 +157,12 @@ public class TranSlate : MonoBehaviour
     //void private
     protected void Start()
     {
+      
     }
 
     // need to change it 
     public virtual void  Translation() 
-    {
+    {/*
 
         CurrentObjectDimension.OnClamping.RemoveAllListeners();
         DimensionScript.Dimension currentDimension = CurrentObjectDimension.CurrentDimension;
@@ -119,8 +179,8 @@ public class TranSlate : MonoBehaviour
  
         }
 
-
-        /*
+        */  
+        
         PlayerGravityStatut(false);
         CurrentObjectDimension.OnClamping.RemoveAllListeners();
         DimensionScript.Dimension currentDimension = CurrentObjectDimension.CurrentDimension;
@@ -141,11 +201,13 @@ public class TranSlate : MonoBehaviour
             m_isTranslate = false;
             CurrentObjectDimension.SwapDimension();
             CurrentObjectDimension.OnClamping.AddListener(CurrentObjectDimension.ClampPositionPlayer);
+
+            m_EffectSpwaner.SpawnEffect();
             PlayerGravityStatut(true);
 
 
         }
-        */
+        
     }
 
 

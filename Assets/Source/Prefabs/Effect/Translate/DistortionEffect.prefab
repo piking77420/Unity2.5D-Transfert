@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7815864669974872627}
   - component: {fileID: 7815864669974872625}
   - component: {fileID: 7815864669974872624}
-  - component: {fileID: 7815864669974872630}
+  - component: {fileID: 5432922585844682963}
   m_Layer: 0
   m_Name: DistortionEffect
   m_TagString: Untagged
@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7815864669974872626}
   m_LocalRotation: {x: -0.6387208, y: 0, z: 0, w: 0.76943856}
-  m_LocalPosition: {x: -0.05, y: 2.46, z: -3.13}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7815864669974872630
+--- !u!114 &5432922585844682963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,13 +96,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 175c3a11acb5f084ebd7c1726db2b9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clockDirection: 1
   m_Renderer: {fileID: 0}
-  lifetime: 2
-  m_DistortionAmout: 0.25
-  m_DistortionScale: 30
-  m_RotationAMOUT: 1
-  m_TriwlStrenght: 10
-  m_DistorAmoutCurrent: 0
-  m_DistorAmoutStartValue: 0
-  m_DistorAmoutEndValue: 0.25
+  m_data:
+    lifeTime: 5
+    clockDirection: 0
+    m_DistortionAmout: 0.25
+    m_DistortionScale: 30
+    m_RotationAMOUT: 1
+    m_TriwlStrenght: 15.25
+    m_DistorAmoutCurrent: 0
+    m_DistorAmoutStartValue: 0
+    m_DistorAmoutEndValue: 0
