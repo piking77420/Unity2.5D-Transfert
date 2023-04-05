@@ -11,12 +11,13 @@ public class PlayerDragObject : MonoBehaviour
     [SerializeField]
     private PlayerSelectObject m_DragObject;
 
+    [SerializeField]
+    private Transform m_TransformPlayerDom;
+
+    [Space,SerializeField ,Range(0, 15)]
+    private float m_MaxRadius;
 
     [SerializeField]
-    private bool m_ShowRadius;
-
-
-    [SerializeField, Range(0, 15)]
     private float m_SelectionRadius;
 
     [Tooltip("Value of radius increase each second")]
@@ -31,6 +32,25 @@ public class PlayerDragObject : MonoBehaviour
     [SerializeField]    
     private bool m_TranslateButton;
 
+    [SerializeField]
+    private bool m_ShowRadius;
+
+
+
+    private bool IsObjectSameDimenSionHasPlayer(SelectableObject @object) 
+    {
+        @object.gameObject.TryGetComponent<DimensionScript>(out DimensionScript script);
+        TryGetComponent<DimensionScript>(out DimensionScript playerDimension);
+
+        if (script.CurrentDimension == playerDimension.CurrentDimension) 
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+
     private void OnDrawGizmos()
     {
         if (m_ShowRadius)
@@ -40,7 +60,7 @@ public class PlayerDragObject : MonoBehaviour
         }
     }
 
-
+    
 
     private void FindAllDragableObject()
     {
@@ -49,7 +69,7 @@ public class PlayerDragObject : MonoBehaviour
         foreach (Collider collider in sphereDrag)
         {
             
-            if(collider.gameObject.TryGetComponent<SelectableObject>(out SelectableObject selectable)) 
+            if(collider.gameObject.TryGetComponent<SelectableObject>(out SelectableObject selectable) && IsObjectSameDimenSionHasPlayer(selectable)) 
             {
                 DragAbleObject.Add(selectable);
             }
@@ -81,6 +101,7 @@ public class PlayerDragObject : MonoBehaviour
                 FindAllDragableObject();
                 TransSlateObject(_context);
                 m_SelectionRadius= 0;
+                m_TransformPlayerDom.transform.localScale = Vector3.zero;
                 DragAbleObject.Clear();
                 break;
         }
@@ -105,6 +126,7 @@ public class PlayerDragObject : MonoBehaviour
     {
         DragAbleObject = new List<SelectableObject>();
         m_DragObject = GetComponent<PlayerSelectObject>();
+        m_TransformPlayerDom.transform.localScale = Vector3.zero;
     }
     void Start()
     {
@@ -114,9 +136,16 @@ public class PlayerDragObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (m_TranslateButton) 
-        {
-            m_SelectionRadius += Time.deltaTime * m_SelectRadiusMultiplicator;
+        if (m_TranslateButton && m_SelectionRadius != m_MaxRadius) 
+        {   
+            float addedValue = Time.deltaTime * m_SelectRadiusMultiplicator;
+
+            Vector3 scaleDome = m_TransformPlayerDom.transform.localScale;
+            scaleDome.x += addedValue;
+            scaleDome.y += addedValue;
+            scaleDome.z += addedValue;
+            m_TransformPlayerDom.transform.localScale = scaleDome;
+            m_SelectionRadius += addedValue;
         }
     }
 }
