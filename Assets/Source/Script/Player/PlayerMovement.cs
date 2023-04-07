@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(PlayerInput))]
+
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -28,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     {
         
         Vector3 movementInput =  new Vector3(_context.ReadValue<float>(),0,0);
+
         movement = movementInput;
        
             

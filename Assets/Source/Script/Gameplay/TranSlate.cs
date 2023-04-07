@@ -51,54 +51,19 @@ public class TranSlate : MonoBehaviour
 
 
 
-    private bool CheckIfIsPlayer(out PlayerMovement movementPlayer , out PlayerJump playerJump) 
-    {
-        if(TryGetComponent<PlayerJump>(out playerJump) && TryGetComponent<PlayerMovement>(out movementPlayer) )
-        {
-
-            return true;
-        }
-        else 
-        {
-            movementPlayer = null;
-            playerJump = null;
-            return false;
-        }
-       
-
-    }
 
 
 
-    IEnumerator PlayerBecommingGhosted(float seconds) 
+    public virtual void BecommingGhosted() 
     {   
         gameObject.TryGetComponent<Renderer>(out Renderer renderer);
         gameObject.TryGetComponent<Collider>(out Collider collider);
+      
 
-        bool ifIsPlayer = CheckIfIsPlayer(out PlayerMovement movementPlayer, out PlayerJump jump);
+        collider.enabled = !collider.enabled;
+        renderer.enabled =  !renderer.enabled;
 
-
-
-
-
-       if (ifIsPlayer) 
-       {
-            movementPlayer.enabled = false;
-            jump.enabled = false;
-       }
-
-        collider.enabled = false;
-        renderer.enabled = false;
-
-        yield return new WaitForSeconds(seconds);
-
-        collider.enabled = true;
-        if (ifIsPlayer)
-        {
-            movementPlayer.enabled = true;
-            jump.enabled = true;
-        }
-        renderer.enabled = true;
+       
     }
 
 

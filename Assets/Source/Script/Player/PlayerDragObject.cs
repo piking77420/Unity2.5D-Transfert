@@ -136,7 +136,7 @@ public class PlayerDragObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (m_TranslateButton && m_SelectionRadius != m_MaxRadius) 
+        if (m_TranslateButton && m_SelectionRadius <= m_MaxRadius) 
         {   
             float addedValue = Time.deltaTime * m_SelectRadiusMultiplicator;
 
