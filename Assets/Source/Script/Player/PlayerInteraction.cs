@@ -9,6 +9,9 @@ public class PlayerInteraction : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    private PlayerThrowEnemy m_PlayerThrowEnemy;
+
+
     [SerializeField , Range(1,3)]
     private float PlayerInteractionRadius = 1;
 
@@ -24,7 +27,10 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-
+    private void Awake()
+    {
+        m_PlayerThrowEnemy = gameObject.GetComponent<PlayerThrowEnemy>();
+    }
 
     public void OnInteraction(InputAction.CallbackContext _callbackContext) 
     {
@@ -39,10 +45,20 @@ public class PlayerInteraction : MonoBehaviour
                
                 if (item.gameObject.TryGetComponent<InteractableObject>(out InteractableObject interactableObject))
                 {
-                    Debug.Log("here");
-
+                   
                     interactableObject.m_OnInteraction?.Invoke();
+
+
+                    if(interactableObject is EnemyPickable) 
+                    {
+                       m_PlayerThrowEnemy.EnemyTaken = interactableObject.gameObject;
+                    }
+
+                    
                 }
+
+                    
+
             }
         }
 
