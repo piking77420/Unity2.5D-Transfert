@@ -167,7 +167,7 @@ public class TranSlate : MonoBehaviour
             CurrentObjectDimension.SwapDimension();
             CurrentObjectDimension.OnClamping.AddListener(CurrentObjectDimension.ClampPositionPlayer);
 
-            m_EffectSpwaner.SpawnEffect();
+           // m_EffectSpwaner.SpawnEffect();
             PlayerGravityStatut(true);
 
 

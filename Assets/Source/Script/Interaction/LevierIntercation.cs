@@ -2,15 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(Animator))]
 public class LevierIntercation : InteractableObject
 {
     // Start is called before the first frame update
-    [SerializeField]
     private Animator m_Animator;
 
 
     [SerializeField]
     private bool m_LeverStatus;
+
+ 
+
+
 
     private void Awake()
     {
@@ -25,8 +30,8 @@ public class LevierIntercation : InteractableObject
     public void LeverAnimation() 
     {
         m_LeverStatus = !m_LeverStatus;
-        // setBool
+        m_Animator.SetBool("Status", m_LeverStatus);
     }
 
-   
+
 }

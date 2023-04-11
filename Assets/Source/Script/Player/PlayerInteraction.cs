@@ -28,15 +28,25 @@ public class PlayerInteraction : MonoBehaviour
 
     public void OnInteraction(InputAction.CallbackContext _callbackContext) 
     {
-        Collider[] col = Physics.OverlapSphere(transform.position, PlayerInteractionRadius);
-
-        foreach (var item in col)
+        if (_callbackContext.performed) 
         {
-            if(item.TryGetComponent<InteractableObject>(out InteractableObject interactableObject)) 
+            Collider[] col = Physics.OverlapSphere(transform.position, PlayerInteractionRadius);
+            
+            
+
+            foreach (Collider item in col)
             {
-                interactableObject.m_OnInteraction?.Invoke();
+               
+                if (item.gameObject.TryGetComponent<InteractableObject>(out InteractableObject interactableObject))
+                {
+                    Debug.Log("here");
+
+                    interactableObject.m_OnInteraction?.Invoke();
+                }
             }
         }
+
+     
 
     }
 
