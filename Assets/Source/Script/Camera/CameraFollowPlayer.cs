@@ -6,7 +6,7 @@ public class CameraFollowPlayer : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    [SerializeField]
+    [SerializeField] 
     private Transform m_PlayerTransform;
     [Space]
 

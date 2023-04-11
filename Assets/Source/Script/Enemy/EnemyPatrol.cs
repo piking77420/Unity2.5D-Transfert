@@ -10,6 +10,7 @@ public class EnemyPatrol : MonoBehaviour
 
     [SerializeField]
     protected NavMeshAgent m_NavMeshAgent;
+
     [SerializeField]
     protected CheckIsGround m_CheckIsGrounded;
 
@@ -19,23 +20,14 @@ public class EnemyPatrol : MonoBehaviour
     [SerializeField]
     protected int m_CurrentWaypoint;
 
-
-
     [SerializeField]
     protected float m_DistanceToGoNext;
-
-
 
     [SerializeField]
     protected float m_WaitTime;
 
-
     [SerializeField]
     protected bool m_IsWaiting;
-
-
-
-
 
     [SerializeField]
     private float m_GizmoSize;
@@ -110,7 +102,7 @@ public class EnemyPatrol : MonoBehaviour
    protected virtual void Update()
     {
         
-        if (!m_IsWaiting && m_CheckIsGrounded.isGrounded)
+        if (!m_IsWaiting)
         {
             IsReachingWaypoint();
             HasReachLastPoint();

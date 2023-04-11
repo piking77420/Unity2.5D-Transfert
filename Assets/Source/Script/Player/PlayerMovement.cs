@@ -20,7 +20,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     public Vector3 movement;
 
- 
+
+    [SerializeField]
+    private CheckIsGround m_IsGround;
+
+    private Vector3 lastMovment;
 
 
     public void OnMovement(InputAction.CallbackContext _context) 
@@ -38,7 +42,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        m_Rigidbody = GetComponent<Rigidbody>(); 
+        m_Rigidbody = GetComponent<Rigidbody>();
+        m_IsGround = GetComponent<CheckIsGround>();
     }
 
     // Start is called before the first frame update
@@ -60,12 +65,29 @@ public class PlayerMovement : MonoBehaviour
 
  
     // Update is called once per frame
-    void Update()
+
+
+    private void PlayerMove()
     {
         Vector3 currentMovment = movement * m_Speed;
 
-        PlayerRunning(ref currentMovment);  
-        m_Rigidbody.velocity = new Vector3(currentMovment.x , m_Rigidbody.velocity.y , currentMovment.z);
-     
+        if (m_IsGround.isGrounded)
+        {
+            lastMovment = currentMovment;
+            PlayerRunning(ref currentMovment);
+            m_Rigidbody.velocity = new Vector3(currentMovment.x, m_Rigidbody.velocity.y, currentMovment.z);
+
+        }
+        else if (!m_IsGround.isGrounded || currentMovment == Vector3.zero)
+        {
+            m_Rigidbody.velocity = new Vector3(lastMovment.x, m_Rigidbody.velocity.y, lastMovment.z);
+
+        }
+
+    }
+
+    void Update()
+    {
+        PlayerMove();
     }
 }

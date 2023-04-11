@@ -18,6 +18,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField]
     private bool m_ShowInteractionRadius;
 
+
     private void OnDrawGizmos()
     {
         if (m_ShowInteractionRadius) 
@@ -49,10 +50,7 @@ public class PlayerInteraction : MonoBehaviour
                     interactableObject.m_OnInteraction?.Invoke();
 
 
-                    if(interactableObject is EnemyPickable) 
-                    {
-                       m_PlayerThrowEnemy.EnemyTaken = interactableObject.gameObject;
-                    }
+                    m_PlayerThrowEnemy.GetEnemy(interactableObject);
 
                     
                 }

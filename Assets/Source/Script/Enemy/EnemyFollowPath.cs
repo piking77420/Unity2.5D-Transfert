@@ -6,14 +6,6 @@ using UnityEngine.UIElements;
 
 public class EnemyFollowPath : EnemyPatrol
 {
-    // Start is called before the first frame update
-
-
-
-
-    
-  
-
 
     protected new void Awake()
     {
@@ -53,12 +45,14 @@ public class EnemyFollowPath : EnemyPatrol
     // Update is called once per frame
     protected override void Update()
     {
-        if (!m_IsWaiting && m_CheckIsGrounded.isGrounded)
+        if (!m_IsWaiting)
         {
             IsReachingWaypoint();
             HasReachLastPoint();
             FollowPath();
 
         }
+
+       
     }
 }
