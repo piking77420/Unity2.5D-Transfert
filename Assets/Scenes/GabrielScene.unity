@@ -1546,7 +1546,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1358976483}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 8.89, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2224,6 +2224,7 @@ GameObject:
   - component: {fileID: 1778566993}
   - component: {fileID: 1778566996}
   - component: {fileID: 1778566995}
+  - component: {fileID: 1778566997}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
@@ -2296,6 +2297,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &1778566997
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778566992}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1850784332
 GameObject:
   m_ObjectHideFlags: 0
@@ -3033,7 +3048,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4662800460897432268}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 6.46, z: -2.73}
+  m_LocalPosition: {x: 0, y: 1.84, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3042,20 +3057,6 @@ Transform:
   m_Father: {fileID: 1358976484}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &4662800460897432116
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4662800460897432268}
-  m_Material: {fileID: 13400000, guid: 9f66aa1b9a5801e4f84b60b49ab2ed54, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4662800460897432117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3288,7 +3289,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4662800460897432112}
   - component: {fileID: 4662800460897432272}
-  - component: {fileID: 4662800460897432116}
   - component: {fileID: 4662800460897432123}
   - component: {fileID: 4662800460897432271}
   - component: {fileID: 4662800460897432275}
