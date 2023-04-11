@@ -26,7 +26,9 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
     private PlayerMovement m_PlayerMovement;
 
     [SerializeField]
-    public bool isGrounded = false;
+    private CheckIsGround m_CheckIsGround;
+
+
 
 
     [SerializeField]
@@ -69,8 +71,9 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
     [Space]
 
+    /*
     [SerializeField, Range(0, 180)]
-    private float DesiredAngle;
+    private float DesiredAngle;*/
 
     [SerializeField, Range(0, 10)]
     private float CoyoteTime;
@@ -90,10 +93,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
     private float m_MaxCoyoteTime;
 
 
-    [Header("NbrOfCollision")]
-    private List<Collider> m_Colliders;
-    [SerializeField]
-    private int m_nbrOfColldier;
+
 
 
     [HideInInspector]
@@ -114,7 +114,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
         m_AudioSource.Play();
         StartCoroutine(ApexModifers());
         m_Rigidbody.velocity = Vector3.up * JumpStrenght;
-        isGrounded = false;
+        m_CheckIsGround.isGrounded = false;
         m_JumpBuffer = false;
         m_WillJump = false;
         m_JumpMultiplactation = 1;
@@ -149,13 +149,13 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
         if (m_WillJump) 
         {
-            if (!isGrounded && !m_JumpBuffer)
+            if (!m_CheckIsGround.isGrounded && !m_JumpBuffer)
             {
                 m_JumpBuffer = true;
                 return;
             }
 
-            if (isGrounded && !m_JumpBuffer)
+            if (m_CheckIsGround.isGrounded && !m_JumpBuffer)
             {
                 DoJump(m_JumpStrengt * m_JumpMultiplactation);
 
@@ -170,7 +170,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
     }
 
   
-
+    /*
     bool CheckCollsion(Collision collision)
     {
         for (int i = 0; i < collision.contacts.Length; i++)
@@ -186,25 +186,26 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
         return false;
 
-    }
+    }*/
 
+    /*
     private void OnCollisionExit(Collision collision)
     {
        m_Colliders.Remove(collision.collider);
     }
-
+    */
 
 
     private void OnCollisionEnter(Collision collision)
     {
-        m_Colliders.Add(collision.collider);
+       // m_Colliders.Add(collision.collider);
         CoyoteTime = m_MaxCoyoteTime;
 
-
+        /*
         if (!isGrounded) 
         {  
             isGrounded = CheckCollsion(collision);
-        }
+        }*/
     }
 
 
@@ -213,8 +214,9 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
         m_PlayerMovement = GetComponent<PlayerMovement>();
         m_Rigidbody = GetComponent<Rigidbody>();
         m_MaxCoyoteTime = CoyoteTime;
-        m_Colliders = new List<Collider>();
-        
+        m_CheckIsGround = GetComponent<CheckIsGround>();
+
+
     }
 
     void Start()
@@ -229,7 +231,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
         
         if (m_Rigidbody.velocity.y < 0 && isGravityApplie)
         {
-            if (m_Rigidbody.velocity.y < -FallClampValue && !isGrounded)
+            if (m_Rigidbody.velocity.y < -FallClampValue && !m_CheckIsGround.isGrounded)
             {
                 m_Rigidbody.velocity = new Vector3(m_PlayerMovement.movement.x, -FallClampValue, m_PlayerMovement.movement.y);
             }
@@ -245,13 +247,13 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
     {
       
 
-        if(m_Colliders.Count == 0 && isGrounded) 
+        if(m_CheckIsGround.colliders.Count <= 0 && m_CheckIsGround.isGrounded) 
         {
             CoyoteTime -= Time.deltaTime;
 
             if (CoyoteTime < 0) 
             {
-                isGrounded = false;
+                m_CheckIsGround.isGrounded = false;
                 CoyoteTime = m_MaxCoyoteTime;
             }
 
@@ -278,12 +280,12 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
     }
     private void JumpBuffer()
     {
-        if (isGrounded && m_JumpBuffer)
+        if (m_CheckIsGround.isGrounded && m_JumpBuffer)
         {
             DoJump(m_JumpStrengt);
         }
 
-        if (isGrounded)
+        if (m_CheckIsGround.isGrounded)
         {
             m_JumpBuffer = false;
         }
@@ -324,9 +326,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
     void FixedUpdate()
     {
-
         m_Rigidbody.useGravity = !isGravityApplie;
-        m_nbrOfColldier = m_Colliders.Count;
         JumpBuffer();
         CalculateCustomGavrity();
         AddGravity();

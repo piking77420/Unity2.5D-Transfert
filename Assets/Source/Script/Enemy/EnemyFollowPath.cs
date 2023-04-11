@@ -11,13 +11,19 @@ public class EnemyFollowPath : EnemyPatrol
 
 
 
-
+    
   
 
 
     protected new void Awake()
     {
         base.Awake();
+
+
+        foreach (var item in m_WayPoints)
+        {
+            item.Set(item.x, gameObject.transform.position.y, item.z);
+        }
     }
 
 
@@ -45,10 +51,9 @@ public class EnemyFollowPath : EnemyPatrol
 
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-
-        if (!m_IsWaiting)
+        if (!m_IsWaiting && m_CheckIsGrounded.isGrounded)
         {
             IsReachingWaypoint();
             HasReachLastPoint();

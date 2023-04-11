@@ -10,6 +10,8 @@ public class EnemyPatrol : MonoBehaviour
 
     [SerializeField]
     protected NavMeshAgent m_NavMeshAgent;
+    [SerializeField]
+    protected CheckIsGround m_CheckIsGrounded;
 
     [SerializeField]
     protected Vector3[] m_WayPoints;
@@ -76,6 +78,7 @@ public class EnemyPatrol : MonoBehaviour
     protected void Awake()
     {
         m_NavMeshAgent = GetComponent<NavMeshAgent>();
+        m_CheckIsGrounded = GetComponent<CheckIsGround>(); 
     }
 
     protected virtual void IsReachingWaypoint()
@@ -104,9 +107,10 @@ public class EnemyPatrol : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+   protected virtual void Update()
     {
-        if (!m_IsWaiting)
+        
+        if (!m_IsWaiting && m_CheckIsGrounded.isGrounded)
         {
             IsReachingWaypoint();
             HasReachLastPoint();

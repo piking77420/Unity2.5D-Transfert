@@ -112,6 +112,9 @@ public class PlayerThrowEnemy : MonoBehaviour
         {
 
             Rigidbody rbEnemy = EnemyTaken.GetComponent<Rigidbody>();
+            
+
+
             rbEnemy.useGravity = true;
 
 
