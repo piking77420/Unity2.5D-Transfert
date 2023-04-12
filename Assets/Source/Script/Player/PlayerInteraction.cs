@@ -18,13 +18,18 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField]
     private bool m_ShowInteractionRadius;
 
+    [SerializeField]
+    private Transform m_PlayerTransform;
+
+
 
     private void OnDrawGizmos()
     {
         if (m_ShowInteractionRadius) 
         {
             Gizmos.color = Color.blue;
-            Gizmos.DrawSphere(gameObject.transform.position, PlayerInteractionRadius);  
+            m_PlayerTransform =  gameObject.transform.GetChild(0).GetComponent<Transform>();
+            Gizmos.DrawSphere(m_PlayerTransform.position, PlayerInteractionRadius);  
         }
     }
 
@@ -37,7 +42,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (_callbackContext.performed) 
         {
-            Collider[] col = Physics.OverlapSphere(transform.position, PlayerInteractionRadius);
+            Collider[] col = Physics.OverlapSphere(m_PlayerTransform.position, PlayerInteractionRadius);
             
             
 

@@ -47,7 +47,7 @@ public class TranSlate : MonoBehaviour
 
 
 
-
+        
 
 
 
@@ -87,7 +87,7 @@ public class TranSlate : MonoBehaviour
                 startPos = transform.position;
                 
             }
-
+                
     }
 
 
@@ -144,8 +144,11 @@ public class TranSlate : MonoBehaviour
  
         }
 
-        */  
-        
+        */
+
+
+        /*
+
         PlayerGravityStatut(false);
         CurrentObjectDimension.OnClamping.RemoveAllListeners();
         DimensionScript.Dimension currentDimension = CurrentObjectDimension.CurrentDimension;
@@ -172,7 +175,10 @@ public class TranSlate : MonoBehaviour
 
 
         }
-        
+        */
+
+        m_isTranslate = false;
+
     }
 
 

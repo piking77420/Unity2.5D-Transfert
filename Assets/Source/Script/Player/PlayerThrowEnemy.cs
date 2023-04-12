@@ -21,7 +21,6 @@ public class PlayerThrowEnemy : MonoBehaviour
     private float PlayerThrowForce;
 
     [SerializeField]
-
     private Vector2 m_AimReadValue;
 
     [SerializeField]
@@ -38,8 +37,11 @@ public class PlayerThrowEnemy : MonoBehaviour
 
     private float TimerToThrowCooldown;
 
-    private bool m_IsPlayerAiming;
 
+
+
+
+    private bool m_IsPlayerAiming;
     private bool m_PlayerHasThrow;
     public void OnPlayerAiming(InputAction.CallbackContext _callbackContext)
     {
@@ -88,14 +90,26 @@ public class PlayerThrowEnemy : MonoBehaviour
     private void UpdateProjectilePos()
     {
 
+        Vector3 value;
+            
+        if(m_AimReadValue == Vector2.zero) 
+        {
+            value = Vector3.up;
+        }
+        else
+        {
+            value = Vector3.Normalize(-m_AimReadValue);
+        }
+
+        
         EnemyTaken.GetComponent<Rigidbody>().useGravity = false; ;
 
         Vector3 pos = gameObject.transform.position;
-        Vector3 NormalizeVelocity = Vector3.Normalize(m_Rigidbody.velocity);
 
-        Vector3 enemyPos = new Vector3(NormalizeVelocity.x * DistanceFromPlayer, DistanceFromPlayer, 0);
+        Vector3 enemyPos = new Vector3(value.x * DistanceFromPlayer, value.y * DistanceFromPlayer, 0);
 
         EnemyTaken.transform.position = pos + enemyPos;
+
 
     }
 

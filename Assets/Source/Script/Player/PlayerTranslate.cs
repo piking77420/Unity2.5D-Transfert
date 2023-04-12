@@ -3,9 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
+
+
+
 public class PlayerTranslate : TranSlate
 {
     // Start is called before the first frame update
+
+    [Space]
+
+    [SerializeField]
+    private Animator m_Animator;
+
+
+    [SerializeField]
+    private PlayerGhostDetection m_PlayerGhost;
+
+ 
+
 
 
     public new void BecommingGhosted() 
@@ -27,15 +43,42 @@ public class PlayerTranslate : TranSlate
 
 
 
+    public override void OnChangingDimension(InputAction.CallbackContext _context)
+    {
+
+
+
+        if (_context.canceled && !m_isTranslate)
+        {
+            m_isTranslate = true;
+            startPos = transform.position;
+            m_Animator.SetTrigger("Translate");
+
+            DimensionScript.Dimension current = CurrentObjectDimension.CurrentDimension;
+
+            m_Animator.SetInteger("Dimension", (int)current);
+
+        }
+
+    }
+
+
+
+
+
+
     private new void Awake()
     {   
         base.Awake();
-
-
+        m_Animator = GetComponentInParent<Animator>();
+        
     }
  
 
 
+
+
+        
 
     new void Start()
     {
@@ -44,11 +87,18 @@ public class PlayerTranslate : TranSlate
     }
 
     // Update is called once per frame
+
+
+
+    
+
     new void Update()
     {
-        base.Update();
+        if (m_PlayerGhost.IsCanPlayerTranslate()) 
+        {
+            base.Update();
+        }
 
-      
-
+        
     }
 }

@@ -35,7 +35,8 @@ public class PlayerDragObject : MonoBehaviour
     [SerializeField]
     private bool m_ShowRadius;
 
-
+    [SerializeField]
+    private Transform m_PlayerTransform;
 
     private bool IsObjectSameDimenSionHasPlayer(SelectableObject @object) 
     {
@@ -56,15 +57,16 @@ public class PlayerDragObject : MonoBehaviour
         if (m_ShowRadius)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(gameObject.transform.position, m_SelectionRadius);
+            m_PlayerTransform = gameObject.transform.GetChild(0).GetComponent<Transform>();
+            Gizmos.DrawWireSphere(m_PlayerTransform.position, m_SelectionRadius);
         }
     }
-
+        
     
 
     private void FindAllDragableObject()
     {
-        Collider[] sphereDrag = Physics.OverlapSphere(transform.position, m_SelectionRadius);
+        Collider[] sphereDrag = Physics.OverlapSphere(m_PlayerTransform.position, m_SelectionRadius);
 
         foreach (Collider collider in sphereDrag)
         {
@@ -127,6 +129,7 @@ public class PlayerDragObject : MonoBehaviour
         DragAbleObject = new List<SelectableObject>();
         m_DragObject = GetComponent<PlayerSelectObject>();
         m_TransformPlayerDom.transform.localScale = Vector3.zero;
+        m_PlayerTransform = gameObject.transform.GetChild(0).GetComponent<Transform>();
     }
     void Start()
     {
