@@ -20,6 +20,10 @@ public class PlayerTranslate : TranSlate
     [SerializeField]
     private MeshRenderer m_PlayerGraphics;
 
+    [SerializeField]
+    private PlayerJump m_PlayerJump;
+
+
     public override void OnChangingDimension(InputAction.CallbackContext _context)
     {
 
@@ -45,15 +49,18 @@ public class PlayerTranslate : TranSlate
     {
         m_Rigidbody.velocity = Vector3.zero;
         m_PlayerGhost.GetComponent<MeshRenderer>().enabled = !m_PlayerGhost.GetComponent<Renderer>().enabled;
-
         m_PlayerGraphics.enabled = !m_PlayerGraphics.enabled;
-        
+        m_PlayerJump.isGravityApplie = !m_PlayerJump.isGravityApplie;
+
+
     }
 
 
     private new void Awake()
     {   
         base.Awake();
+        m_PlayerJump = GetComponent<PlayerJump>();
         m_PlayerGraphics = GetComponentInChildren<MeshRenderer>();
+
     }
 }

@@ -12,6 +12,12 @@ public class PlayerDragObject : MonoBehaviour
     private PlayerSelectObject m_DragObject;
 
     [SerializeField]
+    private PlayerJump m_PlayerJump;
+
+    [SerializeField]
+    private Rigidbody m_rb;
+
+    [SerializeField]
     private Transform m_TransformPlayerDom;
 
     [Space,SerializeField ,Range(0, 15)]
@@ -92,12 +98,16 @@ public class PlayerDragObject : MonoBehaviour
 
     private void GetPlayerRadius(InputAction.CallbackContext _context) 
     {
+        
+
         switch (_context.phase)
         {
             case InputActionPhase.Started:
                 m_TranslateButton = true;
                 break;
             case InputActionPhase.Performed:
+                m_PlayerJump.isGravityApplie = false;
+                m_rb.velocity = Vector3.zero;
                 break;
             case InputActionPhase.Canceled:
                 m_TranslateButton = false;
@@ -105,7 +115,10 @@ public class PlayerDragObject : MonoBehaviour
                 TransSlateObject(_context);
                 m_SelectionRadius= 0;
                 m_TransformPlayerDom.transform.localScale = Vector3.zero;
+                m_PlayerJump.isGravityApplie = true;
+
                 DragAbleObject.Clear();
+              
                 break;
         }
 
@@ -131,6 +144,9 @@ public class PlayerDragObject : MonoBehaviour
         m_DragObject = GetComponent<PlayerSelectObject>();
         m_TransformPlayerDom.transform.localScale = Vector3.zero;
         m_PlayerTransform = gameObject.transform.GetChild(0).GetComponent<Transform>();
+
+        m_PlayerJump = GetComponent<PlayerJump>();
+        m_rb = GetComponent<Rigidbody>();
     }
     void Start()
     {
@@ -143,6 +159,7 @@ public class PlayerDragObject : MonoBehaviour
         if (m_TranslateButton && m_SelectionRadius <= m_MaxRadius) 
         {   
             float addedValue = Time.deltaTime * m_SelectRadiusMultiplicator;
+       
 
             Vector3 scaleDome = m_TransformPlayerDom.transform.localScale;
             scaleDome.x += addedValue;
