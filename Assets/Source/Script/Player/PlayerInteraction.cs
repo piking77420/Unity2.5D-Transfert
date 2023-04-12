@@ -54,8 +54,15 @@ public class PlayerInteraction : MonoBehaviour
                    
                     interactableObject.m_OnInteraction?.Invoke();
 
+                   // if is levier do than break
+                    //if(interactableObject is )
 
-                    m_PlayerThrowEnemy.GetEnemy(interactableObject);
+
+                    if(interactableObject is EnemyPickable) 
+                    {
+                        m_PlayerThrowEnemy.GetEnemy(interactableObject);
+                    }
+
 
                     
                 }

@@ -20,6 +20,7 @@ public class TranSlate : MonoBehaviour
     protected DimensionScript CurrentObjectDimension;
 
 
+
     [SerializeField]
     protected Animator m_Animator;
 
@@ -63,7 +64,12 @@ public class TranSlate : MonoBehaviour
     protected void Awake()
     {
         CurrentObjectDimension= gameObject.GetComponent<DimensionScript>();
+
         m_Rigidbody = GetComponent<Rigidbody>();
+        if(m_Rigidbody == null) 
+        {
+            m_Rigidbody  = GetComponentInParent<Rigidbody>();
+        }
 
         m_Animator = gameObject.GetComponentInParent<Animator>();
         m_Renderer = gameObject.GetComponent<MeshRenderer>();
