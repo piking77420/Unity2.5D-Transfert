@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4096834344176172489}
   - component: {fileID: 4096834344176172490}
   - component: {fileID: 4096834344176172491}
+  - component: {fileID: 5728828936712045401}
   m_Layer: 0
   m_Name: BaseInteractableObject
   m_TagString: Untagged
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentDimension: 0
-  DimensionSize: 2
+  DimensionSize: 5
   OnClamping:
     m_PersistentCalls:
       m_Calls: []
@@ -64,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentObjectDimension: {fileID: 0}
-  m_SwapDimensionTimeMax: 1
+  m_Animator: {fileID: 0}
   m_isTranslate: 0
   startPos: {x: 0, y: 0, z: 0}
 --- !u!114 &4096834344176172491
@@ -79,3 +80,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae4946026ccc0c43ac31f279b9deaae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &5728828936712045401
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4096834344176172500}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -85,6 +85,7 @@ public class PlayerDragObject : MonoBehaviour
 
         foreach (var item in DragAbleObject)
         {
+            item.gameObject.GetComponent<TranSlate>().isTranslate = true;
             item.gameObject.GetComponent<TranSlate>().OnChangingDimension(_context);
         }
     }

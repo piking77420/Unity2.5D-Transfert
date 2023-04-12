@@ -14,6 +14,10 @@ public class PlayerThrowEnemy : MonoBehaviour
     private Rigidbody m_Rigidbody;
 
     [SerializeField]
+
+    private Transform m_PlayerTransform;
+
+    [SerializeField]
     public Vector2 m_PlayerForce { get; private set; }
 
 
@@ -67,6 +71,7 @@ public class PlayerThrowEnemy : MonoBehaviour
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
+        m_PlayerTransform = transform.GetChild(0).GetComponent<Transform>();
         TimerToThrowCooldown = TimerToThrow;
     }
 
@@ -104,7 +109,7 @@ public class PlayerThrowEnemy : MonoBehaviour
         
         EnemyTaken.GetComponent<Rigidbody>().useGravity = false; ;
 
-        Vector3 pos = gameObject.transform.position;
+        Vector3 pos = m_PlayerTransform.position;
 
         Vector3 enemyPos = new Vector3(value.x * DistanceFromPlayer, value.y * DistanceFromPlayer, 0);
 

@@ -51,7 +51,7 @@ public class DimensionScript : MonoBehaviour
         Vector3 offsetVector = transform.position;
 
         
-        
+        /*
 
         if (CurrentDimension == Dimension.Normal) 
         {
@@ -80,7 +80,12 @@ public class DimensionScript : MonoBehaviour
             }
         }
 
+        */
 
+        if(CurrentDimension == Dimension.Normal) 
+        {
+            transform.position = offsetVector;
+        }
     }
 
 
@@ -96,7 +101,7 @@ public class DimensionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       OnClamping.Invoke();
+      //OnClamping.Invoke();
        
     }
 }

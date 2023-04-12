@@ -326,7 +326,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
     void FixedUpdate()
     {
-        m_Rigidbody.useGravity = !isGravityApplie;
+        m_Rigidbody.useGravity = false;
         JumpBuffer();
         CalculateCustomGavrity();
         AddGravity();

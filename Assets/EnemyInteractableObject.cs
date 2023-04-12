@@ -13,12 +13,15 @@ public class EnemyInteractableObject : MonoBehaviour
     private Collider m_collid;
 
 
-
-  
+    [SerializeField]
+    EnemyPickable enemyPickable;
     private void OnTriggerExit(Collider other)
     {
 
-        if(other.gameObject.TryGetComponent<EnemyPickable>(out EnemyPickable enemyPickable)) 
+        Debug.Log(other.name);
+
+
+        if(other.gameObject.TryGetComponent<EnemyPickable>(out enemyPickable)) 
         {
             m_rb.useGravity = true;
             m_collid.isTrigger = false;
