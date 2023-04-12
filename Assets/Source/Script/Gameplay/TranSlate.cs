@@ -177,7 +177,6 @@ public class TranSlate : MonoBehaviour
         }
         */
 
-        m_isTranslate = false;
 
     }
 

@@ -96,7 +96,7 @@ public class DimensionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        OnClamping.Invoke();
+       OnClamping.Invoke();
        
     }
 }
