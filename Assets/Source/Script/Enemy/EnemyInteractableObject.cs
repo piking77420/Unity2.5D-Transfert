@@ -20,10 +20,10 @@ public class EnemyInteractableObject : MonoBehaviour
 
         Debug.Log(other.name);
 
-
+        // TO DO 
         if(other.gameObject.TryGetComponent<EnemyPickable>(out enemyPickable)) 
         {
-            m_rb.useGravity = true;
+            //m_rb.useGravity = true;
             m_collid.isTrigger = false;
         }
     }

@@ -31,11 +31,11 @@ public class LevierIntercation : InteractableObject
     {
         m_PlayerInput = GetComponent<PlayerInput>();
         m_PlayerInput.enabled = false;
-        m_OnInteraction.AddListener(ChangeLeverActionMap);
     }
 
     void Start()
     {
+        m_OnInteraction.AddListener(ChangeLeverActionMap);
     }
 
 

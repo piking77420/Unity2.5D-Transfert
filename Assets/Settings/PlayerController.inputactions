@@ -269,7 +269,7 @@
                     "name": "LevierInput",
                     "type": "Value",
                     "id": "a326941b-c38d-49bd-bb36-2b75dc80e780",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "Stick",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -308,7 +308,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
+                    "name": "positive",
                     "id": "923a4fb4-f22e-4ab0-a5b9-365640b0dbb9",
                     "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
@@ -328,6 +328,76 @@
                     "action": "LevierInput",
                     "isComposite": false,
                     "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "MoveBox",
+            "id": "c4067558-26ba-4476-8ec7-1f47a21958ca",
+            "actions": [
+                {
+                    "name": "PushBox",
+                    "type": "Value",
+                    "id": "4a93c802-d00e-4894-9e4b-1d3be4348aa9",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "QuitActionMap",
+                    "type": "Button",
+                    "id": "0c28a0ac-28e7-4278-b3fd-30dbec8025d6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "1b2b1aba-7123-4faa-b551-b9896dd0abc4",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PushBox",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "be63a2d8-110c-41aa-8fa1-3e4162cf8154",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PushBox",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "3d12207e-bcb7-4f22-be7c-2f1f34767f98",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PushBox",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "791ec2cc-c709-41b4-ae82-604714d6f811",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuitActionMap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

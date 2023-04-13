@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class LeverAction : MonoBehaviour
@@ -18,16 +19,23 @@ public class LeverAction : MonoBehaviour
     private float m_LeverValueStatue;
 
 
+    [SerializeField]
+    public UnityEvent OnAccomplish;
+
 
 
 
     public void OnleverAction(InputAction.CallbackContext _callbackContext) 
     {
-        Debug.Log("sqd");
 
         if (_callbackContext.performed) 
         {
-            Debug.Log(_callbackContext.ReadValue<float>()) ;
+            m_LeverValueStatue = _callbackContext.ReadValue<float>();
+
+
+            m_Animator.SetFloat("Status", m_LeverValueStatue);
+
+
         }
     }
 
@@ -40,6 +48,7 @@ public class LeverAction : MonoBehaviour
     private void Awake()
     {
         m_LevierIntercation = GetComponent<LevierIntercation>();
+        m_Animator = GetComponent<Animator>();
     }
 
 
@@ -51,6 +60,9 @@ public class LeverAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(m_LeverValueStatue >= 1f) 
+        {
+            OnAccomplish?.Invoke();
+        }
     }
 }

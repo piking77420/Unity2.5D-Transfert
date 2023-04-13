@@ -169,43 +169,12 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
       
     }
 
-  
-    /*
-    bool CheckCollsion(Collision collision)
-    {
-        for (int i = 0; i < collision.contacts.Length; i++)
-        {
-            float getangle = Vector3.Angle(collision.contacts[i].normal, Vector3.up);
 
-
-            if (getangle < DesiredAngle)
-            {
-                return true;
-            }
-        }
-
-        return false;
-
-    }*/
-
-    /*
-    private void OnCollisionExit(Collision collision)
-    {
-       m_Colliders.Remove(collision.collider);
-    }
-    */
 
 
     private void OnCollisionEnter(Collision collision)
     {
-       // m_Colliders.Add(collision.collider);
         CoyoteTime = m_MaxCoyoteTime;
-
-        /*
-        if (!isGrounded) 
-        {  
-            isGrounded = CheckCollsion(collision);
-        }*/
     }
 
 
@@ -221,7 +190,8 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
     void Start()
     {
-        
+        m_Rigidbody.useGravity = false;
+
     }
 
 
@@ -326,7 +296,6 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
     void FixedUpdate()
     {
-        m_Rigidbody.useGravity = false;
         JumpBuffer();
         CalculateCustomGavrity();
         AddGravity();

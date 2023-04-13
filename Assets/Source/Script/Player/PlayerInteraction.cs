@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInteraction))]
@@ -24,6 +25,8 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField]
     private PlayerInput m_PlayerInput;
+
+   
 
     private void OnDrawGizmos()
     {
@@ -71,6 +74,15 @@ public class PlayerInteraction : MonoBehaviour
                     if(interactableObject is LevierIntercation) 
                     {
                         m_PlayerInput.SwitchCurrentActionMap("Lever");
+                        return;
+                    }
+
+                    if(interactableObject is BoxInteraction) 
+                    {
+
+                        // New ActionMap
+                        m_PlayerInput.SwitchCurrentActionMap("MoveBox");
+
                         return;
                     }
 
