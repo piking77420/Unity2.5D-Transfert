@@ -22,6 +22,8 @@ public class PlayerInteraction : MonoBehaviour
     private Transform m_PlayerTransform;
 
 
+    [SerializeField]
+    private PlayerInput m_PlayerInput;
 
     private void OnDrawGizmos()
     {
@@ -36,7 +38,18 @@ public class PlayerInteraction : MonoBehaviour
     private void Awake()
     {
         m_PlayerThrowEnemy = gameObject.GetComponent<PlayerThrowEnemy>();
+        m_PlayerInput = GetComponent<PlayerInput>();
     }
+
+
+
+    // Lever Out
+    public void OnChangeMap(InputAction.CallbackContext _callbackContext) 
+    {
+        if (_callbackContext.performed)
+            m_PlayerInput.SwitchCurrentActionMap("GamePlay");
+    }
+
 
     public void OnInteraction(InputAction.CallbackContext _callbackContext) 
     {
@@ -54,9 +67,12 @@ public class PlayerInteraction : MonoBehaviour
                    
                     interactableObject.m_OnInteraction?.Invoke();
 
-                   // if is levier do than break
-                    //if(interactableObject is )
-
+                   //if is levier do than return lever is 1st preiority
+                    if(interactableObject is LevierIntercation) 
+                    {
+                        m_PlayerInput.SwitchCurrentActionMap("Lever");
+                        return;
+                    }
 
                     if(interactableObject is EnemyPickable) 
                     {

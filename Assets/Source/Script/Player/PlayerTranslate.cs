@@ -27,7 +27,6 @@ public class PlayerTranslate : TranSlate
     public override void OnChangingDimension(InputAction.CallbackContext _context)
     {
 
-        Debug.Log(m_PlayerGhost.IsCanPlayerTranslate());
 
         if (_context.canceled && m_PlayerGhost.IsCanPlayerTranslate())
         {
