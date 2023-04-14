@@ -11,6 +11,8 @@ public class PlayerInteraction : MonoBehaviour
     // Start is called before the first frame update
 
     private PlayerThrowEnemy m_PlayerThrowEnemy;
+    private PlayerPushBox m_PlayerPushBox;
+
 
 
     [SerializeField , Range(1,3)]
@@ -26,7 +28,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField]
     private PlayerInput m_PlayerInput;
 
-   
+
 
     private void OnDrawGizmos()
     {
@@ -42,6 +44,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         m_PlayerThrowEnemy = gameObject.GetComponent<PlayerThrowEnemy>();
         m_PlayerInput = GetComponent<PlayerInput>();
+        m_PlayerPushBox = GetComponent<PlayerPushBox>();
     }
 
 
@@ -79,16 +82,15 @@ public class PlayerInteraction : MonoBehaviour
 
                     if(interactableObject is BoxInteraction) 
                     {
-
-                        // New ActionMap
                         m_PlayerInput.SwitchCurrentActionMap("MoveBox");
-
+                        m_PlayerPushBox.GetBox(interactableObject);
                         return;
                     }
 
                     if(interactableObject is EnemyPickable) 
                     {
                         m_PlayerThrowEnemy.GetEnemy(interactableObject);
+                        return;
                     }
 
 

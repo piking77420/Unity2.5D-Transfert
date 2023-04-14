@@ -78,7 +78,6 @@ public class TranSlate : MonoBehaviour
 
  
 
-    //void private
   
 
     public virtual void  Translation() 
@@ -91,7 +90,6 @@ public class TranSlate : MonoBehaviour
 
 
 
-    // Update is called once per frame
  
     
 }
