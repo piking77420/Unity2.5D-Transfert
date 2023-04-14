@@ -20,23 +20,77 @@ public class LeverAction : MonoBehaviour
 
 
     [SerializeField,Tooltip("EVENT WHO IS PLAY EACH TIME BY FRAME")]
-    public UnityEvent OnAccomplish;
+    public UnityEvent<float> OnAccomplish;
 
 
+  
+
+    [SerializeField,Range(0,1)]
+    private float offsetStrenghtValue;
+
+
+    [SerializeField,Range(0,10)]
+    private float OpenDoorStreght;
+
+    private float LeverPlayerStrenght;
+
+
+    [SerializeField,Range(0,2)]
+    private float DecreaseStreght;
+
+
+
+    [SerializeField]
+    private bool IsAcomplish;
+    [SerializeField]
+    private bool PlayerInAction;
+
+
+    public void OnQuit(InputAction.CallbackContext _callbackContext) 
+    {
+        if (_callbackContext.performed) 
+        {
+            PlayerInAction = false;
+        }
+
+    }
 
 
     public void OnleverAction(InputAction.CallbackContext _callbackContext) 
     {
 
-        if (_callbackContext.performed) 
+        Debug.Log(_callbackContext.ReadValue<float>());
+
+
+        switch (_callbackContext.phase) 
         {
-            m_LeverValueStatue = _callbackContext.ReadValue<float>();
-
-
-            m_Animator.SetFloat("Status", m_LeverValueStatue);
-
+            case InputActionPhase.Started:
+                PlayerInAction = true;
+                Debug.Log("start");
+                break;
+            case InputActionPhase.Performed:
+                LeverPlayerStrenght = _callbackContext.ReadValue<float>();
+                break;
+            case InputActionPhase.Canceled:
+                PlayerInAction = false;
+                Debug.Log("cancel");
+                break;
 
         }
+
+        /*
+        if (_callbackContext.performed && IsAcomplish == false) 
+        {
+            float analogMaxValue = 1f;
+            if(_callbackContext.ReadValue<float>() == analogMaxValue) 
+            {
+                m_LeverValueStatue += 1 * Time.deltaTime;
+            }
+
+ 
+
+
+        }*/
     }
 
 
@@ -57,12 +111,53 @@ public class LeverAction : MonoBehaviour
         
     }
 
+
+
+    private void OpenDoor() 
+    {
+        if (PlayerInAction && !IsAcomplish)
+        {
+            m_Animator.SetFloat("Status", m_LeverValueStatue);
+            m_LeverValueStatue += LeverPlayerStrenght * Time.deltaTime * OpenDoorStreght;
+
+        }
+    }
+
+
+    private void CloseDoor() 
+    {
+
+
+        if (!PlayerInAction && !IsAcomplish && m_LeverValueStatue >= 0)
+        {
+            m_Animator.SetFloat("Status", m_LeverValueStatue);
+
+            m_LeverValueStatue -= Time.deltaTime * DecreaseStreght;
+
+
+        }
+    }
+
+    private void CheckStatue() 
+    {
+        if (m_LeverValueStatue <= 1f)
+        {
+            OnAccomplish?.Invoke(m_LeverValueStatue);
+        }
+        else
+        {
+            IsAcomplish = true;
+        }
+    }
+
+
     // Update is called once per frame
     void Update()
     {
-        if(m_LeverValueStatue >= 1f) 
-        {
-            OnAccomplish?.Invoke();
-        }
+
+        OpenDoor();
+        CloseDoor();
+        CheckStatue();
+
     }
 }

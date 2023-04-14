@@ -108,7 +108,7 @@ public class PlayerPushBox : MonoBehaviour
     private void PushBox(Vector3 pushVector) 
     {
         
-            m_BoxRb.velocity = (pushVector);
+            m_BoxRb.velocity = (pushVector  );
         
     }
 

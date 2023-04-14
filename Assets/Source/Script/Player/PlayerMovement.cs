@@ -24,7 +24,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private CheckIsGround m_IsGround;
 
-    private Vector3 lastMovment;
 
 
     public void OnMovement(InputAction.CallbackContext _context) 
@@ -72,18 +71,11 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 currentMovment = movement * m_Speed;
 
-        if (m_IsGround.isGrounded)
-        {
-            lastMovment = currentMovment;
+     
             PlayerRunning(ref currentMovment);
             m_Rigidbody.velocity = new Vector3(currentMovment.x, m_Rigidbody.velocity.y, currentMovment.z);
 
-        }
-        else if (!m_IsGround.isGrounded || currentMovment == Vector3.zero)
-        {
-            m_Rigidbody.velocity = new Vector3(lastMovment.x, m_Rigidbody.velocity.y, lastMovment.z);
-
-        }
+    
 
     }
 
