@@ -7,6 +7,9 @@ using UnityEngine.UIElements;
 public class EnemyFollowPath : EnemyPatrol
 {
 
+
+
+
     protected new void Awake()
     {
         base.Awake();
@@ -29,6 +32,7 @@ public class EnemyFollowPath : EnemyPatrol
 
         if(m_CurrentWaypoint == m_WayPoints.Length)
         {
+
             StartCoroutine(EnemyWaitTime(m_WaitTime));
             System.Array.Reverse(m_WayPoints);
         }

@@ -6,8 +6,9 @@ using UnityEngine.AI;
 public class EnemyPatrol : MonoBehaviour
 {
     // Start is called before the first frame update
-
-
+    [SerializeField]
+    protected Animator m_Animator;
+    
     [SerializeField]
     protected NavMeshAgent m_NavMeshAgent;
 
@@ -61,14 +62,17 @@ public class EnemyPatrol : MonoBehaviour
     {
         m_CurrentWaypoint = 0;
         m_IsWaiting = true;
+        m_Animator.SetBool("IsWaiting", true);
         yield return new WaitForSeconds(waitime);
+        m_Animator.SetBool("IsWaiting", false);
         m_IsWaiting = false;
     }
 
 
 
-    protected void Awake()
+    protected virtual void Awake()
     {
+        m_Animator = GetComponent<Animator>();
         m_NavMeshAgent = GetComponent<NavMeshAgent>();
         m_CheckIsGrounded = GetComponent<CheckIsGround>(); 
     }
