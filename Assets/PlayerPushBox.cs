@@ -10,13 +10,17 @@ public class PlayerPushBox : MonoBehaviour
     // Start is called before the first frame update
 
 
-    [SerializeField,Range(0.2f,7f)]
+    [SerializeField,Range(1,50)]
     private float PushStrenght = 10;
 
     private float m_PushVector;
 
     [SerializeField]
     private GameObject m_CurrentBox;
+
+
+    [SerializeField]
+    private Transform m_PlayerPos;
 
     private Rigidbody m_PlayerRigidBody;
     private Rigidbody m_BoxRb;
@@ -30,6 +34,7 @@ public class PlayerPushBox : MonoBehaviour
     [SerializeField]
     private PlayerMovement m_PlayerMovment;
 
+
     [SerializeField]
     private PhysicMaterial m_PlayerPhysicsMaterial;
 
@@ -40,8 +45,6 @@ public class PlayerPushBox : MonoBehaviour
     [SerializeField]
     private PhysicMaterial m_PhysicsMaterialBox;
 
-    [SerializeField, Range(0,3)]
-    private float RangetoPushBox;
 
 
     private bool m_IsInRange;
@@ -49,19 +52,7 @@ public class PlayerPushBox : MonoBehaviour
     private bool m_ShowRange;
 
 
-    private void OnDrawGizmos()
-    {
-        if (m_IsInRange && m_ShowRange) 
-        {
 
-        }
-
-    }
-
-    public void IPlayerIsInrange() 
-    {
-        
-    }
 
 
     public void OnQuitBoxInteraction(InputAction.CallbackContext _callbackContext) 
@@ -88,6 +79,10 @@ public class PlayerPushBox : MonoBehaviour
             m_PushVector = _callbackContext.ReadValue<float>();
         }
 
+        if (_callbackContext.canceled) 
+        {
+            m_PushVector = 0;
+        }
     }
 
     public void GetBox(InteractableObject @object) 
@@ -105,29 +100,18 @@ public class PlayerPushBox : MonoBehaviour
     }
 
 
-    private void PushBox(Vector3 pushVector) 
-    {
-        
-            m_BoxRb.velocity = (pushVector  );
-        
-    }
-
-
-    private void AddMovementToPlayer(Vector3 pushVector)
-    {
-       
-            m_PlayerRigidBody.velocity = (pushVector);
-        
-    }
+   
 
     private void Awake()
     {
+        m_PlayerPos = transform.GetChild(0).GetComponent<Transform>();
         m_PlayerInput = GetComponent<PlayerInput>();
         m_PlayerRigidBody= GetComponent<Rigidbody>();
         m_PlayerMovment = GetComponent<PlayerMovement>();
         m_PlayerPhysicsMaterial = GetComponentInChildren<Collider>().material;
         m_baseStaticFriction = m_PlayerPhysicsMaterial.staticFriction;
         m_baseDynamicFriction = m_PlayerPhysicsMaterial.dynamicFriction;
+
 
     }
 
@@ -136,15 +120,46 @@ public class PlayerPushBox : MonoBehaviour
         
     }
 
+
+    
+
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(m_CurrentBox != null) 
+       
+        if (m_CurrentBox != null) 
         {
-            Vector3 PushVector = new Vector3(m_PushVector, 0, 0) * PushStrenght;
 
-            PushBox(PushVector);
-            AddMovementToPlayer(PushVector);
+            Vector3 boxPos = m_CurrentBox.GetComponentInParent<Transform>().position;
+            Vector3 playerPos = m_PlayerPos.transform.position;
+
+            Vector3 dir = (boxPos - playerPos);
+            dir.Set(dir.x, m_CurrentBox.transform.position.y, dir.z);
+
+            Ray r = new Ray(playerPos, dir);
+            Debug.DrawRay(playerPos, dir, Color.red, 0);
+
+            if (Physics.Raycast(r, out RaycastHit hit) && hit.rigidbody == m_BoxRb)  
+            {
+                
+                m_PlayerMovment.enabled = false;
+                Vector3 pushVector = new Vector3(m_PushVector, 0, 0) * PushStrenght ;
+                
+
+                m_BoxRb.AddForceAtPosition(pushVector * m_BoxRb.mass, hit.point);
+                m_PlayerRigidBody.AddForce(pushVector *  m_PlayerRigidBody.mass);
+
+                
+            }
+            else 
+            {
+                m_PlayerMovment.enabled = true;
+                Debug.Log("out");
+                m_CurrentBox = null;
+            }
+
+
+
         }
     }
 
