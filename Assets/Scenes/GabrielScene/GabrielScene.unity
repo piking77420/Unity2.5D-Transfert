@@ -4237,8 +4237,8 @@ MonoBehaviour:
   isGravityApplie: 1
   m_GravityValue: 3
   m_JumpStrengt: 10
-  m_HoldingTimeForGreatJump: 1.28
-  BetterJumpvalue: 2
+  m_HoldingTimeForGreatJump: 0.1
+  BetterJumpvalue: 5
   m_JumpBuffer: 0
   fallAcceleration: 6
   FallClampValue: 70.4
@@ -4246,6 +4246,7 @@ MonoBehaviour:
   m_ApexModifiers: 1.35
   m_ApexTimerNoGravity: 0.1
   customGravity: {x: 0, y: 0, z: 0}
+  debugBool: 1
 --- !u!114 &4662800460897432126
 MonoBehaviour:
   m_ObjectHideFlags: 0
