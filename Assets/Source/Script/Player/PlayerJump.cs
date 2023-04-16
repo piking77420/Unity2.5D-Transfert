@@ -41,21 +41,20 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
     [SerializeField]
     private float m_JumpStrengt;
-    private bool m_HasPressButton;
+
+
+
+    [SerializeField,Range(0,2),Tooltip("Time for player JumpWith a better Jump")]
+    private float m_HoldingTimeForGreatJump;
+    [SerializeField, Range(1, 2)]
+    private float BetterJumpvalue;
+
+
+
+
+
+
     private bool m_WillJump;
-
-
-    [Tooltip("Max Player Multipaction of the Jump Streght ")]
-    [SerializeField,Range(1,4)]
-    private float m_MaxJumpMultiplication;
-
-
-    [SerializeField,Range(1,2)]
-    private float m_JumpMultiplactation;
-
-
-
-
     [SerializeField]
     private bool m_JumpBuffer;
 
@@ -71,9 +70,6 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
     [Space]
 
-    /*
-    [SerializeField, Range(0, 180)]
-    private float DesiredAngle;*/
 
     [SerializeField, Range(0, 10)]
     private float CoyoteTime;
@@ -99,6 +95,12 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
     [HideInInspector]
     public Vector3 customGravity;
 
+
+    // Better Jump Variable Jump calculate 
+    private bool PressButton;
+    private float timeHoldingButton;
+
+
     IEnumerator ApexModifers() 
     {
 
@@ -117,7 +119,6 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
         m_CheckIsGround.isGrounded = false;
         m_JumpBuffer = false;
         m_WillJump = false;
-        m_JumpMultiplactation = 1;
     }
 
 
@@ -132,16 +133,14 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
         switch (_callbackContext.phase) 
         {
             case InputActionPhase.Started:
-                // Debug.Log(_callbackContext.interaction.ToString() + " Started");
-                m_HasPressButton = true;
-
+                PressButton = true;
                 break;
             case InputActionPhase.Performed:
                
                 break;
             case InputActionPhase.Canceled:
-                m_HasPressButton = false;
                 m_WillJump = true;
+                PressButton = false;
                 break;
         }
 
@@ -157,7 +156,16 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
             if (m_CheckIsGround.isGrounded && !m_JumpBuffer)
             {
-                DoJump(m_JumpStrengt * m_JumpMultiplactation);
+                if(timeHoldingButton >= m_HoldingTimeForGreatJump) 
+                {
+                    DoJump(m_JumpStrengt * BetterJumpvalue);
+                    timeHoldingButton = 0;
+                }
+                else 
+                {
+                    DoJump(m_JumpStrengt);
+                    timeHoldingButton = 0;
+                }
 
             }
 
@@ -208,7 +216,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
             else
             {
                 Debug.Log("here");
-                //m_Rigidbody.velocity += Vector3.up * customGravity.y * (fallAcceleration - 1) * Time.fixedDeltaTime;
+                m_Rigidbody.velocity += Vector3.up * customGravity.y * (fallAcceleration - 1) * Time.fixedDeltaTime;
             }
         }
     }
@@ -220,7 +228,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
         if(m_CheckIsGround.colliders.Count <= 0 && m_CheckIsGround.isGrounded) 
         {
-            CoyoteTime -= Time.deltaTime;
+            CoyoteTime -= Time.fixedDeltaTime;
 
             if (CoyoteTime < 0) 
             {
@@ -265,24 +273,20 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
 
 
-    private void GetJumpMultiplication() 
-    {
-        if (m_HasPressButton && m_JumpMultiplactation <= m_MaxJumpMultiplication)
-        {
-           
-            m_JumpMultiplactation += (m_JumpMultiplactation) *  Time.deltaTime;
-        }
 
+    private void GetTimeHoldingButton() 
+    {
+        if (PressButton) 
+        {
+            timeHoldingButton += Time.deltaTime;
+        }
     }
 
-
-
-    // Update is called once per frame
     private void Update()
     {
-        GetJumpMultiplication();
-        
+        GetTimeHoldingButton();
     }
+
 
     public void PlayAudio()
     {
@@ -297,6 +301,8 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
     void FixedUpdate()
     {
+
+
         JumpBuffer();
         CalculateCustomGavrity();
         AddGravity();

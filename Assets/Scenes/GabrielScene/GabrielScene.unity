@@ -4237,8 +4237,8 @@ MonoBehaviour:
   isGravityApplie: 1
   m_GravityValue: 3
   m_JumpStrengt: 10
-  m_MaxJumpMultiplication: 3
-  m_JumpMultiplactation: 1
+  m_HoldingTimeForGreatJump: 1.28
+  BetterJumpvalue: 2
   m_JumpBuffer: 0
   fallAcceleration: 6
   FallClampValue: 70.4
