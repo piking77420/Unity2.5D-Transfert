@@ -47,7 +47,7 @@ public class CameraFollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         Vector3 newPos = m_PlayerTransform.position + new Vector3(-m_DistanceX, m_Height, -m_DistanceZ);
         Vector3 smoothedPos = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
 

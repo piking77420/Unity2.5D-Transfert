@@ -119,16 +119,18 @@ public class PlayerThrowEnemy : MonoBehaviour
     }
 
 
+
     private void ThrowProjectile()
     {
         m_PlayerForce = -m_AimReadValue;
         // ForcAdded = new Vector3(m_PlayerForce.x * PlayerThrowForce, m_PlayerForce.y * PlayerThrowForce, 0);
         float baseMultiplicator = 10f;
 
-
+        EnemyTaken.GetComponent<Animator>().SetBool("Throwing", true);
         if (!m_PlayerHasThrow && m_AimReadValue != Vector2.zero) 
         {
             ForcAdded = new Vector3(m_PlayerForce.x, m_PlayerForce.y , 0) * PlayerThrowForce * baseMultiplicator;
+            
 
             m_IsPlayerAiming = true;
         }
@@ -140,13 +142,15 @@ public class PlayerThrowEnemy : MonoBehaviour
             rbEnemy.AddForce(ForcAdded);
 
             EnemyTaken.TryGetComponent<EnemyThrowedBehaviour>(out EnemyThrowedBehaviour enemyThrowedBehaviour);
+
             enemyThrowedBehaviour.Is_Throwed = true;
-                
-
-
-            EnemyTaken = null;
-            m_PlayerHasThrow = true;
             m_IsPlayerAiming = false;
+
+
+
+            m_PlayerHasThrow = true;
+            EnemyTaken.GetComponent<Animator>().SetBool("Throwing", false);
+            EnemyTaken = null;
         }
 
     }
@@ -155,11 +159,11 @@ public class PlayerThrowEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if (EnemyTaken != null)
         {
             Debug.Assert(EnemyTaken.GetComponent<EnemyPatrol>() != null);
-
-
             UpdateProjectilePos();
             ThrowProjectile();
         }

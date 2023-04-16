@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInteraction))]
@@ -10,6 +11,8 @@ public class PlayerInteraction : MonoBehaviour
     // Start is called before the first frame update
 
     private PlayerThrowEnemy m_PlayerThrowEnemy;
+    private PlayerPushBox m_PlayerPushBox;
+
 
 
     [SerializeField , Range(1,3)]
@@ -20,6 +23,10 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField]
     private Transform m_PlayerTransform;
+
+
+    [SerializeField]
+    private PlayerInput m_PlayerInput;
 
 
 
@@ -36,7 +43,19 @@ public class PlayerInteraction : MonoBehaviour
     private void Awake()
     {
         m_PlayerThrowEnemy = gameObject.GetComponent<PlayerThrowEnemy>();
+        m_PlayerInput = GetComponent<PlayerInput>();
+        m_PlayerPushBox = GetComponent<PlayerPushBox>();
     }
+
+
+
+    // Lever Out
+    public void OnChangeMap(InputAction.CallbackContext _callbackContext) 
+    {
+        if (_callbackContext.performed)
+            m_PlayerInput.SwitchCurrentActionMap("GamePlay");
+    }
+
 
     public void OnInteraction(InputAction.CallbackContext _callbackContext) 
     {
@@ -54,13 +73,24 @@ public class PlayerInteraction : MonoBehaviour
                    
                     interactableObject.m_OnInteraction?.Invoke();
 
-                   // if is levier do than break
-                    //if(interactableObject is )
+                   //if is levier do than return lever is 1st preiority
+                    if(interactableObject is LevierIntercation) 
+                    {
+                        m_PlayerInput.SwitchCurrentActionMap("Lever");
+                        return;
+                    }
 
+                    if(interactableObject is BoxInteraction) 
+                    {
+                        m_PlayerInput.SwitchCurrentActionMap("MoveBox");
+                        m_PlayerPushBox.GetBox(interactableObject);
+                        return;
+                    }
 
                     if(interactableObject is EnemyPickable) 
                     {
                         m_PlayerThrowEnemy.GetEnemy(interactableObject);
+                        return;
                     }
 
 

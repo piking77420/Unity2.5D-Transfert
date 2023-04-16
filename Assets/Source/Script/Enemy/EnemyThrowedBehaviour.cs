@@ -8,7 +8,6 @@ public class EnemyThrowedBehaviour : MonoBehaviour
     // Start is called before the first frame update
 
 
-
     [SerializeField]
     public bool Is_Throwed;
 
@@ -34,7 +33,6 @@ public class EnemyThrowedBehaviour : MonoBehaviour
 
     private void Awake()
     {
-    
     }
 
     void Start()
@@ -53,6 +51,5 @@ public class EnemyThrowedBehaviour : MonoBehaviour
     {
 
 
-      
     }
 }
