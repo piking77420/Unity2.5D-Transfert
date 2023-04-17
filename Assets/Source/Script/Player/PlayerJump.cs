@@ -121,6 +121,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
     {
         StartCoroutine(ApexModifers());
         m_Rigidbody.velocity += Vector3.up * JumpStrenght;
+        m_CheckIsGround.isGrounded = false ;
         m_JumpBuffer = false;
         m_WillJump = false;
     }
@@ -145,6 +146,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
                
                 break;
             case InputActionPhase.Canceled:
+                CanBetterJump = false;
                 PressButton = false;
                 break;
         }
@@ -153,7 +155,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
         if (m_WillJump) 
         {
-            if (!m_CheckIsGround.isGrounded && !m_JumpBuffer)
+            if (!m_CheckIsGround.isGrounded && !m_JumpBuffer && m_Rigidbody.velocity.y < 0)
             {
                 m_JumpBuffer = true;
                 return;
@@ -211,7 +213,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
             }
             else
             {
-                //m_Rigidbody.velocity += Vector3.up * customGravity.y * (fallAcceleration - 1) * Time.fixedDeltaTime;
+                m_Rigidbody.velocity += Vector3.up * customGravity.y * (fallAcceleration - 1) * Time.fixedDeltaTime;
             }
         }
     }
@@ -283,7 +285,6 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
             if (!m_CheckIsGround.isGrounded && timeHoldingButton >= m_HoldingTimeForGreatJump)
             {
                 float jumpValue = BetterJumpvalue;
-                Debug.Log(jumpValue);
                 DoJump(jumpValue);
                 timeHoldingButton = 0;
                 CanBetterJump = false;
@@ -321,8 +322,8 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
         JumpBuffer();
         CalculateCustomGavrity();
         AddGravity();
-        FallClamping();
-        InCoyoteTime();
+       // FallClamping();
+       // InCoyoteTime();
 
         
     }

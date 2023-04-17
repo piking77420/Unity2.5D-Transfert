@@ -233,12 +233,7 @@ public class PlayerPushBox : MonoBehaviour
 
 
         }
-        else
-        {
-         
-            PlayerQuitInteraction();
-
-        }
+      
 
 
 

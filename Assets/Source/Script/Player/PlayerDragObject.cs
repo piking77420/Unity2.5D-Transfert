@@ -33,7 +33,8 @@ public class PlayerDragObject : MonoBehaviour
     [SerializeField]
     List<SelectableObject> DragAbleObject;
 
-
+    [SerializeField]
+    private CheckIsGround m_IsGround;
 
     [SerializeField]    
     private bool m_TranslateButton;
@@ -99,7 +100,7 @@ public class PlayerDragObject : MonoBehaviour
     private void GetPlayerRadius(InputAction.CallbackContext _context) 
     {
         
-
+        if(m_IsGround.isGrounded)   
         switch (_context.phase)
         {
             case InputActionPhase.Started:
@@ -107,7 +108,6 @@ public class PlayerDragObject : MonoBehaviour
                 break;
             case InputActionPhase.Performed:
                 m_PlayerJump.isGravityApplie = false;
-                m_rb.velocity = Vector3.zero;
                 break;
             case InputActionPhase.Canceled:
                 m_TranslateButton = false;
@@ -144,7 +144,7 @@ public class PlayerDragObject : MonoBehaviour
         m_DragObject = GetComponent<PlayerSelectObject>();
         m_TransformPlayerDom.transform.localScale = Vector3.zero;
         m_PlayerTransform = gameObject.transform.GetChild(0).GetComponent<Transform>();
-
+        m_IsGround = GetComponent<CheckIsGround>();
         m_PlayerJump = GetComponent<PlayerJump>();
         m_rb = GetComponent<Rigidbody>();
     }

@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerRunning(ref Vector3 currentMovment ) 
     {
-        if (movement.x == 1 || movement.x == -1)
+        if (movement.x == 1 || movement.x == -1 && m_IsGround.isGrounded)
         {
             currentMovment *= m_SpeedMultiplactorOnRunning;
 
@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerMove()
     {
-        Vector3 currentMovment = movement * _Speed;
+            Vector3 currentMovment = movement * _Speed;
 
      
             PlayerRunning(ref currentMovment);
