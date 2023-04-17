@@ -19,7 +19,7 @@ public class LeverAction : MonoBehaviour
     private float m_LeverValueStatue;
 
 
-    [SerializeField,Tooltip("EVENT WHO IS PLAY EACH TIME BY FRAME")]
+    [SerializeField,Tooltip("EVENT PLAY EACH FRAME")]
     public UnityEvent<float> OnAccomplish;
 
 

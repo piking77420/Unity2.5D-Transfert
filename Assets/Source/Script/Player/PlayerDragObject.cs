@@ -159,13 +159,12 @@ public class PlayerDragObject : MonoBehaviour
         if (m_TranslateButton && m_SelectionRadius <= m_MaxRadius) 
         {   
             float addedValue = Time.deltaTime * m_SelectRadiusMultiplicator;
-       
 
-            Vector3 scaleDome = m_TransformPlayerDom.transform.localScale;
-            scaleDome.x += addedValue;
-            scaleDome.y += addedValue;
-            scaleDome.z += addedValue;
-            m_TransformPlayerDom.transform.localScale = scaleDome;
+
+
+            Vector3 scaleDome = new Vector3(addedValue, addedValue, addedValue);
+                m_TransformPlayerDom.transform.localScale += scaleDome;
+         
             m_SelectionRadius += addedValue;
         }
     }
