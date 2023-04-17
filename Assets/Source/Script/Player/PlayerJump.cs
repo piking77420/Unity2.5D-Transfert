@@ -98,10 +98,6 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
 
 
-    [SerializeField]
-    private bool debugBool;
-
-
     // Better Jump Variable Jump calculate 
     private bool PressButton;
     private float timeHoldingButton;
@@ -113,6 +109,8 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
         isGravityApplie = false;
         m_PlayerMovement.movement = new Vector3(m_PlayerMovement.movement.x * m_ApexModifiers, m_PlayerMovement.movement.y, m_PlayerMovement.movement.z);
         yield return new WaitForSeconds(m_ApexTimerNoGravity);
+        m_PlayerMovement.movement = new Vector3(m_PlayerMovement.movement.x / m_ApexModifiers, m_PlayerMovement.movement.y, m_PlayerMovement.movement.z);
+
         isGravityApplie = true;
     }
 
@@ -213,7 +211,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
             }
             else
             {
-                m_Rigidbody.velocity += Vector3.up * customGravity.y * (fallAcceleration - 1) * Time.fixedDeltaTime;
+               m_Rigidbody.velocity += Vector3.up * customGravity.y * (fallAcceleration - 1) * Time.fixedDeltaTime;
             }
         }
     }
@@ -322,8 +320,8 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
         JumpBuffer();
         CalculateCustomGavrity();
         AddGravity();
-       // FallClamping();
-       // InCoyoteTime();
+        FallClamping();
+        InCoyoteTime();
 
         
     }

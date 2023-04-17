@@ -9,6 +9,7 @@ public class CheckIsGround : MonoBehaviour
     public bool isGrounded;
 
 
+
     [SerializeField,Range(0,180)]
     private float DesiredAngle;
 
@@ -64,7 +65,6 @@ public class CheckIsGround : MonoBehaviour
     private void Awake()
     {
         colliders = new List<Collider>();
-        
     }
 
     // Start is called before the first frame update
