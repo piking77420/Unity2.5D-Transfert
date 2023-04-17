@@ -211,8 +211,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
             }
             else
             {
-                Debug.Log("here");
-                m_Rigidbody.velocity += Vector3.up * customGravity.y * (fallAcceleration - 1) * Time.fixedDeltaTime;
+                //m_Rigidbody.velocity += Vector3.up * customGravity.y * (fallAcceleration - 1) * Time.fixedDeltaTime;
             }
         }
     }

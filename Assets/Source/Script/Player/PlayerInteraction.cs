@@ -82,7 +82,7 @@ public class PlayerInteraction : MonoBehaviour
 
                     if(interactableObject is BoxInteraction) 
                     {
-                        m_PlayerInput.SwitchCurrentActionMap("MoveBox");
+                        //m_PlayerInput.SwitchCurrentActionMap("MoveBox");
                         m_PlayerPushBox.GetBox(interactableObject);
                         return;
                     }

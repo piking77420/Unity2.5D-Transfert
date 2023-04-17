@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     [SerializeField, Range(0, 100)]
-    private float m_Speed;
+    public float _Speed;
 
     [SerializeField, Range(1,3)]
     private float m_SpeedMultiplactorOnRunning;
@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerMove()
     {
-        Vector3 currentMovment = movement * m_Speed;
+        Vector3 currentMovment = movement * _Speed;
 
      
             PlayerRunning(ref currentMovment);
