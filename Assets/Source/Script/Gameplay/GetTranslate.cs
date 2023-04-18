@@ -17,10 +17,16 @@ public class GetTranslate : MonoBehaviour
         m_Translate= GetComponentInChildren<TranSlate>();
     }
 
-        
-    private void OnTranlation() 
+
+    private void OnStartTranlation()
     {
-        m_Translate.Translation();
+        m_Translate.StartTranslation();
+    }
+
+        
+    private void OnEndTranlation() 
+    {
+        m_Translate.EndTranslation();
     }
 
 
