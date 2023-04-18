@@ -17,7 +17,7 @@ public class DimensionScript : MonoBehaviour
 
 
     [SerializeField]
-    public float DimensionSize = 2;
+    public  static float DimensionSize = 5;
 
    public UnityEvent OnClamping;
 
@@ -30,21 +30,57 @@ public class DimensionScript : MonoBehaviour
     }
 
 
+
+    
+
     public void SwapDimension()
     {
-        if (CurrentDimension == Dimension.Normal)
+
+
+        if(gameObject.transform.childCount != 0) 
         {
-            CurrentDimension = Dimension.Special;
+           Vector3 Newpos = this.gameObject.transform.GetChild(0).position;
+
+            if (CurrentDimension == Dimension.Normal)
+            {
+                CurrentDimension = Dimension.Special;
+
+
+                Newpos.z = (DimensionSize / 2f);
+            }
+            else
+            {
+                CurrentDimension = Dimension.Normal;
+                Newpos.z = -(DimensionSize / 2f);
+            }
+            this.gameObject.transform.GetChild(0).position = Newpos;
         }
-        else
+        else 
         {
-            CurrentDimension = Dimension.Normal;
+            Vector3 Newpos = this.gameObject.transform.position;
+
+            if (CurrentDimension == Dimension.Normal)
+            {
+                CurrentDimension = Dimension.Special;
+
+
+                Newpos.z = (DimensionSize / 2f);
+            }
+            else
+            {
+                CurrentDimension = Dimension.Normal;
+                Newpos.z = -(DimensionSize / 2f);
+            }
+            this.gameObject.transform.position = Newpos;
         }
+
+
+
     }
 
 
 
-
+ 
 
     public void ClampPositionPlayer() 
     {

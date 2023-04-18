@@ -60,6 +60,9 @@ public class TranSlate : MonoBehaviour
 
 
 
+   
+
+
 
     protected void Awake()
     {
@@ -80,16 +83,30 @@ public class TranSlate : MonoBehaviour
 
   
 
-    public virtual void  Translation() 
-    {
+    public virtual void  StartTranslation()
+    { 
+
         m_Rigidbody.velocity = Vector3.zero;
         m_Rigidbody.useGravity = !m_Rigidbody.useGravity;
         m_Renderer.enabled = !m_Renderer.enabled;
 
     }
 
+    public virtual void EndTranslation()
+    {
+
+        m_Rigidbody.velocity = Vector3.zero;
+        m_Rigidbody.useGravity = !m_Rigidbody.useGravity;
+        m_Renderer.enabled = !m_Renderer.enabled;
+
+        CurrentObjectDimension.SwapDimension();
+
+       
 
 
- 
-    
+
+    }
+
+
+
 }
