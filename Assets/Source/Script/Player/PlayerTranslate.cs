@@ -23,22 +23,37 @@ public class PlayerTranslate : TranSlate
     [SerializeField]
     private PlayerJump m_PlayerJump;
 
+    [SerializeField, Range(0, 5),Tooltip("Not under 1 seconde due to the animation ")]
+    private float CoolDownCanSTranslate = 3;
+
     private bool rbStatus;
+    [SerializeField]
+    public bool m_CanTranslate = true;
 
     private RigidbodyConstraints m_rbContraintBase;
+
+
+    private IEnumerator CoolDownTranslate() 
+    {
+        yield return new WaitForSeconds(CoolDownCanSTranslate);
+        m_CanTranslate = true;
+    }
 
 
     public override void OnChangingDimension(InputAction.CallbackContext _context)
     {
 
 
-        if (_context.canceled && m_PlayerGhost.IsCanPlayerTranslate())
+        if (_context.canceled && m_CanTranslate && m_PlayerGhost.IsCanPlayerTranslate())
         {
             m_Animator.SetTrigger("Translate");
 
             DimensionScript.Dimension current = CurrentObjectDimension.CurrentDimension;
 
             m_Animator.SetInteger("Dimension", (int)current);
+            m_CanTranslate = false;
+            StartCoroutine(CoolDownTranslate());
+
         }
 
     }

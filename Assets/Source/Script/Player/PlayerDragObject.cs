@@ -14,6 +14,10 @@ public class PlayerDragObject : MonoBehaviour
     [SerializeField]
     private PlayerJump m_PlayerJump;
 
+
+    [SerializeField]
+    private PlayerTranslate m_PlayerTranslate;
+
     [SerializeField]
     private Rigidbody m_rb;
 
@@ -107,6 +111,7 @@ public class PlayerDragObject : MonoBehaviour
                 m_TranslateButton = true;
                 break;
             case InputActionPhase.Performed:
+                    if (m_PlayerTranslate.m_CanTranslate)
                 m_PlayerJump.isGravityApplie = false;
                 break;
             case InputActionPhase.Canceled:
@@ -147,6 +152,7 @@ public class PlayerDragObject : MonoBehaviour
         m_IsGround = GetComponent<CheckIsGround>();
         m_PlayerJump = GetComponent<PlayerJump>();
         m_rb = GetComponent<Rigidbody>();
+        m_PlayerTranslate = GetComponent<PlayerTranslate>();
     }
     void Start()
     {
@@ -156,7 +162,7 @@ public class PlayerDragObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (m_TranslateButton && m_SelectionRadius <= m_MaxRadius) 
+        if (m_TranslateButton && m_SelectionRadius  <= m_MaxRadius && m_PlayerTranslate.m_CanTranslate) 
         {   
             float addedValue = Time.deltaTime * m_SelectRadiusMultiplicator;
 

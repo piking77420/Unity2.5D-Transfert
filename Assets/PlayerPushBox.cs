@@ -9,16 +9,28 @@ using UnityEngine.InputSystem;
 public class PlayerPushBox : MonoBehaviour
 {
     // Start is called before the first frame update
+    [Header("Value")]
 
 
     [SerializeField, Range(1, 1000)]
     private float PushStrenght = 10;
 
+    [SerializeField, Range(1, 20)]
+    private float MaxPushVeclocity;
+
+
+    [SerializeField, Range(0, 10)]
+    private float maxBoxVelocity;
+
+    [SerializeField, Range(0, 10),Space(2)]
+    private float m_RangeBetweenPlayerAndBox;
+
     private float m_PushVector;
+
+    [Header("Dependancies")]
 
     [SerializeField]
     private GameObject m_CurrentBox;
-
 
     [SerializeField]
     private Transform m_PlayerPos;
@@ -26,8 +38,11 @@ public class PlayerPushBox : MonoBehaviour
     private Rigidbody m_PlayerRigidBody;
     private Rigidbody m_BoxRb;
 
-    [SerializeField, Range(1, 20)]
-    private float MaxPushVeclocity;
+
+
+
+    [SerializeField]
+    private ConfigurableJoint m_ConfigurableJoint;
 
     [SerializeField]
     private PlayerInput m_PlayerInput;
@@ -52,22 +67,30 @@ public class PlayerPushBox : MonoBehaviour
 
 
     private bool m_IsInRange;
-    [SerializeField]
+
+
+    [SerializeField,Space(2)]
     private bool m_ShowRange;
 
 
-    [SerializeField, Range(0, 10)]
-    private float maxBoxVelocity;
-
-    [SerializeField, Range(0, 10)]
-    private float m_RangeBetweenPlayerAndBox;
 
 
+    [SerializeField,Tooltip("Show Minimal range for player Grab box")]
+    private bool ShowGizmo;
 
-    [SerializeField]
-    private ConfigurableJoint m_ConfigurableJoint;
 
     private float baseSpeed;
+
+
+    private void OnDrawGizmos()
+    {
+        if (ShowGizmo) 
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawCube(m_PlayerPos.position, new Vector3(m_RangeBetweenPlayerAndBox, m_RangeBetweenPlayerAndBox, m_RangeBetweenPlayerAndBox));
+
+        }
+    }
 
 
     private void PlayerQuitInteraction()
@@ -115,19 +138,26 @@ public class PlayerPushBox : MonoBehaviour
         m_PlayerMovment._Speed /= 2;
     }
 
-    public void GetBox(InteractableObject @object)
+    public void GetBox(InteractableObject @object, Vector3 Playerpos)
     {
 
-        m_CurrentBox = @object.gameObject;
-        m_BoxRb = m_CurrentBox.GetComponentInParent<Rigidbody>();
-        m_PhysicsMaterialBox = @object.GetComponent<Collider>().material;
-        m_PlayerInput.SwitchCurrentActionMap("MoveBox");
-   
-        m_PlayerPhysicsMaterial.staticFriction = m_PhysicsMaterialBox.staticFriction;
-        m_PlayerPhysicsMaterial.dynamicFriction = m_PhysicsMaterialBox.dynamicFriction;
+        Debug.Log(Vector3.Distance(Playerpos, @object.transform.position));
 
-        m_ConfigurableJoint = @object.transform.parent.GetComponent<ConfigurableJoint>();
-        ChangeSpeed();
+        if(Vector3.Distance(Playerpos, @object.transform.position ) < m_RangeBetweenPlayerAndBox) 
+        {
+
+            m_CurrentBox = @object.gameObject;
+            m_BoxRb = m_CurrentBox.GetComponentInParent<Rigidbody>();
+            m_PhysicsMaterialBox = @object.GetComponent<Collider>().material;
+            m_PlayerInput.SwitchCurrentActionMap("MoveBox");
+
+            m_PlayerPhysicsMaterial.staticFriction = m_PhysicsMaterialBox.staticFriction;
+            m_PlayerPhysicsMaterial.dynamicFriction = m_PhysicsMaterialBox.dynamicFriction;
+
+            m_ConfigurableJoint = @object.transform.parent.GetComponent<ConfigurableJoint>();
+            ChangeSpeed();  
+        }
+
 
     }
 
