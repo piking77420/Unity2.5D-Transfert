@@ -29,7 +29,7 @@ public class EnemmyTranslate : TranSlate
 
 
 
-    new void Awake() 
+    protected override void Awake() 
     {
         base.Awake();
 
@@ -37,7 +37,7 @@ public class EnemmyTranslate : TranSlate
     }
 
 
-    new void  Start()
+    protected override void Start()
     {
         base.Start();   
     }

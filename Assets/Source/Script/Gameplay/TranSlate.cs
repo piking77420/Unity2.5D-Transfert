@@ -60,14 +60,14 @@ public class TranSlate : MonoBehaviour
 
 
 
-    protected void Start()
+    protected virtual void Start()
     {
         m_Animator.SetInteger("Dimension",(int)CurrentObjectDimension.CurrentDimension);
     }
 
 
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         CurrentObjectDimension= gameObject.GetComponent<DimensionScript>();
       

@@ -105,7 +105,7 @@ public class PlayerTranslate : TranSlate
 
 
 
-    private new void Awake()
+    protected override void Awake()
     {   
         base.Awake();
         m_rbContraintBase = m_Rigidbody.constraints;
