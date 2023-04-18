@@ -6,7 +6,7 @@ public class CameraFollowPlayer : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    [SerializeField]
+    [SerializeField] 
     private Transform m_PlayerTransform;
     [Space]
 
@@ -47,7 +47,7 @@ public class CameraFollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         Vector3 newPos = m_PlayerTransform.position + new Vector3(-m_DistanceX, m_Height, -m_DistanceZ);
         Vector3 smoothedPos = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
 

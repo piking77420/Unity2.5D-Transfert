@@ -12,6 +12,12 @@ public class PlayerDragObject : MonoBehaviour
     private PlayerSelectObject m_DragObject;
 
     [SerializeField]
+    private PlayerJump m_PlayerJump;
+
+    [SerializeField]
+    private Rigidbody m_rb;
+
+    [SerializeField]
     private Transform m_TransformPlayerDom;
 
     [Space,SerializeField ,Range(0, 15)]
@@ -27,7 +33,8 @@ public class PlayerDragObject : MonoBehaviour
     [SerializeField]
     List<SelectableObject> DragAbleObject;
 
-
+    [SerializeField]
+    private CheckIsGround m_IsGround;
 
     [SerializeField]    
     private bool m_TranslateButton;
@@ -35,7 +42,8 @@ public class PlayerDragObject : MonoBehaviour
     [SerializeField]
     private bool m_ShowRadius;
 
-
+    [SerializeField]
+    private Transform m_PlayerTransform;
 
     private bool IsObjectSameDimenSionHasPlayer(SelectableObject @object) 
     {
@@ -56,15 +64,16 @@ public class PlayerDragObject : MonoBehaviour
         if (m_ShowRadius)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(gameObject.transform.position, m_SelectionRadius);
+            m_PlayerTransform = gameObject.transform.GetChild(0).GetComponent<Transform>();
+            Gizmos.DrawWireSphere(m_PlayerTransform.position, m_SelectionRadius);
         }
     }
-
+        
     
 
     private void FindAllDragableObject()
     {
-        Collider[] sphereDrag = Physics.OverlapSphere(transform.position, m_SelectionRadius);
+        Collider[] sphereDrag = Physics.OverlapSphere(m_PlayerTransform.position, m_SelectionRadius);
 
         foreach (Collider collider in sphereDrag)
         {
@@ -83,18 +92,22 @@ public class PlayerDragObject : MonoBehaviour
 
         foreach (var item in DragAbleObject)
         {
+            item.gameObject.GetComponent<TranSlate>().isTranslate = true;
             item.gameObject.GetComponent<TranSlate>().OnChangingDimension(_context);
         }
     }
 
     private void GetPlayerRadius(InputAction.CallbackContext _context) 
     {
+        
+        if(m_IsGround.isGrounded)   
         switch (_context.phase)
         {
             case InputActionPhase.Started:
                 m_TranslateButton = true;
                 break;
             case InputActionPhase.Performed:
+                m_PlayerJump.isGravityApplie = false;
                 break;
             case InputActionPhase.Canceled:
                 m_TranslateButton = false;
@@ -102,7 +115,10 @@ public class PlayerDragObject : MonoBehaviour
                 TransSlateObject(_context);
                 m_SelectionRadius= 0;
                 m_TransformPlayerDom.transform.localScale = Vector3.zero;
+                m_PlayerJump.isGravityApplie = true;
+
                 DragAbleObject.Clear();
+              
                 break;
         }
 
@@ -127,6 +143,10 @@ public class PlayerDragObject : MonoBehaviour
         DragAbleObject = new List<SelectableObject>();
         m_DragObject = GetComponent<PlayerSelectObject>();
         m_TransformPlayerDom.transform.localScale = Vector3.zero;
+        m_PlayerTransform = gameObject.transform.GetChild(0).GetComponent<Transform>();
+        m_IsGround = GetComponent<CheckIsGround>();
+        m_PlayerJump = GetComponent<PlayerJump>();
+        m_rb = GetComponent<Rigidbody>();
     }
     void Start()
     {
@@ -136,15 +156,15 @@ public class PlayerDragObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (m_TranslateButton && m_SelectionRadius != m_MaxRadius) 
+        if (m_TranslateButton && m_SelectionRadius <= m_MaxRadius) 
         {   
             float addedValue = Time.deltaTime * m_SelectRadiusMultiplicator;
 
-            Vector3 scaleDome = m_TransformPlayerDom.transform.localScale;
-            scaleDome.x += addedValue;
-            scaleDome.y += addedValue;
-            scaleDome.z += addedValue;
-            m_TransformPlayerDom.transform.localScale = scaleDome;
+
+
+            Vector3 scaleDome = new Vector3(addedValue, addedValue, addedValue);
+                m_TransformPlayerDom.transform.localScale += scaleDome;
+         
             m_SelectionRadius += addedValue;
         }
     }

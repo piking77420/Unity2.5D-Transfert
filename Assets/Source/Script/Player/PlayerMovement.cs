@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(PlayerInput))]
+
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -13,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     [SerializeField, Range(0, 100)]
-    private float m_Speed;
+    public float _Speed;
 
     [SerializeField, Range(1,3)]
     private float m_SpeedMultiplactorOnRunning;
@@ -21,13 +20,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     public Vector3 movement;
 
- 
+
+    [SerializeField]
+    private CheckIsGround m_IsGround;
+
 
 
     public void OnMovement(InputAction.CallbackContext _context) 
     {
-        
+
+
         Vector3 movementInput =  new Vector3(_context.ReadValue<float>(),0,0);
+
         movement = movementInput;
        
             
@@ -38,7 +42,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        m_Rigidbody = GetComponent<Rigidbody>(); 
+        m_Rigidbody = GetComponent<Rigidbody>();
+        m_IsGround = GetComponent<CheckIsGround>();
     }
 
     // Start is called before the first frame update
@@ -51,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerRunning(ref Vector3 currentMovment ) 
     {
-        if (movement.x == 1 || movement.x == -1)
+        if (movement.x == 1 || movement.x == -1 && m_IsGround.isGrounded)
         {
             currentMovment *= m_SpeedMultiplactorOnRunning;
 
@@ -60,12 +65,22 @@ public class PlayerMovement : MonoBehaviour
 
  
     // Update is called once per frame
+
+
+    private void PlayerMove()
+    {
+            Vector3 currentMovment = movement * _Speed;
+
+     
+            PlayerRunning(ref currentMovment);
+            m_Rigidbody.velocity = new Vector3(currentMovment.x, m_Rigidbody.velocity.y, currentMovment.z);
+
+    
+
+    }
+
     void Update()
     {
-        Vector3 currentMovment = movement * m_Speed;
-
-        PlayerRunning(ref currentMovment);  
-        m_Rigidbody.velocity = new Vector3(currentMovment.x , m_Rigidbody.velocity.y , currentMovment.z);
-     
+        PlayerMove();
     }
 }
