@@ -26,7 +26,7 @@ public class TranSlate : MonoBehaviour
 
 
     [SerializeField]
-    protected MeshRenderer m_Renderer;
+    protected Renderer m_Renderer;
 
     [SerializeField]
     protected Rigidbody m_Rigidbody;
@@ -60,13 +60,18 @@ public class TranSlate : MonoBehaviour
 
 
 
-   
+    protected void Start()
+    {
+        m_Animator.SetInteger("Dimension",(int)CurrentObjectDimension.CurrentDimension);
+    }
 
 
 
     protected void Awake()
     {
         CurrentObjectDimension= gameObject.GetComponent<DimensionScript>();
+      
+
 
         m_Rigidbody = GetComponent<Rigidbody>();
         if(m_Rigidbody == null) 
@@ -75,7 +80,13 @@ public class TranSlate : MonoBehaviour
         }
 
         m_Animator = gameObject.GetComponentInParent<Animator>();
-        m_Renderer = gameObject.GetComponent<MeshRenderer>();
+        m_Renderer = gameObject.GetComponent<Renderer>();
+       
+        if(m_Renderer == null) 
+        {
+            m_Renderer = GetComponentInChildren<Renderer>();
+        }
+
 
     }
 
@@ -100,10 +111,6 @@ public class TranSlate : MonoBehaviour
         m_Renderer.enabled = !m_Renderer.enabled;
 
         CurrentObjectDimension.SwapDimension();
-
-       
-
-
 
     }
 

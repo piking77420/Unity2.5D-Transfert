@@ -25,7 +25,6 @@ public class DimensionScript : MonoBehaviour
 
     private void Awake()
     {
-        CurrentDimension = Dimension.Normal;
         OnClamping.AddListener(ClampPositionPlayer);
     }
 
@@ -72,7 +71,12 @@ public class DimensionScript : MonoBehaviour
                 Newpos.z = -(DimensionSize / 2f);
             }
             this.gameObject.transform.position = Newpos;
+
+
+
         }
+
+
 
 
 

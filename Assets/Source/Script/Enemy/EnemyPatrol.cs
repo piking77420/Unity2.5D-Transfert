@@ -73,6 +73,11 @@ public class EnemyPatrol : MonoBehaviour
     protected virtual void Awake()
     {
         m_Animator = GetComponent<Animator>();
+        if(m_Animator == null) 
+        {
+            m_Animator = gameObject.GetComponentInParent<Animator>();
+        }
+
         m_NavMeshAgent = GetComponent<NavMeshAgent>();
         m_CheckIsGrounded = GetComponent<CheckIsGround>(); 
     }
@@ -100,6 +105,28 @@ public class EnemyPatrol : MonoBehaviour
     void Start()
     {
         
+    }
+
+    public void OnChangingDimension() 
+    {
+        Debug.Log("before");
+        for (int i = 0; i < m_WayPoints.Length; i++)
+        {
+            Debug.Log(m_WayPoints[i]);
+
+        }
+
+        for (int i = 0; i < m_WayPoints.Length; i++)
+        {
+            m_WayPoints[i].z = -m_WayPoints[i].z;
+        }
+
+        Debug.Log("Atfer");
+        for (int i = 0; i < m_WayPoints.Length; i++)
+        {
+            Debug.Log(m_WayPoints[i]);
+
+        }
     }
 
     // Update is called once per frame
