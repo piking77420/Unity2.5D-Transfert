@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 public class PlayerThrowEnemy : MonoBehaviour
@@ -107,7 +108,7 @@ public class PlayerThrowEnemy : MonoBehaviour
         }
 
         
-        EnemyTaken.GetComponent<Rigidbody>().useGravity = false; ;
+        EnemyTaken.GetComponentInParent<Rigidbody>().useGravity = false; ;
 
         Vector3 pos = m_PlayerTransform.position;
 
@@ -118,6 +119,12 @@ public class PlayerThrowEnemy : MonoBehaviour
 
     }
 
+    private void EnemyIsTaken(Rigidbody rb) 
+    {
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
+
 
 
     private void ThrowProjectile()
@@ -126,11 +133,18 @@ public class PlayerThrowEnemy : MonoBehaviour
         // ForcAdded = new Vector3(m_PlayerForce.x * PlayerThrowForce, m_PlayerForce.y * PlayerThrowForce, 0);
         float baseMultiplicator = 10f;
 
-        EnemyTaken.GetComponent<Animator>().SetBool("Throwing", true);
+        Animator EnemyAnimator = EnemyTaken.GetComponentInParent<Animator>();
+        Rigidbody EnemyRigidBody = EnemyTaken.GetComponentInParent<Rigidbody>();
+        EnemyAnimator.enabled = false;
+
+
         if (!m_PlayerHasThrow && m_AimReadValue != Vector2.zero) 
         {
+
+
             ForcAdded = new Vector3(m_PlayerForce.x, m_PlayerForce.y , 0) * PlayerThrowForce * baseMultiplicator;
-            
+ 
+            EnemyIsTaken(EnemyRigidBody);
 
             m_IsPlayerAiming = true;
         }
@@ -138,10 +152,11 @@ public class PlayerThrowEnemy : MonoBehaviour
         if(!m_PlayerHasThrow && m_IsPlayerAiming && m_AimReadValue == Vector2.zero) 
         {
 
-            Rigidbody rbEnemy = EnemyTaken.GetComponent<Rigidbody>();
-            rbEnemy.AddForce(ForcAdded);
+            EnemyRigidBody.AddForce(ForcAdded * EnemyRigidBody.mass);
 
             EnemyTaken.TryGetComponent<EnemyThrowedBehaviour>(out EnemyThrowedBehaviour enemyThrowedBehaviour);
+           
+
 
             enemyThrowedBehaviour.Is_Throwed = true;
             m_IsPlayerAiming = false;
@@ -149,10 +164,17 @@ public class PlayerThrowEnemy : MonoBehaviour
 
 
             m_PlayerHasThrow = true;
-            EnemyTaken.GetComponent<Animator>().SetBool("Throwing", false);
             EnemyTaken = null;
         }
 
+    }
+
+
+    private void EnemyVegetate() 
+    {
+        EnemyTaken.GetComponent<EnemyPatrol>().enabled= false;
+        EnemyTaken.transform.parent.GetComponent<Animator>().enabled= false;
+        EnemyTaken.GetComponent<NavMeshAgent>().enabled= false;
     }
 
 
@@ -164,6 +186,7 @@ public class PlayerThrowEnemy : MonoBehaviour
         if (EnemyTaken != null)
         {
             Debug.Assert(EnemyTaken.GetComponent<EnemyPatrol>() != null);
+            EnemyVegetate();
             UpdateProjectilePos();
             ThrowProjectile();
         }

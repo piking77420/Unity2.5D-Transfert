@@ -19,13 +19,11 @@ public class DimensionScript : MonoBehaviour
     [SerializeField]
     public  static float DimensionSize = 5;
 
-   public UnityEvent OnClamping;
 
 
 
     private void Awake()
     {
-        OnClamping.AddListener(ClampPositionPlayer);
     }
 
 

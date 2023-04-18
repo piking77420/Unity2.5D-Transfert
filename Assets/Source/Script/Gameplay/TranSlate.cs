@@ -15,11 +15,10 @@ public class TranSlate : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    [Header("Dependencies")]
 
     [SerializeField]
     protected DimensionScript CurrentObjectDimension;
-
-
 
     [SerializeField]
     protected Animator m_Animator;
@@ -28,17 +27,18 @@ public class TranSlate : MonoBehaviour
     [SerializeField]
     protected Renderer m_Renderer;
 
-    [SerializeField]
+    [SerializeField,Space(1)]
     protected Rigidbody m_Rigidbody;
+    
+
+
+
+
+
 
     public bool isTranslate;
 
-
-
     private bool m_GravityStatue;
-
-
-
 
     public virtual void OnChangingDimension(InputAction.CallbackContext _context)
     {

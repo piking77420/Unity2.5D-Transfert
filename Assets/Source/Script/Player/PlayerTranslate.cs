@@ -39,7 +39,6 @@ public class PlayerTranslate : TranSlate
             DimensionScript.Dimension current = CurrentObjectDimension.CurrentDimension;
 
             m_Animator.SetInteger("Dimension", (int)current);
-            CurrentObjectDimension.OnClamping.RemoveListener(CurrentObjectDimension.ClampPositionPlayer);
         }
 
     }

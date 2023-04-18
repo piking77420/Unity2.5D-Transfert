@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,32 +8,36 @@ public class EnemyThrowedBehaviour : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    [Header("Dependencies")]
+    [SerializeField]
+    private Animator m_Animator;
+    [SerializeField]
+    private Rigidbody m_rb;
+
 
     [SerializeField]
     public bool Is_Throwed;
 
 
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter()
     {
-       
-        if(Is_Throwed)
-        if(collision.gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb) && collision.gameObject.TryGetComponent<Collider>(out Collider coll)) 
+        if (Is_Throwed) 
         {
-            coll.isTrigger = false;
-            rb.useGravity = true;
-            Destroy(gameObject);
+            m_Animator.enabled = true;
+            m_rb.useGravity = true;
+            Is_Throwed = false;
         }
-
-
-
-
     }
+
 
 
 
 
     private void Awake()
     {
+        m_Animator = GetComponentInParent<Animator>();
+        m_rb = GetComponentInParent<Rigidbody>();
     }
 
     void Start()
@@ -42,14 +47,7 @@ public class EnemyThrowedBehaviour : MonoBehaviour
 
 
 
+    
 
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
-
-    }
+   
 }
