@@ -48,7 +48,7 @@ public class PlayerTranslate : TranSlate
 
 
 
-    public override void Translation()
+    public override void StartTranslation()
     {
         m_Rigidbody.velocity = Vector3.zero;
   
@@ -72,6 +72,37 @@ public class PlayerTranslate : TranSlate
 
 
     }
+
+    public override void EndTranslation()
+    {
+
+
+        m_Rigidbody.velocity = Vector3.zero;
+
+
+        if (rbStatus == false)
+        {
+            m_Rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            rbStatus = true;
+        }
+        else
+        {
+            m_Rigidbody.constraints = m_rbContraintBase;
+            rbStatus = false;
+        }
+
+        m_PlayerGhost.GetComponent<MeshRenderer>().enabled = !m_PlayerGhost.GetComponent<Renderer>().enabled;
+        m_PlayerGraphics.enabled = !m_PlayerGraphics.enabled;
+        m_PlayerJump.isGravityApplie = !m_PlayerJump.isGravityApplie;
+
+
+        CurrentObjectDimension.SwapDimension();
+        m_PlayerGhost.GetComponent<DimensionScript>().SwapDimension();
+            
+    }
+
+
+
 
 
     private new void Awake()
