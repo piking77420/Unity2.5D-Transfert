@@ -18,7 +18,6 @@ public class EnemyInteractableObject : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
 
-        Debug.Log(other.name);
 
         // TO DO 
         if(other.gameObject.TryGetComponent<EnemyPickable>(out enemyPickable)) 
