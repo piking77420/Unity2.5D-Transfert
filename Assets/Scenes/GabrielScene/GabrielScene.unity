@@ -1455,7 +1455,7 @@ PrefabInstance:
     - target: {fileID: 518536379311363960, guid: cfdc6bcd8f49bbc498fe92bdfcec1d56,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 518536379311363960, guid: cfdc6bcd8f49bbc498fe92bdfcec1d56,
         type: 3}
@@ -3530,7 +3530,7 @@ MonoBehaviour:
   minGrowCoef: 4.5
   maxGrowCoef: 6.5
   newLegCooldown: 0.3
-  velocity: {x: -0.39580697, y: 0, z: -0.48306292}
+  velocity: {x: 0.70225745, y: 0, z: -0.12798572}
 --- !u!4 &8675915457607030729
 Transform:
   m_ObjectHideFlags: 0
