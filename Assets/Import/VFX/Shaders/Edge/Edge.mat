@@ -35,13 +35,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Depth_Edge: 13
-    - _Fill: 0.2
-    - _Fresnel_Power: 3
+    - _Depth_Edge: 15.66
+    - _Fill: 0.32
+    - _Fresnel_Power: 28.41
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 130.38808, g: 128.74797, b: 128.74797, a: 0}
+    - _Color: {r: 9.256546, g: 9.256546, b: 9.256546, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3224217492057049477
 MonoBehaviour:

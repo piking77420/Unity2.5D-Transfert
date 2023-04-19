@@ -1660,7 +1660,7 @@ MonoBehaviour:
   minGrowCoef: 4.5
   maxGrowCoef: 6.5
   newLegCooldown: 0.3
-  velocity: {x: 0.76233816, y: 0, z: -0.39107916}
+  velocity: {x: -0.9186006, y: 0, z: -0.37064287}
 --- !u!4 &817221144
 Transform:
   m_ObjectHideFlags: 0
@@ -3474,12 +3474,12 @@ PrefabInstance:
     - target: {fileID: 1095979470828643749, guid: 14af7264d65769c4c9147c7ead8fff94,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -29.38
+      value: 16.14
       objectReference: {fileID: 0}
     - target: {fileID: 1095979470828643749, guid: 14af7264d65769c4c9147c7ead8fff94,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.53
+      value: 10.62
       objectReference: {fileID: 0}
     - target: {fileID: 1095979470828643749, guid: 14af7264d65769c4c9147c7ead8fff94,
         type: 3}

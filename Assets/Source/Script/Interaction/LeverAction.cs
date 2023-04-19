@@ -56,7 +56,6 @@ public class LeverAction : MonoBehaviour
     public void OnleverAction(InputAction.CallbackContext _callbackContext) 
     {
 
-        Debug.Log(_callbackContext.ReadValue<float>());
 
 
         switch (_callbackContext.phase) 
@@ -83,7 +82,8 @@ public class LeverAction : MonoBehaviour
     private void Awake()
     {
         m_LevierIntercation = GetComponent<LevierIntercation>();
-        m_Animator = GetComponent<Animator>();
+        m_Animator = transform.parent.GetComponent<Animator>();
+
     }
 
 
@@ -93,10 +93,10 @@ public class LeverAction : MonoBehaviour
     {
         if (PlayerInAction && !IsAcomplish)
         {
-            m_Animator.SetFloat("Status", m_LeverValueStatue);
             m_LeverValueStatue += LeverPlayerStrenght * Time.deltaTime * OpenDoorStreght;
 
         }
+
     }
 
 
@@ -134,6 +134,7 @@ public class LeverAction : MonoBehaviour
         OpenDoor();
         CloseDoor();
         CheckStatue();
+        m_Animator.SetFloat("Status", m_LeverValueStatue);
 
     }
 }
