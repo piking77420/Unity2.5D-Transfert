@@ -39,6 +39,13 @@ public class EnemyPatrol : MonoBehaviour
 
 
 
+
+    public void SetPath(Vector3[] GivedPath) 
+    {
+        m_WayPoints = GivedPath;
+    }
+
+
     private void OnDrawGizmos()
     {
         if (ShowWayPoint)

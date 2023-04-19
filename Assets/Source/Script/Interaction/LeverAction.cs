@@ -25,9 +25,6 @@ public class LeverAction : MonoBehaviour
 
   
 
-    [SerializeField,Range(0,1)]
-    private float offsetStrenghtValue;
-
 
     [SerializeField,Range(0,10)]
     private float OpenDoorStreght;
@@ -65,32 +62,16 @@ public class LeverAction : MonoBehaviour
         switch (_callbackContext.phase) 
         {
             case InputActionPhase.Started:
-                PlayerInAction = true;
-                Debug.Log("start");
+                PlayerInAction = true;   
                 break;
             case InputActionPhase.Performed:
                 LeverPlayerStrenght = _callbackContext.ReadValue<float>();
                 break;
             case InputActionPhase.Canceled:
                 PlayerInAction = false;
-                Debug.Log("cancel");
                 break;
 
         }
-
-        /*
-        if (_callbackContext.performed && IsAcomplish == false) 
-        {
-            float analogMaxValue = 1f;
-            if(_callbackContext.ReadValue<float>() == analogMaxValue) 
-            {
-                m_LeverValueStatue += 1 * Time.deltaTime;
-            }
-
- 
-
-
-        }*/
     }
 
 
@@ -105,11 +86,6 @@ public class LeverAction : MonoBehaviour
         m_Animator = GetComponent<Animator>();
     }
 
-
-    void Start()
-    {
-        
-    }
 
 
 
