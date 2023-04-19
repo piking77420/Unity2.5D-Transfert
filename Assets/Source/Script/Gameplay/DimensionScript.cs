@@ -19,14 +19,11 @@ public class DimensionScript : MonoBehaviour
     [SerializeField]
     public  static float DimensionSize = 5;
 
-   public UnityEvent OnClamping;
 
 
 
     private void Awake()
     {
-        CurrentDimension = Dimension.Normal;
-        OnClamping.AddListener(ClampPositionPlayer);
     }
 
 
@@ -72,7 +69,12 @@ public class DimensionScript : MonoBehaviour
                 Newpos.z = -(DimensionSize / 2f);
             }
             this.gameObject.transform.position = Newpos;
+
+
+
         }
+
+
 
 
 

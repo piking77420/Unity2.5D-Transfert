@@ -15,30 +15,30 @@ public class TranSlate : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    [Header("Dependencies")]
 
     [SerializeField]
     protected DimensionScript CurrentObjectDimension;
-
-
 
     [SerializeField]
     protected Animator m_Animator;
 
 
     [SerializeField]
-    protected MeshRenderer m_Renderer;
+    protected Renderer m_Renderer;
 
-    [SerializeField]
+    [SerializeField,Space(1)]
     protected Rigidbody m_Rigidbody;
+    
+
+
+
+
+
 
     public bool isTranslate;
 
-
-
     private bool m_GravityStatue;
-
-
-
 
     public virtual void OnChangingDimension(InputAction.CallbackContext _context)
     {
@@ -60,13 +60,18 @@ public class TranSlate : MonoBehaviour
 
 
 
-   
+    protected virtual void Start()
+    {
+        m_Animator.SetInteger("Dimension",(int)CurrentObjectDimension.CurrentDimension);
+    }
 
 
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         CurrentObjectDimension= gameObject.GetComponent<DimensionScript>();
+      
+
 
         m_Rigidbody = GetComponent<Rigidbody>();
         if(m_Rigidbody == null) 
@@ -75,7 +80,13 @@ public class TranSlate : MonoBehaviour
         }
 
         m_Animator = gameObject.GetComponentInParent<Animator>();
-        m_Renderer = gameObject.GetComponent<MeshRenderer>();
+        m_Renderer = gameObject.GetComponent<Renderer>();
+       
+        if(m_Renderer == null) 
+        {
+            m_Renderer = GetComponentInChildren<Renderer>();
+        }
+
 
     }
 
@@ -100,10 +111,6 @@ public class TranSlate : MonoBehaviour
         m_Renderer.enabled = !m_Renderer.enabled;
 
         CurrentObjectDimension.SwapDimension();
-
-       
-
-
 
     }
 

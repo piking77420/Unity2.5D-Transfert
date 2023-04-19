@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWallJump : MonoBehaviour
+public class PlayerInAirBehaviour : MonoBehaviour
 {
     // Start is called before the first frame update
 

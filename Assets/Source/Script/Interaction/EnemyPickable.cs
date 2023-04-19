@@ -6,12 +6,12 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class EnemyPickable : InteractableObject
 
-{ 
-        
-    
+{
+
+
 
     // Start is called before the first frame update
-
+    [Header("Dependencies")]
 
     [SerializeField]
     private NavMeshAgent m_NavMeshAgent;
@@ -34,7 +34,7 @@ public class EnemyPickable : InteractableObject
 
     private void Awake()
     {
-        m_Rigidbody = GetComponent<Rigidbody>();
+        m_Rigidbody = GetComponentInParent<Rigidbody>();
         m_EnemyPatrol = GetComponent<EnemyPatrol>();
         m_NavMeshAgent = GetComponent<NavMeshAgent>();
         m_CheckIsGrounded = GetComponent<CheckIsGround>();
