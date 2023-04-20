@@ -12,21 +12,20 @@ public class CameraFollowPlayer : MonoBehaviour
 
     [Header("Camera Setting")]
 
-    [SerializeField,Range(0, 20)]
+    [SerializeField,Range(0, 50)]
     private float m_DistanceX;
 
-    [SerializeField,Range(0, 20)]
+    [SerializeField,Range(0, 50)]
     private float m_Height;
    
     [SerializeField,Range(0,20)]
     private float m_DistanceZ;
 
 
-    [SerializeField, Range(0, 1)]
-    private float m_smoothValue;
 
-    [SerializeField]
-    private float FollowSpeed;
+
+    [SerializeField, Range(0, 1)]
+    private float m_FollowSpeed;
 
 
     private void OnValidate()
@@ -45,11 +44,11 @@ public class CameraFollowPlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         
         Vector3 newPos = m_PlayerTransform.position + new Vector3(-m_DistanceX, m_Height, -m_DistanceZ);
-        Vector3 smoothedPos = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
+        Vector3 smoothedPos = Vector3.Slerp(transform.position, newPos, m_FollowSpeed * Time.deltaTime);
 
         this.transform.position = smoothedPos;
 
