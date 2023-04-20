@@ -103,26 +103,56 @@ public class PlayerGraphicUpdate : MonoBehaviour
         UpdateRotation();
     }
 
-    private void OnAnimatorIK()
+
+
+    private void LeftFoot() 
     {
+        
+            m_PlayerGraphicAnimator.SetIKPositionWeight(AvatarIKGoal.LeftFoot, m_WeightFoot);
+            m_PlayerGraphicAnimator.SetIKRotationWeight(AvatarIKGoal.LeftFoot, m_WeightFoot);
 
-
-        if (m_PlayerGraphicAnimator )
-        {
-            m_PlayerGraphicAnimator.SetIKPositionWeight(AvatarIKGoal.RightFoot, m_WeightFoot);
-            m_PlayerGraphicAnimator.SetIKRotationWeight(AvatarIKGoal.RightFoot, m_WeightFoot);
 
 
             RaycastHit hit;
 
-            Ray ray = new Ray(m_PlayerGraphicAnimator.GetIKPosition(AvatarIKGoal.RightFoot) + Vector3.up , Vector3.down);
+            Ray ray = new Ray(m_PlayerGraphicAnimator.GetIKPosition(AvatarIKGoal.LeftFoot) + Vector3.up, Vector3.down);
 
-            if(Physics.Raycast(ray, out hit,DistanceFromGround + 1f, m_LayerMask)) 
+            if (Physics.Raycast(ray, out hit, DistanceFromGround + 1f, m_LayerMask))
             {
-                    Vector3 footPos = hit.point;
-                    footPos.y += DistanceFromGround;
-                    m_PlayerGraphicAnimator.SetIKPosition(AvatarIKGoal.RightFoot, footPos);
+                Vector3 footPos = hit.point;
+                footPos.y += DistanceFromGround;
+                m_PlayerGraphicAnimator.SetIKPosition(AvatarIKGoal.LeftFoot, footPos);
             }
+    }
+
+    private void RightFoot()
+    {
+        m_PlayerGraphicAnimator.SetIKPositionWeight(AvatarIKGoal.RightFoot, m_WeightFoot);
+        m_PlayerGraphicAnimator.SetIKRotationWeight(AvatarIKGoal.RightFoot, m_WeightFoot);
+
+
+        RaycastHit hit;
+
+        Ray ray = new Ray(m_PlayerGraphicAnimator.GetIKPosition(AvatarIKGoal.RightFoot) + Vector3.up, Vector3.down);
+
+        if (Physics.Raycast(ray, out hit, DistanceFromGround + 1f, m_LayerMask))
+        {
+            Vector3 footPos = hit.point;
+            footPos.y += DistanceFromGround;
+            m_PlayerGraphicAnimator.SetIKPosition(AvatarIKGoal.RightFoot, footPos);
+
         }
     }
+
+
+        private void OnAnimatorIK()
+        {
+
+
+            if (m_PlayerGraphicAnimator )
+            {
+                LeftFoot();
+                RightFoot();
+            }
+        }
 }
