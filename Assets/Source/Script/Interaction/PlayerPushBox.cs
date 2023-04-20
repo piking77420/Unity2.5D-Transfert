@@ -12,15 +12,14 @@ public class PlayerPushBox : MonoBehaviour
     [Header("Value")]
 
 
-    [SerializeField, Range(1, 1000)]
-    private float PushStrenght = 10;
-
     [SerializeField, Range(1, 20)]
     private float MaxPushVeclocity;
 
 
-    [SerializeField, Range(0, 10)]
-    private float maxBoxVelocity;
+    [SerializeField,Range(0,100)]
+    private float PlayerVelocityMultiplicator;
+
+    private float PlayerVelocityOnPushBox;
 
     [SerializeField, Range(0, 10),Space(2)]
     private float m_RangeBetweenPlayerAndBox;
@@ -34,6 +33,9 @@ public class PlayerPushBox : MonoBehaviour
 
     [SerializeField]
     private Transform m_PlayerPos;
+
+    [SerializeField]
+    private PlayerMovement m_PlayerMovement;
 
     private Rigidbody m_PlayerRigidBody;
     private Rigidbody m_BoxRb;
@@ -174,15 +176,15 @@ public class PlayerPushBox : MonoBehaviour
         m_baseStaticFriction = m_PlayerPhysicsMaterial.staticFriction;
         m_baseDynamicFriction = m_PlayerPhysicsMaterial.dynamicFriction;
         m_PlayerJump = GetComponent<PlayerJump>();
-
-
+        m_PlayerMovement = GetComponent<PlayerMovement>();
+        
 
 
     }
 
     void Start()
     {
-
+        PlayerVelocityOnPushBox = m_PlayerMovment._Speed ;
     }
 
 
@@ -239,6 +241,9 @@ public class PlayerPushBox : MonoBehaviour
             if (Physics.Raycast(r, out RaycastHit hit, m_RangeBetweenPlayerAndBox) && hit.rigidbody == m_BoxRb)
             {
 
+
+
+                m_PlayerMovement._Speed = PlayerVelocityOnPushBox * PlayerVelocityMultiplicator;
                 TakeBox();
 
             }
