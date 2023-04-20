@@ -7,25 +7,35 @@ public class UpdateNavMesh : MonoBehaviour
 {
 
     [SerializeField]
-    private Animator animator;
+    private LeverAction m_LeverAction;
 
+    private void Awake()
+    {
+        m_LeverAction = transform.root.GetComponentInChildren<LeverAction>();
+    }
+
+
+    private bool IsBox(Collider collision) 
+    {
+        return false;
+    }
 
 
     private void OnTriggerEnter(Collider collision)
     {
 
-        Debug.Log(collision.gameObject.name);
-
+        
 
         if (collision.TryGetComponent<NavMeshSurface>(out NavMeshSurface navSurface)) 
         {
-            Debug.Log("On enter ");
-           // navSurface.BuildNavMesh();
-        }else if (collision.TryGetComponent<BoxInteraction>(out BoxInteraction box)) 
-        {
-            GetComponentInParent<Animator>().enabled = false;
+          
+           // navSurface.BuildNavMesh();    
         }
 
+        if (collision.TryGetComponent<BoxInteraction>(out BoxInteraction box))
+        {
+             m_LeverAction.IsObstruct = true;
+        }
 
     }
 
@@ -33,14 +43,20 @@ public class UpdateNavMesh : MonoBehaviour
     {
 
 
-
+        /*
 
         if (collision.TryGetComponent<NavMeshSurface>(out NavMeshSurface navSurface))
         {
             Debug.Log("On quit ");
 
             ///NavSurface.BuildNavMesh();
+        }*/
+
+        if (collision.TryGetComponent<BoxInteraction>(out BoxInteraction box))
+        {
+            m_LeverAction.IsObstruct = false;
         }
+
     }
 
 }

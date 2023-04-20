@@ -15,7 +15,7 @@ public class LeverAction : MonoBehaviour
     private Animator m_Animator;
 
 
-    [SerializeField]
+    [SerializeField,Range(0f,1f)]
     private float m_LeverValueStatue;
 
 
@@ -41,6 +41,9 @@ public class LeverAction : MonoBehaviour
     private bool IsAcomplish;
     [SerializeField]
     private bool PlayerInAction;
+
+    [SerializeField]
+    public bool IsObstruct;
 
 
     public void OnQuit(InputAction.CallbackContext _callbackContext) 
@@ -82,7 +85,7 @@ public class LeverAction : MonoBehaviour
     private void Awake()
     {
         m_LevierIntercation = GetComponent<LevierIntercation>();
-        m_Animator = transform.parent.GetComponent<Animator>();
+        m_Animator = GetComponent<Animator>();
 
     }
 
@@ -91,8 +94,15 @@ public class LeverAction : MonoBehaviour
 
     private void OpenDoor() 
     {
+        // Had This to avoid when doing left right realy fast that opening the door to quciky
+        if(LeverPlayerStrenght >= 1f)
+        {
+            LeverPlayerStrenght = 0.5f;
+        }
+
         if (PlayerInAction && !IsAcomplish)
         {
+            
             m_LeverValueStatue += LeverPlayerStrenght * Time.deltaTime * OpenDoorStreght;
 
         }
@@ -103,10 +113,15 @@ public class LeverAction : MonoBehaviour
     private void CloseDoor() 
     {
 
+        if (IsObstruct) 
+        {
+            
+            return;
+        }
 
         if (!PlayerInAction && !IsAcomplish && m_LeverValueStatue >= 0)
         {
-            m_Animator.SetFloat("Status", m_LeverValueStatue);
+           // m_Animator.SetFloat("Status", m_LeverValueStatue);
 
             m_LeverValueStatue -= Time.deltaTime * DecreaseStreght;
 
@@ -128,13 +143,17 @@ public class LeverAction : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-
         OpenDoor();
         CloseDoor();
+
         CheckStatue();
         m_Animator.SetFloat("Status", m_LeverValueStatue);
+    }
 
+    private void LateUpdate()
+    {
+      
     }
 }
