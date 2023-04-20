@@ -152,8 +152,5 @@ public class LeverAction : MonoBehaviour
         m_Animator.SetFloat("Status", m_LeverValueStatue);
     }
 
-    private void LateUpdate()
-    {
-      
-    }
+    
 }

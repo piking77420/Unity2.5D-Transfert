@@ -27,6 +27,7 @@ public class EnemyThrowedBehaviour : MonoBehaviour
             m_Animator.enabled = true;
             m_rb.useGravity = true;
             Is_Throwed = false;
+            m_rb.isKinematic = true;
         }
     }
 

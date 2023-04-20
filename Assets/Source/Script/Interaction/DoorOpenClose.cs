@@ -10,7 +10,7 @@ public class DoorOpenClose : MonoBehaviour
 
 
     [SerializeField]
-    private Vector3 m_ReachPos;
+    public Vector3 m_ReachPos;
 
 
     [Header("Gizmo Setting")]

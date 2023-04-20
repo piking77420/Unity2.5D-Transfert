@@ -44,10 +44,26 @@ public class PlayerThrowEnemy : MonoBehaviour
 
 
 
-
+    [SerializeField]
+    private float angle;
 
     private bool m_IsPlayerAiming;
     private bool m_PlayerHasThrow;
+
+    private Vector3 aimpos;
+
+    private void OnDrawGizmos()
+    {
+        
+        /*
+        Vector3 pos = m_PlayerTransform.position;
+        pos.x = pos.x + Mathf.Cos(angle) * 2 ;
+        pos.y = pos.y + Mathf.Sin(angle) * 2;
+
+
+        Gizmos.DrawWireSphere(pos, 1f);*/
+    }
+
     public void OnPlayerAiming(InputAction.CallbackContext _callbackContext)
     {
 
@@ -63,9 +79,17 @@ public class PlayerThrowEnemy : MonoBehaviour
             {
                 m_AimReadValue = _callbackContext.ReadValue<Vector2>();
 
+
+            }
+
+            if (_callbackContext.canceled) 
+            {
             }
 
         }
+
+
+
     }
 
 
@@ -88,6 +112,12 @@ public class PlayerThrowEnemy : MonoBehaviour
         if(interactableObject is EnemyPickable && TimerToThrow == TimerToThrowCooldown) 
         {
             EnemyTaken = interactableObject.gameObject;
+            EnemyIsTaken(EnemyTaken.transform.parent.GetComponent<Rigidbody>());
+            EnemyTaken.transform.position = this.transform.position;
+
+            EnemyTaken.GetComponent<EnemyPatrol>().enabled = false;
+            EnemyTaken.GetComponent<NavMeshAgent>().enabled = false;
+            EnemyTaken.transform.parent.GetComponent<Animator>().enabled = false;
         }
     }
 
@@ -104,17 +134,25 @@ public class PlayerThrowEnemy : MonoBehaviour
         }
         else
         {
-            value = Vector3.Normalize(-m_AimReadValue);
+            value = (m_AimReadValue);
         }
 
-        
-        EnemyTaken.GetComponentInParent<Rigidbody>().useGravity = false; ;
+        Vector3 nomalizeOne = m_AimReadValue.normalized;
 
-        Vector3 pos = m_PlayerTransform.position;
 
-        Vector3 enemyPos = new Vector3(value.x * DistanceFromPlayer, value.y * DistanceFromPlayer, 0);
+        float currentAngle = Mathf.Atan2(nomalizeOne.y, nomalizeOne.x);
+        angle = currentAngle;
 
-        EnemyTaken.transform.position = pos + enemyPos;
+
+
+
+        EnemyTaken.GetComponentInParent<Rigidbody>().useGravity = false; 
+
+        Vector3 enemyPos = m_PlayerTransform.position;
+        enemyPos.x = enemyPos.x + Mathf.Cos(currentAngle) * DistanceFromPlayer;
+        enemyPos.y = enemyPos.y + Mathf.Sin(currentAngle) * DistanceFromPlayer;
+    
+        EnemyTaken.transform.position = enemyPos;
 
 
     }
@@ -129,8 +167,11 @@ public class PlayerThrowEnemy : MonoBehaviour
 
     private void ThrowProjectile()
     {
-        m_PlayerForce = -m_AimReadValue;
-        // ForcAdded = new Vector3(m_PlayerForce.x * PlayerThrowForce, m_PlayerForce.y * PlayerThrowForce, 0);
+        m_PlayerForce = m_AimReadValue;
+
+        float mag = Mathf.Clamp01(new Vector2(m_AimReadValue.x, m_AimReadValue.y).magnitude);
+
+
         float baseMultiplicator = 10f;
 
         Animator EnemyAnimator = EnemyTaken.GetComponentInParent<Animator>();
@@ -138,24 +179,32 @@ public class PlayerThrowEnemy : MonoBehaviour
         EnemyAnimator.enabled = false;
 
 
-        if (!m_PlayerHasThrow && m_AimReadValue != Vector2.zero) 
-        {
+     
+
+         if (!m_PlayerHasThrow && m_AimReadValue != Vector2.zero) 
+         {
 
 
             ForcAdded = new Vector3(m_PlayerForce.x, m_PlayerForce.y , 0) * PlayerThrowForce * baseMultiplicator;
- 
-            EnemyIsTaken(EnemyRigidBody);
+
 
             m_IsPlayerAiming = true;
-        }
+         }
 
-        if(!m_PlayerHasThrow && m_IsPlayerAiming && m_AimReadValue == Vector2.zero) 
+        if (!m_PlayerHasThrow && m_IsPlayerAiming && mag == 1f)
         {
 
+
+
+
+            EnemyTaken.GetComponentInParent<Rigidbody>().isKinematic = false;
+
             EnemyRigidBody.AddForce(ForcAdded * EnemyRigidBody.mass);
+            ForcAdded = Vector3.zero;
+            m_AimReadValue = Vector2.zero;
 
             EnemyTaken.TryGetComponent<EnemyThrowedBehaviour>(out EnemyThrowedBehaviour enemyThrowedBehaviour);
-           
+
 
 
             enemyThrowedBehaviour.Is_Throwed = true;
@@ -170,12 +219,7 @@ public class PlayerThrowEnemy : MonoBehaviour
     }
 
 
-    private void EnemyVegetate() 
-    {
-        EnemyTaken.GetComponent<EnemyPatrol>().enabled= false;
-        EnemyTaken.transform.parent.GetComponent<Animator>().enabled= false;
-        EnemyTaken.GetComponent<NavMeshAgent>().enabled= false;
-    }
+
 
 
     // Update is called once per frame
@@ -185,8 +229,8 @@ public class PlayerThrowEnemy : MonoBehaviour
 
         if (EnemyTaken != null)
         {
+            
             Debug.Assert(EnemyTaken.GetComponent<EnemyPatrol>() != null);
-            EnemyVegetate();
             UpdateProjectilePos();
             ThrowProjectile();
         }
