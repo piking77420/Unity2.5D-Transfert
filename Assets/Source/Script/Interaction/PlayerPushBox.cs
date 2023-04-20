@@ -12,8 +12,7 @@ public class PlayerPushBox : MonoBehaviour
     [Header("Value")]
 
 
-    [SerializeField, Range(1, 20)]
-    private float MaxPushVeclocity;
+
 
 
     [SerializeField,Range(0,100)]
