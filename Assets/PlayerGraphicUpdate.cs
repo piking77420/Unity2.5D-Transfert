@@ -12,13 +12,28 @@ public class PlayerGraphicUpdate : MonoBehaviour
 
 
     [SerializeField]
-       private PlayerMovement m_PlayerMovement;
-
+    private PlayerMovement m_PlayerMovement;
+    [SerializeField]
+    private LayerMask m_LayerMask;
 
 
     [SerializeField]
 
     private Quaternion m_LastRoatation;
+
+    [SerializeField, Range(0, 10)]
+    private float DistanceFromGround;
+
+
+    [SerializeField, Range(0, 10)]
+    private float m_WeightFoot;
+
+
+
+
+
+
+
 
     private void UpdateRotation() 
     {
@@ -86,5 +101,28 @@ public class PlayerGraphicUpdate : MonoBehaviour
     {
         SetAnimator();
         UpdateRotation();
+    }
+
+    private void OnAnimatorIK()
+    {
+
+
+        if (m_PlayerGraphicAnimator )
+        {
+            m_PlayerGraphicAnimator.SetIKPositionWeight(AvatarIKGoal.RightFoot, m_WeightFoot);
+            m_PlayerGraphicAnimator.SetIKRotationWeight(AvatarIKGoal.RightFoot, m_WeightFoot);
+
+
+            RaycastHit hit;
+
+            Ray ray = new Ray(m_PlayerGraphicAnimator.GetIKPosition(AvatarIKGoal.RightFoot) + Vector3.up , Vector3.down);
+
+            if(Physics.Raycast(ray, out hit,DistanceFromGround + 1f, m_LayerMask)) 
+            {
+                    Vector3 footPos = hit.point;
+                    footPos.y += DistanceFromGround;
+                    m_PlayerGraphicAnimator.SetIKPosition(AvatarIKGoal.RightFoot, footPos);
+            }
+        }
     }
 }
