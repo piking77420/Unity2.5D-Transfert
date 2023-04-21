@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Animator: {fileID: 0}
   m_rb: {fileID: 0}
   Is_Throwed: 0
+  TimerForEnemyDie: 5
 --- !u!114 &96198724661118336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,7 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentObjectDimension: {fileID: 0}
   m_Animator: {fileID: 0}
-  m_Renderer: {fileID: 0}
+  m_Renderers: []
   m_Rigidbody: {fileID: 0}
   isTranslate: 0
   m_EnemyPatrol: {fileID: 0}

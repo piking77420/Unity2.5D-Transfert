@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyInteractableObject : MonoBehaviour
+public class TangibleOnEnemyInside : MonoBehaviour
 {
     // Start is called before the first frame update
 
@@ -35,6 +36,7 @@ public class EnemyInteractableObject : MonoBehaviour
     {
         m_rb = GetComponent<Rigidbody>();
         m_collid = GetComponent<Collider>();
+        m_collid.isTrigger = true;
     }
 
     void Start()
