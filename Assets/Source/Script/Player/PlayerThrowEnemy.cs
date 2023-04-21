@@ -96,7 +96,6 @@ public class PlayerThrowEnemy : MonoBehaviour
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-        m_PlayerTransform = transform.GetChild(0).GetComponent<Transform>();
         TimerToThrowCooldown = TimerToThrow;
     }
 

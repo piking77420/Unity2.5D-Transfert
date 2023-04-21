@@ -81,7 +81,7 @@ public class MobSpawner : MonoBehaviour
             {
                 m_CurrentEnemy = Instantiate(m_Prefab, transform.position, Quaternion.identity);
 
-                if (m_CurrentEnemy.TryGetComponent<EnemyPatrol>(out EnemyPatrol enemyPatrol))
+                if (m_CurrentEnemy.TryGetComponent<EnemyPatrol>(out EnemyPatrol enemyPatrol) && m_ListOfWaypoint.Length != 0 )
                 {
                     enemyPatrol.SetPath(m_ListOfWaypoint);
                 }

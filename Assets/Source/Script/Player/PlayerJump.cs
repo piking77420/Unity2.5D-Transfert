@@ -98,10 +98,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
 
 
-    // Better Jump Variable Jump calculate 
-    private bool PressButton;
-    private float timeHoldingButton;
-    private bool CanBetterJump = true;
+
 
     IEnumerator ApexModifers() 
     {
@@ -138,14 +135,11 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
             case InputActionPhase.Started:
                 m_AudioSource.Play();
                 m_WillJump = true;
-                PressButton = true;
                 break;
             case InputActionPhase.Performed:
                
                 break;
             case InputActionPhase.Canceled:
-                CanBetterJump = false;
-                PressButton = false;
                 break;
         }
 
@@ -269,37 +263,6 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
 
 
-    private void GetTimeHoldingButton() 
-    {
-        if (CanBetterJump) 
-        {
-
-            if (PressButton && !m_CheckIsGround.isGrounded)
-            {
-                timeHoldingButton += Time.deltaTime;
-            }
-
-
-            if (!m_CheckIsGround.isGrounded && timeHoldingButton >= m_HoldingTimeForGreatJump)
-            {
-                float jumpValue = BetterJumpvalue;
-                DoJump(jumpValue);
-                timeHoldingButton = 0;
-                CanBetterJump = false;
-            }
-        }
-
-
-        if (m_CheckIsGround.isGrounded) 
-        {
-            CanBetterJump = true; 
-        }
-    }
-
-    private void Update()
-    {
-        GetTimeHoldingButton();
-    }
 
 
     public void PlayAudio()
