@@ -4,21 +4,15 @@ using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class OnBoxCollide : MonoBehaviour
+public class StopDoorOnBox : MonoBehaviour
 {
+    // Start is called before the first frame update
+
 
     [Header("Dependancies")]
     [SerializeField]
     private LeverAction m_LeverAction;
 
-    [SerializeField]
-    private NavMeshAgent m_NavMesh;
-
-
-
-
-    [SerializeField]
-    private float distance;
 
 
 
@@ -26,8 +20,8 @@ public class OnBoxCollide : MonoBehaviour
     private void Awake()
     {
         m_LeverAction = transform.root.GetComponentInChildren<LeverAction>();
-      
-    
+
+
     }
 
 
@@ -55,8 +49,5 @@ public class OnBoxCollide : MonoBehaviour
         }
 
     }
-
-
-
 
 }

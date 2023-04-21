@@ -17,8 +17,6 @@ public class PlayerTranslate : TranSlate
     [SerializeField]
     private PlayerGhostDetection m_PlayerGhost;
 
-    [SerializeField]
-    private MeshRenderer m_PlayerGraphics;
 
     [SerializeField]
     private PlayerJump m_PlayerJump;
@@ -32,6 +30,10 @@ public class PlayerTranslate : TranSlate
 
     private RigidbodyConstraints m_rbContraintBase;
 
+
+
+    [SerializeField]
+    private Renderer[] m_RenderersGhost;
 
     private IEnumerator CoolDownTranslate() 
     {
@@ -78,10 +80,16 @@ public class PlayerTranslate : TranSlate
             rbStatus = false;
         }
 
+        foreach (Renderer renderer in m_RenderersGhost)
+        {
+            renderer.enabled = !renderer.enabled;
+        }
+        foreach (Renderer renderer in m_Renderers)
+        {
+            renderer.enabled = !renderer.enabled;
+        }
 
-
-        m_PlayerGhost.GetComponent<MeshRenderer>().enabled = !m_PlayerGhost.GetComponent<Renderer>().enabled;
-        m_PlayerGraphics.enabled = !m_PlayerGraphics.enabled;
+        
         m_PlayerJump.isGravityApplie = !m_PlayerJump.isGravityApplie;
 
 
@@ -105,9 +113,18 @@ public class PlayerTranslate : TranSlate
             rbStatus = false;
         }
 
-        m_PlayerGhost.GetComponent<MeshRenderer>().enabled = !m_PlayerGhost.GetComponent<Renderer>().enabled;
-        m_PlayerGraphics.enabled = !m_PlayerGraphics.enabled;
+        foreach (Renderer renderer in m_RenderersGhost)
+        {
+            renderer.enabled = !renderer.enabled;
+        }
+        foreach (Renderer renderer in m_Renderers) 
+        {
+            renderer.enabled = !renderer.enabled;
+        }
+
         m_PlayerJump.isGravityApplie = !m_PlayerJump.isGravityApplie;
+
+
 
 
         CurrentObjectDimension.SwapDimension();
@@ -124,7 +141,8 @@ public class PlayerTranslate : TranSlate
         base.Awake();
         m_rbContraintBase = m_Rigidbody.constraints;
         m_PlayerJump = GetComponent<PlayerJump>();
-        m_PlayerGraphics = GetComponentInChildren<MeshRenderer>();
+        m_Renderers = transform.GetChild(0).GetComponentsInChildren<SkinnedMeshRenderer>();
+        m_RenderersGhost = transform.GetChild(1).GetComponentsInChildren<SkinnedMeshRenderer>();
 
     }
 }

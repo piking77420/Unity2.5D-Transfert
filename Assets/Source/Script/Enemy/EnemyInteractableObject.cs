@@ -24,6 +24,7 @@ public class EnemyInteractableObject : MonoBehaviour
         {
             //m_rb.useGravity = true;
             m_collid.isTrigger = false;
+            Destroy(enemyPickable.transform.root.gameObject);
         }
     }
 

@@ -24,7 +24,7 @@ AnimatorState:
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
-  m_CycleOffsetParameter: 
+  m_CycleOffsetParameter: SpeedX
   m_TimeParameter: 
 --- !u!91 &9100000
 AnimatorController:

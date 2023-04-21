@@ -15,12 +15,12 @@ public class PlayerPushBox : MonoBehaviour
 
 
 
-    [SerializeField,Range(0,100)]
+    [SerializeField, Range(0, 100)]
     private float PlayerVelocityMultiplicator;
 
     private float PlayerVelocityOnPushBox;
 
-    [SerializeField, Range(0, 10),Space(2)]
+    [SerializeField, Range(0, 10), Space(2)]
     private float m_RangeBetweenPlayerAndBox;
 
     private float m_PushVector;
@@ -70,26 +70,37 @@ public class PlayerPushBox : MonoBehaviour
     private bool m_IsInRange;
 
 
-    [SerializeField,Space(2)]
+    [SerializeField, Space(2)]
     private bool m_ShowRange;
 
 
 
 
-    [SerializeField,Tooltip("Show Minimal range for player Grab box")]
+    [SerializeField, Tooltip("Show Minimal range for player Grab box")]
     private bool ShowGizmo;
 
 
     private float baseSpeed;
 
+    [SerializeField]
+    private LayerMask m_LayerMask;
 
+
+
+    [SerializeField]
+    private float m_BoxWantedMass;
+
+
+
+    private float m_BaseMass;
     private void OnDrawGizmos()
     {
-        if (ShowGizmo) 
+        if (ShowGizmo)
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawCube(m_PlayerPos.position, new Vector3(m_RangeBetweenPlayerAndBox, m_RangeBetweenPlayerAndBox, m_RangeBetweenPlayerAndBox));
+            //  Gizmos.DrawCube(m_PlayerPos.position, new Vector3(m_RangeBetweenPlayerAndBox, m_RangeBetweenPlayerAndBox, m_RangeBetweenPlayerAndBox));
 
+            Gizmos.DrawWireSphere(m_PlayerPos.position, 2);
         }
     }
 
@@ -133,7 +144,7 @@ public class PlayerPushBox : MonoBehaviour
     }
 
 
-    private void ChangeSpeed() 
+    private void ChangeSpeed()
     {
         baseSpeed = m_PlayerMovment._Speed;
         m_PlayerMovment._Speed /= 2;
@@ -142,9 +153,8 @@ public class PlayerPushBox : MonoBehaviour
     public void GetBox(InteractableObject @object, Vector3 Playerpos)
     {
 
-        Debug.Log(Vector3.Distance(Playerpos, @object.transform.position));
 
-        if(Vector3.Distance(Playerpos, @object.transform.position ) < m_RangeBetweenPlayerAndBox) 
+        if (Vector3.Distance(Playerpos, @object.transform.position) < m_RangeBetweenPlayerAndBox)
         {
 
             m_CurrentBox = @object.gameObject;
@@ -156,7 +166,11 @@ public class PlayerPushBox : MonoBehaviour
             m_PlayerPhysicsMaterial.dynamicFriction = m_PhysicsMaterialBox.dynamicFriction;
 
             m_ConfigurableJoint = @object.transform.parent.GetComponent<ConfigurableJoint>();
-            ChangeSpeed();  
+            ChangeSpeed();
+
+            m_BaseMass = m_BoxRb.mass;
+            m_BoxRb.mass = m_BoxWantedMass;
+
         }
 
 
@@ -167,7 +181,6 @@ public class PlayerPushBox : MonoBehaviour
 
     private void Awake()
     {
-        m_PlayerPos = transform.GetChild(0).GetComponent<Transform>();
         m_PlayerInput = GetComponent<PlayerInput>();
         m_PlayerRigidBody = GetComponent<Rigidbody>();
         m_PlayerMovment = GetComponent<PlayerMovement>();
@@ -176,19 +189,20 @@ public class PlayerPushBox : MonoBehaviour
         m_baseDynamicFriction = m_PlayerPhysicsMaterial.dynamicFriction;
         m_PlayerJump = GetComponent<PlayerJump>();
         m_PlayerMovement = GetComponent<PlayerMovement>();
-        
+
 
 
     }
 
     void Start()
     {
-        PlayerVelocityOnPushBox = m_PlayerMovment._Speed ;
+        PlayerVelocityOnPushBox = m_PlayerMovment._Speed;
     }
 
 
-    private void DropBox() 
+    private void DropBox()
     {
+        m_BoxRb.mass = m_BaseMass;
         m_ConfigurableJoint.connectedBody = null;
         m_ConfigurableJoint.xMotion = ConfigurableJointMotion.Locked;
         m_ConfigurableJoint.yMotion = ConfigurableJointMotion.Free;
@@ -237,9 +251,9 @@ public class PlayerPushBox : MonoBehaviour
 
             Ray r = new Ray(playerPos, dir);
 
-            if (Physics.Raycast(r, out RaycastHit hit, m_RangeBetweenPlayerAndBox) && hit.rigidbody == m_BoxRb)
+     
+            if (Physics.Raycast(r, out RaycastHit hit, m_RangeBetweenPlayerAndBox, m_LayerMask) && hit.rigidbody == m_BoxRb)
             {
-
 
 
                 m_PlayerMovement._Speed = PlayerVelocityOnPushBox * PlayerVelocityMultiplicator;
@@ -249,7 +263,7 @@ public class PlayerPushBox : MonoBehaviour
             else
             {
                 DropBox();
-                 m_CurrentBox = null;
+                m_CurrentBox = null;
             }
 
 
@@ -267,16 +281,17 @@ public class PlayerPushBox : MonoBehaviour
 
 
         }
-      
+
 
 
 
     }
+}
 
 
  
 
-}
+
 
 
 

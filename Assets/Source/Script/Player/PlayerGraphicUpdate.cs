@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.UI;
+using UnityEditorInternal;
 using UnityEngine;
 
 
@@ -9,6 +11,8 @@ public class PlayerGraphicUpdate : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField]
     private Animator m_PlayerGraphicAnimator;
+
+
 
 
     [SerializeField]
@@ -77,6 +81,8 @@ public class PlayerGraphicUpdate : MonoBehaviour
         m_PlayerGraphicAnimator.SetFloat("SpeedX", MathF.Abs(m_PlayerMovement.movement.x));
         m_PlayerGraphicAnimator.SetFloat("SpeedY", m_PlayerMovement.movement.y);
 
+
+
     }
 
 
@@ -84,10 +90,15 @@ public class PlayerGraphicUpdate : MonoBehaviour
     {
         m_PlayerGraphicAnimator = GetComponent<Animator>();
         m_PlayerMovement = GetComponentInParent<PlayerMovement>();
+
+     
     }
     void Start()
     {
-        
+        Quaternion StartRotation = new Quaternion();
+        StartRotation.eulerAngles = new Vector3(0, 90, 0);
+        this.transform.rotation = StartRotation;
+
     }
 
     // Update is called once per frame
@@ -101,6 +112,7 @@ public class PlayerGraphicUpdate : MonoBehaviour
     {
         SetAnimator();
         UpdateRotation();
+
     }
 
 

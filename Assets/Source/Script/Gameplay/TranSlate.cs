@@ -25,7 +25,7 @@ public class TranSlate : MonoBehaviour
 
 
     [SerializeField]
-    protected Renderer m_Renderer;
+    protected Renderer[] m_Renderers;
 
     [SerializeField,Space(1)]
     protected Rigidbody m_Rigidbody;
@@ -80,11 +80,11 @@ public class TranSlate : MonoBehaviour
         }
 
         m_Animator = gameObject.GetComponentInParent<Animator>();
-        m_Renderer = gameObject.GetComponent<Renderer>();
+        m_Renderers = gameObject.GetComponents<Renderer>();
        
-        if(m_Renderer == null) 
+        if(m_Renderers == null) 
         {
-            m_Renderer = GetComponentInChildren<Renderer>();
+            m_Renderers = GetComponentsInChildren<Renderer>();
         }
 
 
@@ -99,7 +99,10 @@ public class TranSlate : MonoBehaviour
 
         m_Rigidbody.velocity = Vector3.zero;
         m_Rigidbody.useGravity = !m_Rigidbody.useGravity;
-        m_Renderer.enabled = !m_Renderer.enabled;
+        foreach (Renderer renderer in m_Renderers)
+        {
+            renderer.enabled = !renderer.enabled;
+        }
 
     }
 
@@ -108,7 +111,11 @@ public class TranSlate : MonoBehaviour
 
         m_Rigidbody.velocity = Vector3.zero;
         m_Rigidbody.useGravity = !m_Rigidbody.useGravity;
-        m_Renderer.enabled = !m_Renderer.enabled;
+
+        foreach(Renderer renderer in m_Renderers) 
+        {
+            renderer.enabled = !renderer.enabled;
+        }
 
         CurrentObjectDimension.SwapDimension();
 
