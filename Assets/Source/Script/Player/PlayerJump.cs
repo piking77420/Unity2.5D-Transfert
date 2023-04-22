@@ -66,7 +66,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
     [Tooltip("MaximumValue for falling Velocity")]
     [SerializeField, Range(0, 180)]
-    private float FallClampValue;
+    public float FallClampValue;
 
 
     [Space]

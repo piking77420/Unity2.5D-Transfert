@@ -4,30 +4,30 @@ using System.Collections.Generic;
 using UnityEditor.PackageManager.UI;
 using UnityEditorInternal;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 
 public class PlayerGraphicUpdate : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField]
     private Animator m_PlayerGraphicAnimator;
 
-
-
-
     [SerializeField]
     private PlayerMovement m_PlayerMovement;
+
+    [SerializeField]
+    private Rigidbody rb;
+
+    [SerializeField]
+    private PlayerJump m_PlayerJump;
+
     [SerializeField]
     private LayerMask m_LayerMask;
 
-
     [SerializeField]
-
     private Quaternion m_LastRoatation;
 
     [SerializeField, Range(0, 10)]
     private float DistanceFromGround;
-
 
     [SerializeField, Range(0, 10)]
     private float m_WeightFoot;
@@ -35,6 +35,24 @@ public class PlayerGraphicUpdate : MonoBehaviour
 
 
 
+
+
+
+
+
+
+    private float maxIdleJump;
+    private float currentIdleJump = 0 ;
+
+    public void OnJumping(InputAction.CallbackContext _callbackContext) 
+    {
+        if (_callbackContext.performed) 
+        {
+
+                m_PlayerGraphicAnimator.SetTrigger("Jump");
+        }
+        
+    }
 
 
 
@@ -57,30 +75,45 @@ public class PlayerGraphicUpdate : MonoBehaviour
             rotation.eulerAngles = new Vector3(0, -90, 0);
             m_LastRoatation = rotation;
             m_LastRoatation = this.transform.rotation;
-
         }
         else 
         {
             rotation.eulerAngles = new Vector3(0, 90, 0);
             m_LastRoatation = rotation;
-
         }
 
-
-
-
         this.transform.rotation = rotation;
-
         m_LastRoatation = this.transform.rotation;
+    }
 
 
+    private void IdleJump() 
+    {
+        if (rb.velocity.y < 0 - 0.5)
+        {
+            if (currentIdleJump <= maxIdleJump)
+            {
+                currentIdleJump += Time.deltaTime;
+                m_PlayerGraphicAnimator.SetFloat("SpeedY", -currentIdleJump);
+            }
+
+
+
+        }
+        else
+        {
+            currentIdleJump = 0;
+            m_PlayerGraphicAnimator.SetFloat("SpeedY", 0);
+
+        }
     }
 
     private void SetAnimator()
     {
-        m_PlayerGraphicAnimator.SetFloat("SpeedX", MathF.Abs(m_PlayerMovement.movement.x));
-        m_PlayerGraphicAnimator.SetFloat("SpeedY", m_PlayerMovement.movement.y);
+        Debug.Log(5f * Time.deltaTime);
 
+        m_PlayerGraphicAnimator.SetFloat("SpeedX", MathF.Abs(m_PlayerMovement.movement.x));
+        IdleJump();
 
 
     }
@@ -90,29 +123,27 @@ public class PlayerGraphicUpdate : MonoBehaviour
     {
         m_PlayerGraphicAnimator = GetComponent<Animator>();
         m_PlayerMovement = GetComponentInParent<PlayerMovement>();
-
-     
+        m_PlayerJump = GetComponentInParent<PlayerJump>();
+        maxIdleJump = 1f;
     }
     void Start()
     {
+        rb = m_PlayerMovement.m_Rigidbody;
         Quaternion StartRotation = new Quaternion();
         StartRotation.eulerAngles = new Vector3(0, 90, 0);
         this.transform.rotation = StartRotation;
-
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateMovment();
-
     }
 
     private void UpdateMovment()
     {
         SetAnimator();
         UpdateRotation();
-
     }
 
 
@@ -157,14 +188,13 @@ public class PlayerGraphicUpdate : MonoBehaviour
     }
 
 
-        private void OnAnimatorIK()
+    private void OnAnimatorIK()
+    {
+        if (m_PlayerGraphicAnimator)
         {
+            LeftFoot();
+            RightFoot();
 
-
-            if (m_PlayerGraphicAnimator )
-            {
-                LeftFoot();
-                RightFoot();
-            }
         }
+    }
 }
