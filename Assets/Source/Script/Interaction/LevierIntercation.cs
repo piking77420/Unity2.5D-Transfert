@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Animator))]
 public class LevierIntercation : InteractableObject
 {
     // Start is called before the first frame update

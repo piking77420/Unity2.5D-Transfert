@@ -24,6 +24,15 @@ public class DimensionScript : MonoBehaviour
 
     private void Awake()
     {
+        if(transform.position.z > 0) 
+        {
+            CurrentDimension = Dimension.Special;
+        }
+        else if (transform.position.z < 0) 
+        {
+            CurrentDimension = Dimension.Normal;
+        }
+
     }
 
 

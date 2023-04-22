@@ -20,6 +20,12 @@ public class EnemyThrowedBehaviour : MonoBehaviour
 
 
 
+    [SerializeField,Tooltip("Timer for destroy enemie while staying throwed for too long"),Range(0,10)]
+    private float TimerForEnemyDie;
+
+
+    private float m_MaxTimerForEnemyDie;
+
     private void OnTriggerEnter()
     {
         if (Is_Throwed) 
@@ -27,6 +33,7 @@ public class EnemyThrowedBehaviour : MonoBehaviour
             m_Animator.enabled = true;
             m_rb.useGravity = true;
             Is_Throwed = false;
+            m_rb.isKinematic = true;
         }
     }
 
@@ -38,6 +45,7 @@ public class EnemyThrowedBehaviour : MonoBehaviour
     {
         m_Animator = GetComponentInParent<Animator>();
         m_rb = GetComponentInParent<Rigidbody>();
+        m_MaxTimerForEnemyDie = TimerForEnemyDie;
     }
 
     void Start()
@@ -47,7 +55,18 @@ public class EnemyThrowedBehaviour : MonoBehaviour
 
 
 
-    
+    private void Update()
+    {
+        if (Is_Throwed) 
+        {
+            TimerForEnemyDie -= Time.deltaTime;
 
-   
+            if(TimerForEnemyDie <= 0) 
+            {
+                Destroy(transform.root.gameObject);
+            }
+        }
+    }
+
+
 }

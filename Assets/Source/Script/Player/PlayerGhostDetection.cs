@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerGhostDetection : MonoBehaviour
 {
@@ -9,8 +11,13 @@ public class PlayerGhostDetection : MonoBehaviour
     [SerializeField,Range(0.5f,2)]
     private float GhostDetectionRadius;
 
+
+
     [SerializeField]
-    private MeshRenderer m_Renderer;
+    private Transform m_HispTransform;
+
+    [SerializeField]
+    private SkinnedMeshRenderer[] m_Renderers;
 
     [SerializeField]
     private bool ShowGizmo;
@@ -20,13 +27,22 @@ public class PlayerGhostDetection : MonoBehaviour
     private float m_GhostIntensity;
 
 
+    [SerializeField]
+    private Vector3 m_DetectionPos;
+
+    [SerializeField]
+    private LayerMask m_LayerMask;
+
+
+
 
     private void OnDrawGizmos()
     {
         if(ShowGizmo)
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, GhostDetectionRadius);
+            Vector3 posDetection = m_HispTransform.position  + m_DetectionPos;
+            Gizmos.DrawWireSphere(posDetection, GhostDetectionRadius);
         }
     }
 
@@ -36,40 +52,50 @@ public class PlayerGhostDetection : MonoBehaviour
 
     private void ChangeColorFromStatus(bool value)
     {
-        m_Renderer.material.SetFloat("_Depth_Edge",13);
-        m_Renderer.material.SetFloat("_Fresnel_Power", 3);
-        m_Renderer.material.SetFloat("_Fill", 0.2f);
 
-
-
-        if (!value)
+        foreach(var renderer in m_Renderers) 
         {
-            Color color = Color.red;
+            renderer.material.SetFloat("_Depth_Edge", 13);
+            renderer.material.SetFloat("_Fresnel_Power", 3);
+            renderer.material.SetFloat("_Fill", 0.2f);
 
-            m_Renderer.material.SetColor("_Color", color * m_GhostIntensity * 1.2f);
-        }
-        else
-        {   
-            Color color = Color.white;
+            
 
-            m_Renderer.material.SetColor("_Color", color * m_GhostIntensity );
+            if (!value)
+            {
+                Color color = Color.red;
+                renderer.material.SetColor("_Color", color * m_GhostIntensity * 1.2f);
+            }
+            else
+            {
+                Color color = Color.white;
+
+                renderer.material.SetColor("_Color", color * m_GhostIntensity);
+            }
         }
+
+        
     }
+
+
+
 
 
 
 
     public bool IsCanPlayerTranslate() 
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, GhostDetectionRadius);
+        Collider[] colliders = Physics.OverlapSphere(m_HispTransform.position + m_DetectionPos, GhostDetectionRadius);
         
       
 
 
         foreach(Collider collider in colliders) 
         {
-            if(collider.gameObject != gameObject) 
+
+            if(collider.gameObject != gameObject && collider.gameObject.layer != m_LayerMask) 
             {
+
                 ChangeColorFromStatus(false);
                 return false;
             }
@@ -85,7 +111,7 @@ public class PlayerGhostDetection : MonoBehaviour
 
     private void Awake()
     {
-        m_Renderer = GetComponent<MeshRenderer>();
+        m_Renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
     }
 
 

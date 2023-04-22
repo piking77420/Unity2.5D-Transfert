@@ -15,7 +15,7 @@ public class LeverAction : MonoBehaviour
     private Animator m_Animator;
 
 
-    [SerializeField]
+    [SerializeField,Range(0f,1f)]
     private float m_LeverValueStatue;
 
 
@@ -42,6 +42,9 @@ public class LeverAction : MonoBehaviour
     [SerializeField]
     private bool PlayerInAction;
 
+    [SerializeField]
+    public bool IsObstruct;
+
 
     public void OnQuit(InputAction.CallbackContext _callbackContext) 
     {
@@ -56,7 +59,6 @@ public class LeverAction : MonoBehaviour
     public void OnleverAction(InputAction.CallbackContext _callbackContext) 
     {
 
-        Debug.Log(_callbackContext.ReadValue<float>());
 
 
         switch (_callbackContext.phase) 
@@ -84,6 +86,7 @@ public class LeverAction : MonoBehaviour
     {
         m_LevierIntercation = GetComponent<LevierIntercation>();
         m_Animator = GetComponent<Animator>();
+
     }
 
 
@@ -91,22 +94,34 @@ public class LeverAction : MonoBehaviour
 
     private void OpenDoor() 
     {
+        // Had This to avoid when doing left right realy fast that opening the door to quciky
+        if(LeverPlayerStrenght >= 1f)
+        {
+            LeverPlayerStrenght = 0.5f;
+        }
+
         if (PlayerInAction && !IsAcomplish)
         {
-            m_Animator.SetFloat("Status", m_LeverValueStatue);
+            
             m_LeverValueStatue += LeverPlayerStrenght * Time.deltaTime * OpenDoorStreght;
 
         }
+
     }
 
 
     private void CloseDoor() 
     {
 
+        if (IsObstruct) 
+        {
+            
+            return;
+        }
 
         if (!PlayerInAction && !IsAcomplish && m_LeverValueStatue >= 0)
         {
-            m_Animator.SetFloat("Status", m_LeverValueStatue);
+           // m_Animator.SetFloat("Status", m_LeverValueStatue);
 
             m_LeverValueStatue -= Time.deltaTime * DecreaseStreght;
 
@@ -128,12 +143,14 @@ public class LeverAction : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-
         OpenDoor();
         CloseDoor();
-        CheckStatue();
 
+        CheckStatue();
+        m_Animator.SetFloat("Status", m_LeverValueStatue);
     }
+
+    
 }

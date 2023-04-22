@@ -269,7 +269,7 @@
                     "name": "LevierInput",
                     "type": "PassThrough",
                     "id": "a326941b-c38d-49bd-bb36-2b75dc80e780",
-                    "expectedControlType": "Stick",
+                    "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": "Hold(duration=1.401298E-45,pressPoint=1.401298E-45)",
                     "initialStateCheck": true

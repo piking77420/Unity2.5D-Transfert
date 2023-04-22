@@ -29,16 +29,17 @@ public class PlayerInteraction : MonoBehaviour
     private PlayerInput m_PlayerInput;
 
 
+    [SerializeField]
+    private Vector3 m_OffsetVector = Vector3.up;
 
     private void OnDrawGizmos()
     {
         if (m_ShowInteractionRadius) 
         {
             Gizmos.color = Color.blue;
-            m_PlayerTransform =  gameObject.transform.GetChild(0).GetComponent<Transform>();
-            Gizmos.DrawSphere(m_PlayerTransform.position, PlayerInteractionRadius);  
+            Gizmos.DrawSphere(m_PlayerTransform.position + m_OffsetVector, PlayerInteractionRadius);  
         }
-    }
+    }   
 
     private void Awake()
     {
@@ -61,7 +62,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (_callbackContext.performed) 
         {
-            Collider[] col = Physics.OverlapSphere(m_PlayerTransform.position, PlayerInteractionRadius);
+            Collider[] col = Physics.OverlapSphere(m_PlayerTransform.position + m_OffsetVector, PlayerInteractionRadius);
             
             
 
