@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefab.meta
+guid: 8ad3c68d93236cf4daac1ea489269e36
+========
 guid: bf64794353ab98040a3d072488a3bd6b
+>>>>>>>> 89df727b1d858a18a52beb5b9ae7f2bcc5008d43:Assets/NavMeshComponents-master.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
