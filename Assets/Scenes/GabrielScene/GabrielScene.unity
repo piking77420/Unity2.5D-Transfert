@@ -1759,6 +1759,60 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1898476380}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1914115602 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1710178234900567908, guid: e1bf66778b4504340b65629569aba485,
+    type: 3}
+  m_PrefabInstance: {fileID: 3185797231518761177}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1914115603 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3070939858751795519, guid: e1bf66778b4504340b65629569aba485,
+    type: 3}
+  m_PrefabInstance: {fileID: 3185797231518761177}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1914115604
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914115602}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 7f9b1b0df5ddcaf42ab7efe0c42dc427, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1952161711 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 518536379265551409, guid: cfdc6bcd8f49bbc498fe92bdfcec1d56,
@@ -1959,6 +2013,11 @@ PrefabInstance:
       propertyPath: m_JumpStrengt
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 7819271376476893927, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: m_TransformPlayerDom
+      value: 
+      objectReference: {fileID: 1914115603}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1bf66778b4504340b65629569aba485, type: 3}
 --- !u!1001 &4725785867959682445
@@ -2318,7 +2377,7 @@ MonoBehaviour:
   minGrowCoef: 4.5
   maxGrowCoef: 6.5
   newLegCooldown: 0.3
-  velocity: {x: -0.67058605, y: 0, z: 0.18596897}
+  velocity: {x: 0.30747843, y: 0, z: -0.6260612}
 --- !u!4 &8675915457607030729
 Transform:
   m_ObjectHideFlags: 0
