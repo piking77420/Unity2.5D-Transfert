@@ -86,6 +86,9 @@ public class PlayerStatus : MonoBehaviour
         m_PlayerInput= GetComponent<PlayerInput>();
 
         OnPlayerDeath.AddListener(OnDeath);
+
+       
+
     }
 
     void Start()
@@ -98,7 +101,7 @@ public class PlayerStatus : MonoBehaviour
         if (IsDead) 
         {
             OnPlayerDeath.Invoke();
-
+           // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

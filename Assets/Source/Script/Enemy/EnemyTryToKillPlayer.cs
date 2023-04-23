@@ -128,7 +128,6 @@ public class EnemyTryToKillPlayer : MonoBehaviour
         m_PlayerStatus = m_Player.parent.GetComponent<PlayerStatus>();
         m_PlayerStatus.OnPlayerDeath.AddListener(OnRespawnPlayer);
         m_PlayerStatus.OnPlayerDeath.AddListener(ResetPosOnPlayerDeath);
-
     }
 
     void Update()
