@@ -3650,6 +3650,7 @@ MonoBehaviour:
   m_movement: {fileID: 0}
   m_CheckIsGround: {fileID: 0}
   m_Rigidbody: {fileID: 0}
+  DesiredAngle: 90
   m_OnWall: 0
 --- !u!114 &7819271376476893704
 MonoBehaviour:

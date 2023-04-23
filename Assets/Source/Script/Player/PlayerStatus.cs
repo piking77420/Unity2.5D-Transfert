@@ -49,7 +49,6 @@ public class PlayerStatus : MonoBehaviour
         transform.position = new Vector3(PlayerCurrentCheckpoint.x, PlayerCurrentCheckpoint.y, 0);
         yield return new WaitForSeconds(TimerFadeDeath/2f);
         m_PlayerInput.SwitchCurrentActionMap("Gameplay");
-        IsDead = false;
         m_Animator.SetBool("FadeIn", IsDead);
 
 
@@ -98,8 +97,9 @@ public class PlayerStatus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IsDead) 
+        if (IsDead)
         {
+            IsDead = false;
             OnPlayerDeath.Invoke();
            // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }

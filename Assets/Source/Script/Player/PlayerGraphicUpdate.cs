@@ -85,12 +85,19 @@ public class PlayerGraphicUpdate : MonoBehaviour
     {
         if (_callbackContext.performed)
         {
-
+            // lay down
          
         }
     }
 
-   
+    public void OnQuitLever(InputAction.CallbackContext _callbackContext)
+    {
+        if (_callbackContext.performed)
+        {
+
+            // get up
+        }
+    }
 
 
     private void UpdateRotation() 

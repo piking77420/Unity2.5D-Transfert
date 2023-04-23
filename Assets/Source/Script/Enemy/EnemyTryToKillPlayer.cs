@@ -85,7 +85,6 @@ public class EnemyTryToKillPlayer : MonoBehaviour
                 if(d.CurrentDimension == DimensionScript.Dimension.Normal) 
                 {
                     Ray r = new Ray(transform.position , m_Player.position - this.transform.position);
-                    Debug.DrawRay(transform.position, m_Player.position - this.transform.position, Color.green,200);
 
                     if(Physics.Raycast(r, out RaycastHit hit, m_DistanceToKillPlayer) && hit.collider == m_Player.GetComponent<Collider>()) 
                     {

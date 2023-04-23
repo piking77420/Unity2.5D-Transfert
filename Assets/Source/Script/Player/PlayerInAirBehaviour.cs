@@ -17,6 +17,9 @@ public class PlayerInAirBehaviour : MonoBehaviour
     [SerializeField]
     private Rigidbody m_Rigidbody;
 
+    [SerializeField]
+    private float DesiredAngle= 90f;
+
 
     [SerializeField]
     private bool m_OnWall;
@@ -35,7 +38,7 @@ public class PlayerInAirBehaviour : MonoBehaviour
         if(!m_CheckIsGround.isGrounded)
         for (int i = 0; i < collision.contacts.Length; i++)
         {
-            if(Vector3.Angle(collision.contacts[i].normal,Vector3.up) >= 90f) 
+            if(Vector3.Angle(collision.contacts[i].normal,Vector3.up) >= DesiredAngle) 
             {
                 m_movement.movement.Set(0, m_movement.movement.y, 0);
                 break;

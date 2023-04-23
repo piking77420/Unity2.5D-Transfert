@@ -2616,9 +2616,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ab51b5a835fcd4f89ffc322e233e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 447
   m_SceneToLoad: 
   m_Animator: {fileID: 293143192}
 --- !u!4 &1892940592
@@ -3145,6 +3142,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Material
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3185797230008960910, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3185797230020271961, guid: e1bf66778b4504340b65629569aba485,
         type: 3}
@@ -4321,7 +4323,7 @@ MonoBehaviour:
   minGrowCoef: 4.5
   maxGrowCoef: 6.5
   newLegCooldown: 0.3
-  velocity: {x: -0.24459392, y: 0, z: 0.29505232}
+  velocity: {x: -0.09917931, y: 0, z: 0.37644747}
 --- !u!4 &8675915457607030729
 Transform:
   m_ObjectHideFlags: 0
@@ -4359,7 +4361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!195 &8675915457607030732
 NavMeshAgent:
   m_ObjectHideFlags: 0
