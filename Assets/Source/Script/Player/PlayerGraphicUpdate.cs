@@ -8,11 +8,22 @@ using UnityEngine.InputSystem;
 
 public class PlayerGraphicUpdate : MonoBehaviour
 {
+
+    [Header("Dependencies")]
     [SerializeField]
     private Animator m_PlayerGraphicAnimator;
 
     [SerializeField]
+    private PlayerPushBox m_PlayerPushBox;
+
+    [SerializeField]
     private PlayerMovement m_PlayerMovement;
+
+    [SerializeField]
+    private PlayerInput PlayerInput;
+
+    [SerializeField]
+    private Transform m_PlayerPos;
 
     [SerializeField]
     private Rigidbody rb;
@@ -20,20 +31,24 @@ public class PlayerGraphicUpdate : MonoBehaviour
     [SerializeField]
     private PlayerJump m_PlayerJump;
 
-    [SerializeField]
-    private LayerMask m_LayerMask;
+   
 
     [SerializeField]
     private Quaternion m_LastRoatation;
+
+
+
+    [Space(1),Header("Ik Part")]
+
+
+    [SerializeField]
+    private LayerMask m_LayerMask;
 
     [SerializeField, Range(0, 10)]
     private float DistanceFromGround;
 
     [SerializeField, Range(0, 10)]
     private float m_WeightFoot;
-
-
-
 
 
 
@@ -50,11 +65,32 @@ public class PlayerGraphicUpdate : MonoBehaviour
         {
 
                 m_PlayerGraphicAnimator.SetTrigger("Jump");
+
         }
         
     }
 
+    public void OnMoveBox(InputAction.CallbackContext _callbackContext)
+    {
+        if (_callbackContext.performed)
+        {
 
+            //PushBox();
+        }
+
+    }
+
+
+    public void OnLevierAction(InputAction.CallbackContext _callbackContext) 
+    {
+        if (_callbackContext.performed)
+        {
+
+         
+        }
+    }
+
+   
 
 
     private void UpdateRotation() 
@@ -108,14 +144,68 @@ public class PlayerGraphicUpdate : MonoBehaviour
         }
     }
 
+
+
+    private void PushBox() 
+    {
+
+
+        bool IsMobingBox = PlayerInput.currentActionMap.name == "MoveBox";
+
+        if (!IsMobingBox)
+        {
+            m_PlayerGraphicAnimator.SetBool("PushingBox", false);
+            return;
+        }
+        else 
+        {
+            m_PlayerGraphicAnimator.SetBool("PushingBox", true);
+        }
+
+        if (m_PlayerPushBox.m_CurrentBox != null)
+        {
+
+            
+            
+
+
+            Vector3 vectorBox = (m_PlayerPos.position - m_PlayerPushBox.m_CurrentBox.transform.position).normalized;
+
+
+            Vector3 lookatRotation = new Vector3(m_PlayerPushBox.m_CurrentBox.transform.position.x, this.transform.position.y, this.transform.position.z);
+            this.transform.LookAt(lookatRotation);
+
+            
+            if (vectorBox.x > 0)
+            {
+
+                    m_PlayerGraphicAnimator.SetFloat("PushingBoxMovment", (m_PlayerMovement.movement.x));
+
+
+
+            }
+            else if (vectorBox.x < 0)
+            {
+            
+                    m_PlayerGraphicAnimator.SetFloat("PushingBoxMovment", -(m_PlayerMovement.movement.x));
+
+
+            }
+
+
+        }
+        else
+        {
+            m_PlayerGraphicAnimator.SetBool("PushingBox", false);
+        }
+    }
+
     private void SetAnimator()
     {
-        Debug.Log(5f * Time.deltaTime);
 
         m_PlayerGraphicAnimator.SetFloat("SpeedX", MathF.Abs(m_PlayerMovement.movement.x));
         IdleJump();
-
-
+        PushBox();
     }
 
 
@@ -124,7 +214,10 @@ public class PlayerGraphicUpdate : MonoBehaviour
         m_PlayerGraphicAnimator = GetComponent<Animator>();
         m_PlayerMovement = GetComponentInParent<PlayerMovement>();
         m_PlayerJump = GetComponentInParent<PlayerJump>();
+        PlayerInput = GetComponentInParent<PlayerInput>();
+        m_PlayerPushBox = GetComponentInParent<PlayerPushBox>();
         maxIdleJump = 1f;
+        m_PlayerPos = transform.GetChild(0).transform;
     }
     void Start()
     {
@@ -142,7 +235,10 @@ public class PlayerGraphicUpdate : MonoBehaviour
 
     private void UpdateMovment()
     {
+
+
         SetAnimator();
+        if(m_PlayerPushBox.m_CurrentBox == null)
         UpdateRotation();
     }
 

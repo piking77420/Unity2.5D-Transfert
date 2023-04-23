@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3185797230008960904}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &7420108837984457668
 SkinnedMeshRenderer:
@@ -244,7 +244,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3185797230008960904}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2221036870487066693
 GameObject:
@@ -498,7 +498,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3185797230008960904}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &3185797229709567656
 SkinnedMeshRenderer:
@@ -650,7 +650,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3185797230008960904}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &3185797229785420550
 SkinnedMeshRenderer:
@@ -831,7 +831,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3185797230008960904}
-  m_RootOrder: 0
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3185797229880933162
 MonoBehaviour:
@@ -974,11 +974,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerGraphicAnimator: {fileID: 0}
+  m_PlayerPushBox: {fileID: 0}
   m_PlayerMovement: {fileID: 0}
+  PlayerInput: {fileID: 0}
+  m_PlayerPos: {fileID: 0}
+  rb: {fileID: 0}
+  m_PlayerJump: {fileID: 0}
+  m_LastRoatation: {x: 0, y: 0, z: 0, w: 0}
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 63
-  m_LastRoatation: {x: 0, y: 0, z: 0, w: 0}
   DistanceFromGround: 0.1
   m_WeightFoot: 1
 --- !u!1 &3185797229897282805
@@ -1077,7 +1082,6 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3185797229880933163}
   - {fileID: 2800772167195201009}
   - {fileID: 3185797231622578091}
   - {fileID: 3185797231440027535}
@@ -1089,6 +1093,7 @@ Transform:
   - {fileID: 933254772849863202}
   - {fileID: 1645921577015845490}
   - {fileID: 3070939858751795519}
+  - {fileID: 3185797229880933163}
   m_Father: {fileID: 7819271376476893929}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -1155,11 +1160,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerGraphicAnimator: {fileID: 0}
+  m_PlayerPushBox: {fileID: 0}
   m_PlayerMovement: {fileID: 0}
+  PlayerInput: {fileID: 0}
+  m_PlayerPos: {fileID: 0}
+  rb: {fileID: 0}
+  m_PlayerJump: {fileID: 0}
+  m_LastRoatation: {x: 0, y: 0, z: 0, w: 0}
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 63
-  m_LastRoatation: {x: 0, y: 0, z: 0, w: 0}
   DistanceFromGround: 0.1
   m_WeightFoot: 1
 --- !u!1 &3185797230020271961
@@ -2117,7 +2127,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3185797230008960904}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &3185797231440027534
 SkinnedMeshRenderer:
@@ -2243,7 +2253,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3185797230008960904}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &3185797231466009175
 SkinnedMeshRenderer:
@@ -2408,7 +2418,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3185797230008960904}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &3185797231622578090
 SkinnedMeshRenderer:
@@ -2770,7 +2780,7 @@ Transform:
   - {fileID: 3185797230410783219}
   - {fileID: 1350944799538303457}
   m_Father: {fileID: 3185797230008960904}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6391358726931385645
 GameObject:
@@ -2834,7 +2844,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3185797230008960904}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &7901872184816981262
 SkinnedMeshRenderer:
@@ -2920,7 +2930,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3185797230008960904}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &8362948640509318062
 SkinnedMeshRenderer:
@@ -3147,8 +3157,8 @@ GameObject:
   - component: {fileID: 7819271376476893922}
   - component: {fileID: 7819271376476893718}
   - component: {fileID: 7819271376476893706}
+  - component: {fileID: 4107179835825685575}
   - component: {fileID: 7819271376476893932}
-  - component: {fileID: 7819271376476893923}
   - component: {fileID: 7819271376476893926}
   - component: {fileID: 7819271376476893927}
   - component: {fileID: 3185797231225887828}
@@ -3257,6 +3267,21 @@ MonoBehaviour:
   DesiredAngle: 90
   colliders: []
   m_nbrOfColldier: 0
+--- !u!114 &4107179835825685575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7819271376476893717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cf9116e49a07ab478672c1982b3fb07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentDimension: 0
+  MaxTimeForOtherDimension: 10
+  CurrentForOtherDimension: 0
 --- !u!114 &7819271376476893932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3455,24 +3480,15 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0c28a0ac-28e7-4278-b3fd-30dbec8025d6
     m_ActionName: MoveBox/QuitActionMap[/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 359f5b8b-9edd-4234-9b0f-80bac79de446
+    m_ActionName: OnDeath/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &7819271376476893923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7819271376476893717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f4f40c46e207b14fae26fd27f9c1bf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentDimension: 0
 --- !u!114 &7819271376476893926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3686,7 +3702,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerVelocityMultiplicator: 1
   m_RangeBetweenPlayerAndBox: 3
-  m_CurrentBox: {fileID: 0}
   m_PlayerPos: {fileID: 1645921577015845490}
   m_PlayerMovement: {fileID: 0}
   m_ConfigurableJoint: {fileID: 0}
@@ -6779,7 +6794,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3185797230008960904}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &337903810541269201
 SkinnedMeshRenderer:

@@ -8,7 +8,7 @@ public class CheckIsGround : MonoBehaviour
     [SerializeField]
     public bool isGrounded;
 
-
+    private Transform m_GraphicIsGrounded;
 
     [SerializeField,Range(0,180)]
     private float DesiredAngle;
@@ -82,9 +82,7 @@ public class CheckIsGround : MonoBehaviour
         {
             isGrounded = false;
         }
-       
-
-
+      
     }
 
 

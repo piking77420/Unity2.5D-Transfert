@@ -7,7 +7,7 @@ public class EnemyFollowPlayer : MonoBehaviour
 {
     [Header("Dependencies")]
     [SerializeField]
-    private Transform m_PlayerTransform;
+    public Transform m_PlayerTransform;
     [SerializeField]
     private DimensionScript m_DimensionScriptPlayer;
 
@@ -27,12 +27,10 @@ public class EnemyFollowPlayer : MonoBehaviour
 
     [Header("Gizmo")]
 
-    [SerializeField]
-    private Vector3 BoxSearchSize;
+  
     [SerializeField]
     private bool m_ShowGizmo;
-    [SerializeField]
-    private Color m_ColorKillBox;
+
     [SerializeField]
     private Color m_ColorWaypoints;
     [SerializeField]
@@ -68,7 +66,10 @@ public class EnemyFollowPlayer : MonoBehaviour
 
    
 
-
+    public Transform ReturnPlayerTransform() 
+    {
+        return m_PlayerTransform;
+    }
 
     private void OnDrawGizmos()
     {
@@ -95,8 +96,6 @@ public class EnemyFollowPlayer : MonoBehaviour
                 }
                 Gizmos.DrawSphere(t, m_WaypointSize);
             }
-            Gizmos.color = m_ColorKillBox;
-            Gizmos.DrawWireCube(this.transform.position, BoxSearchSize);
         }
     }
 
@@ -135,17 +134,20 @@ public class EnemyFollowPlayer : MonoBehaviour
 
 
 
+        float value1 = float.MaxValue;
+        float value2 = float.MaxValue;
+
 
         foreach (Vector3 Pos in m_WayPointTransforms)
         {
-            float value = float.MaxValue;
-
-            if (Vector2.Distance(Pos, PlayerPos) < value)
+            if (Pos.x < PlayerPos.x)
             {
-                if (Pos.x < PlayerPos.x)
+                if (Vector2.Distance(Pos, PlayerPos) < value1)
                 {
-                    value = Vector2.Distance(Pos, PlayerPos);
+
+                    value1 = Vector2.Distance(Pos, PlayerPos);
                     points[0] = Pos;
+
                 }
             }
         }
@@ -153,14 +155,14 @@ public class EnemyFollowPlayer : MonoBehaviour
 
         foreach (Vector3 Pos in m_WayPointTransforms)
         {
-            float value = float.MaxValue;
-
-            if (Vector2.Distance(Pos, PlayerPos) < value)
+            if (Pos.x > PlayerPos.x)
             {
-                if (Pos.x > PlayerPos.x)
+                if (Vector2.Distance(Pos, PlayerPos) < value2)
                 {
-                    value = Vector2.Distance(Pos, PlayerPos);
+
+                    value2 = Vector2.Distance(Pos, PlayerPos);
                     points[1] = Pos;
+
                 }
             }
         }
