@@ -27,8 +27,6 @@ public class PlayerPushBox : MonoBehaviour
 
     [Header("Dependancies")]
 
-    [SerializeField]
-    private GameObject m_CurrentBox;
 
     [SerializeField]
     private Transform m_PlayerPos;
@@ -39,6 +37,7 @@ public class PlayerPushBox : MonoBehaviour
     private Rigidbody m_PlayerRigidBody;
     private Rigidbody m_BoxRb;
 
+    public GameObject m_CurrentBox { get; private set; }
 
 
 

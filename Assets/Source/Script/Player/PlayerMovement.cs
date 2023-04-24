@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    private Rigidbody m_Rigidbody;
+    public Rigidbody m_Rigidbody;
 
 
     [SerializeField, Range(0, 100)]

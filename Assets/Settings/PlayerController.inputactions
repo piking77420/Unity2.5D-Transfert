@@ -400,6 +400,62 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "OnDeath",
+            "id": "71f2d108-ec5c-437d-aad1-991fec192faf",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "359f5b8b-9edd-4234-9b0f-80bac79de446",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4383d9c4-52fc-4624-86e8-06e4b6ba1428",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "None",
+            "id": "31ee4fb5-8c55-45ba-864a-1b4f26c994d1",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "f58cd505-4195-4fd8-8cea-35d795f6c0bd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c5d7f232-85c5-4436-a352-33bc70ac7be4",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
