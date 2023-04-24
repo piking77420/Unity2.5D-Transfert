@@ -88,7 +88,7 @@ public class EnemyTryToKillPlayer : MonoBehaviour
 
                     if(Physics.Raycast(r, out RaycastHit hit, m_DistanceToKillPlayer) && hit.collider == m_Player.GetComponent<Collider>()) 
                     {
-                        m_PlayerStatus.IsDead = true;
+                        m_PlayerStatus.KillPlayer();
                     }
                 }
             }

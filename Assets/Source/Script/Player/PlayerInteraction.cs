@@ -29,16 +29,15 @@ public class PlayerInteraction : MonoBehaviour
     private PlayerInput m_PlayerInput;
 
 
+    public bool LeverInteraction;
 
-    [SerializeField]
-    private Vector3 m_OffsetVector = Vector3.up;
 
     private void OnDrawGizmos()
     {
         if (m_ShowInteractionRadius) 
         {
             Gizmos.color = Color.blue;
-            Gizmos.DrawSphere(m_PlayerTransform.position + m_OffsetVector, PlayerInteractionRadius);  
+            Gizmos.DrawSphere(m_PlayerTransform.position, PlayerInteractionRadius);  
         }
     }   
 
@@ -54,8 +53,11 @@ public class PlayerInteraction : MonoBehaviour
     // Lever Out
     public void OnChangeMap(InputAction.CallbackContext _callbackContext) 
     {
-        if (_callbackContext.performed)
-            m_PlayerInput.SwitchCurrentActionMap("GamePlay");
+        if (_callbackContext.performed) 
+        {
+            m_PlayerInput.SwitchCurrentActionMap("Gameplay");
+            LeverInteraction = false;
+        }
     }
 
 
@@ -63,7 +65,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (_callbackContext.performed) 
         {
-            Collider[] col = Physics.OverlapSphere(m_PlayerTransform.position + m_OffsetVector, PlayerInteractionRadius);
+            Collider[] col = Physics.OverlapSphere(m_PlayerTransform.position , PlayerInteractionRadius);
             
             
 
@@ -79,6 +81,7 @@ public class PlayerInteraction : MonoBehaviour
                     if(interactableObject is LevierIntercation) 
                     {
                         m_PlayerInput.SwitchCurrentActionMap("Lever");
+                        LeverInteraction = true;
                         return;
                     }
 

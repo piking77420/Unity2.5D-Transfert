@@ -39,7 +39,7 @@ public class DoorOpenClose : MonoBehaviour
 
     private void Awake()
     {
-        
+
         m_LeverAction = transform.parent.parent.GetComponentInChildren<LeverAction>();
         m_LeverAction.OnAccomplish.AddListener(UpdateDoor);
 
