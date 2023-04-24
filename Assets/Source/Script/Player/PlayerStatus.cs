@@ -40,21 +40,32 @@ public class PlayerStatus : MonoBehaviour
     public int currentCheckpointIndex;
 
 
+    [SerializeField]
+    public bool IsInvicible;
+
     IEnumerator DeathPlayer()
     {
 
-        m_Animator.SetBool("FadeIn",IsDead);
+        m_Animator.SetBool("FadeIn",true);
         m_PlayerInput.SwitchCurrentActionMap("None");
         yield return new WaitForSeconds(TimerFadeDeath/2f);
-        transform.position = new Vector3(PlayerCurrentCheckpoint.x, PlayerCurrentCheckpoint.y, 0);
+
+
+        transform.root.position = new Vector3(PlayerCurrentCheckpoint.x, PlayerCurrentCheckpoint.y, 0);
         yield return new WaitForSeconds(TimerFadeDeath/2f);
         m_PlayerInput.SwitchCurrentActionMap("Gameplay");
-        m_Animator.SetBool("FadeIn", IsDead);
+        m_Animator.SetBool("FadeIn", false);
 
 
     }
 
-
+    public void KillPlayer() 
+    {
+        if (!IsInvicible) 
+        {
+            IsDead = true;
+        }
+    }
 
     public void LoadBaseMenue() 
     {
@@ -100,8 +111,8 @@ public class PlayerStatus : MonoBehaviour
         if (IsDead)
         {
             IsDead = false;
-            OnPlayerDeath.Invoke();
-           // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            OnPlayerDeath?.Invoke();
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

@@ -30,11 +30,6 @@ public class PlayerGhostDetection : MonoBehaviour
     [SerializeField]
     private Vector3 m_DetectionPos;
 
-    [SerializeField]
-    private LayerMask m_LayerMask;
-
-
-
 
     private void OnDrawGizmos()
     {
@@ -93,7 +88,7 @@ public class PlayerGhostDetection : MonoBehaviour
         foreach(Collider collider in colliders) 
         {
 
-            if(collider.gameObject != gameObject && collider.gameObject.layer == m_LayerMask) 
+            if(collider.gameObject.layer == LayerMask.NameToLayer("Default")) 
             {
 
                 ChangeColorFromStatus(false);

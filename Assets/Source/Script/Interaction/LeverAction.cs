@@ -15,30 +15,30 @@ public class LeverAction : MonoBehaviour
     private Animator m_Animator;
 
 
-    [SerializeField,Range(0f,1f)]
+    [SerializeField, Range(0f, 1f)]
     private float m_LeverValueStatue;
 
 
-    [SerializeField,Tooltip("EVENT PLAY EACH FRAME")]
+    [SerializeField, Tooltip("EVENT PLAY EACH FRAME")]
     public UnityEvent<float> OnAccomplish;
 
 
-  
 
 
-    [SerializeField,Range(0,10)]
+
+    [SerializeField, Range(0, 10)]
     private float OpenDoorStreght;
 
     private float LeverPlayerStrenght;
 
 
-    [SerializeField,Range(0,2)]
+    [SerializeField, Range(0, 2)]
     private float DecreaseStreght;
 
 
 
     [SerializeField]
-    private bool IsAcomplish;
+    public bool IsAcomplish;
     [SerializeField]
     private bool PlayerInAction;
 
@@ -46,9 +46,12 @@ public class LeverAction : MonoBehaviour
     public bool IsObstruct;
 
 
-    public void OnQuit(InputAction.CallbackContext _callbackContext) 
+
+
+    private float LeverReadValue;
+    public void OnQuit(InputAction.CallbackContext _callbackContext)
     {
-        if (_callbackContext.performed) 
+        if (_callbackContext.performed)
         {
             PlayerInAction = false;
         }
@@ -56,18 +59,28 @@ public class LeverAction : MonoBehaviour
     }
 
 
-    public void OnleverAction(InputAction.CallbackContext _callbackContext) 
+    public void OnleverAction(InputAction.CallbackContext _callbackContext)
     {
 
 
 
-        switch (_callbackContext.phase) 
+        switch (_callbackContext.phase)
         {
             case InputActionPhase.Started:
-                PlayerInAction = true;   
+                PlayerInAction = true;
                 break;
             case InputActionPhase.Performed:
-                LeverPlayerStrenght = _callbackContext.ReadValue<float>();
+
+                float readValue = _callbackContext.ReadValue<float>();
+                if (readValue < 0f)
+                {
+                    LeverReadValue = -1f;
+                }
+                else if (readValue > 0f)
+                {
+                    LeverReadValue = 1f;
+                }
+
                 break;
             case InputActionPhase.Canceled:
                 PlayerInAction = false;
@@ -92,36 +105,39 @@ public class LeverAction : MonoBehaviour
 
 
 
-    private void OpenDoor() 
+    private void OpenDoor()
     {
         // Had This to avoid when doing left right realy fast that opening the door to quciky
-        if(LeverPlayerStrenght >= 1f)
+        if (PlayerInAction)
         {
-            LeverPlayerStrenght = 0.5f;
+
+            m_LeverValueStatue += Time.fixedDeltaTime * LeverReadValue;
         }
 
-        if (PlayerInAction && !IsAcomplish)
+        if (m_LeverValueStatue > 1f)
         {
-            
-            m_LeverValueStatue += LeverPlayerStrenght * Time.deltaTime * OpenDoorStreght;
-
+            IsAcomplish = true;
         }
+
+
+        m_LeverValueStatue = Mathf.Clamp01(m_LeverValueStatue);
+
 
     }
 
 
-    private void CloseDoor() 
+    private void CloseDoor()
     {
 
-        if (IsObstruct) 
+        if (IsObstruct)
         {
-            
+
             return;
         }
 
         if (!PlayerInAction && !IsAcomplish && m_LeverValueStatue >= 0)
         {
-           // m_Animator.SetFloat("Status", m_LeverValueStatue);
+            // m_Animator.SetFloat("Status", m_LeverValueStatue);
 
             m_LeverValueStatue -= Time.deltaTime * DecreaseStreght;
 
@@ -129,7 +145,7 @@ public class LeverAction : MonoBehaviour
         }
     }
 
-    private void CheckStatue() 
+    private void CheckStatue()
     {
         if (m_LeverValueStatue <= 1f)
         {
@@ -152,5 +168,5 @@ public class LeverAction : MonoBehaviour
         m_Animator.SetFloat("Status", m_LeverValueStatue);
     }
 
-    
+
 }

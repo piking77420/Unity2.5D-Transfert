@@ -93,7 +93,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
 
 
-    [HideInInspector]
+   // [HideInInspector]
     public Vector3 customGravity;
 
 
@@ -235,8 +235,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
     {
         if (isGravityApplie) 
         {
-            Vector3 gravity =  (m_Rigidbody.velocity);
-            gravity.y = Physics.gravity.y * m_GravityValue; 
+           
             m_Rigidbody.AddForce(customGravity);
         }
     }
