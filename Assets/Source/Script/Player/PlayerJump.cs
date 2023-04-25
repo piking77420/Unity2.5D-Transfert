@@ -140,6 +140,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
                
                 break;
             case InputActionPhase.Canceled:
+
                 break;
         }
 
@@ -255,6 +256,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
         if (m_CheckIsGround.isGrounded)
         {
             m_JumpBuffer = false;
+            IsJumping = false;
         }
 
     }
