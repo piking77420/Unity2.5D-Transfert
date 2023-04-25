@@ -93,7 +93,7 @@ public class PlayerGhostDetection : MonoBehaviour
         foreach(Collider collider in colliders) 
         {
 
-            if(collider.gameObject != gameObject && collider.gameObject.layer != m_LayerMask) 
+            if(collider.gameObject != gameObject && collider.gameObject.layer == m_LayerMask) 
             {
 
                 ChangeColorFromStatus(false);

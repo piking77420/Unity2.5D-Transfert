@@ -9,20 +9,31 @@ public class UpdateNavMesh : MonoBehaviour
 {
     private NavMeshSurface[] m_MeshSurfaces;
 
-    
+    public DimensionScript m_Dimension;
+
+
+    private DimensionScript.Dimension m_LastUpdateD;
+
     private void Awake()
     {
-       
-        m_MeshSurfaces = GetComponents<NavMeshSurface>();
+          m_LastUpdateD = m_Dimension.CurrentDimension;
+         m_MeshSurfaces = GetComponents<NavMeshSurface>();
     }
+
+
+    
 
  
     private void LateUpdate()
     {
-        foreach (var item in m_MeshSurfaces)
+        if(m_Dimension.CurrentDimension != m_LastUpdateD) 
         {
-            item.BuildNavMesh();
-        } 
+            foreach(NavMeshSurface surface in m_MeshSurfaces)
+            {
+                surface.BuildNavMesh();
+            }
+            m_LastUpdateD = m_Dimension.CurrentDimension;
+        }
     }
 
 }

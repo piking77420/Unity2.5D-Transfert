@@ -22,7 +22,7 @@ public class DimensionScript : MonoBehaviour
 
 
 
-    private void Awake()
+    protected virtual void Awake()
     {
         if(transform.position.z > 0) 
         {
@@ -39,7 +39,7 @@ public class DimensionScript : MonoBehaviour
 
     
 
-    public void SwapDimension()
+    public virtual void SwapDimension()
     {
 
 
@@ -93,7 +93,7 @@ public class DimensionScript : MonoBehaviour
 
  
 
-    public void ClampPositionPlayer() 
+    public virtual void ClampPositionPlayer() 
     {
         Vector3 offsetVector = transform.position;
 
@@ -140,13 +140,13 @@ public class DimensionScript : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
       //OnClamping.Invoke();
        
