@@ -112,6 +112,7 @@ public class PlayerJump : MonoBehaviour
     public void DoJump(float JumpStrenght) 
     {
         StartCoroutine(ApexModifers());
+        m_Rigidbody.velocity.Set(m_Rigidbody.velocity.x, 0, m_Rigidbody.velocity.z);
         m_Rigidbody.velocity += Vector3.up * JumpStrenght;
         m_CheckIsGround.isGrounded = false ;
         m_JumpBuffer = false;

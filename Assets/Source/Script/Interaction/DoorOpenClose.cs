@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DoorOpenClose : MonoBehaviour
@@ -7,7 +8,8 @@ public class DoorOpenClose : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField]
     private LeverAction m_LeverAction;
-
+    [SerializeField]
+    private AudioSource m_Source;
 
     [SerializeField]
     public Vector3 m_ReachPos;
@@ -24,6 +26,8 @@ public class DoorOpenClose : MonoBehaviour
 
 
     private Vector3 m_StartPos;
+
+    private bool IsOnAction;
 
     private void OnDrawGizmos()
     {
@@ -42,6 +46,7 @@ public class DoorOpenClose : MonoBehaviour
 
         m_LeverAction = transform.parent.parent.GetComponentInChildren<LeverAction>();
         m_LeverAction.OnAccomplish.AddListener(UpdateDoor);
+        m_Source = GetComponent<AudioSource>();
 
     }
 
@@ -51,11 +56,26 @@ public class DoorOpenClose : MonoBehaviour
     }
 
 
+
+
+
     private void UpdateDoor(float leverAction)
     {
         this.transform.position = Vector3.Lerp(m_StartPos, m_StartPos + m_ReachPos, leverAction);
+        
+        if(!m_Source.isPlaying)
+        m_Source.PlayOneShot(m_Source.clip);
+
     }
 
+
+    private void Update()
+    {
+        if (!m_LeverAction.PlayerInAction) 
+        {
+            m_Source.Stop();
+        }            
+    }
 
 
 
