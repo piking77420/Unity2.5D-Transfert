@@ -43,7 +43,7 @@ public class DimensionScriptPlayer : DimensionScript
 
             if(CurrentForOtherDimension < 0) 
             {
-                m_PlayerStatus.IsDead = true;
+                m_PlayerStatus.KillPlayer();
             }
         }
 

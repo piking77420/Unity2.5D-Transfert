@@ -15,6 +15,8 @@ public class PlayerGraphicUpdate : MonoBehaviour
 
     [SerializeField]
     private PlayerPushBox m_PlayerPushBox;
+    [SerializeField]
+    private PlayerInteraction m_PlayerInteraction;
 
     [SerializeField]
     private PlayerMovement m_PlayerMovement;
@@ -31,14 +33,14 @@ public class PlayerGraphicUpdate : MonoBehaviour
     [SerializeField]
     private PlayerJump m_PlayerJump;
 
-   
+
 
     [SerializeField]
     private Quaternion m_LastRoatation;
 
 
 
-    [Space(1),Header("Ik Part")]
+    [Space(1), Header("Ik Part")]
 
 
     [SerializeField]
@@ -57,17 +59,16 @@ public class PlayerGraphicUpdate : MonoBehaviour
 
 
     private float maxIdleJump;
-    private float currentIdleJump = 0 ;
+    private float currentIdleJump = 0;
 
-    public void OnJumping(InputAction.CallbackContext _callbackContext) 
+    public void OnJumping(InputAction.CallbackContext _callbackContext)
     {
-        if (_callbackContext.performed) 
+        if (_callbackContext.performed)
         {
-
-                m_PlayerGraphicAnimator.SetTrigger("Jump");
+            m_PlayerGraphicAnimator.SetTrigger("Jump");
 
         }
-        
+
     }
 
     public void OnMoveBox(InputAction.CallbackContext _callbackContext)
@@ -81,26 +82,10 @@ public class PlayerGraphicUpdate : MonoBehaviour
     }
 
 
-    public void OnLevierAction(InputAction.CallbackContext _callbackContext) 
-    {
-        if (_callbackContext.performed)
-        {
-            // lay down
-         
-        }
-    }
-
-    public void OnQuitLever(InputAction.CallbackContext _callbackContext)
-    {
-        if (_callbackContext.performed)
-        {
-
-            // get up
-        }
-    }
 
 
-    private void UpdateRotation() 
+
+    private void UpdateRotation()
     {
         Vector2 movement = m_PlayerMovement.movement;
         Quaternion rotation = new Quaternion();
@@ -111,15 +96,15 @@ public class PlayerGraphicUpdate : MonoBehaviour
             this.transform.rotation = m_LastRoatation;
             return;
         }
-    
 
-        if (movement.x < 0) 
+
+        if (movement.x < 0)
         {
             rotation.eulerAngles = new Vector3(0, -90, 0);
             m_LastRoatation = rotation;
             m_LastRoatation = this.transform.rotation;
         }
-        else 
+        else
         {
             rotation.eulerAngles = new Vector3(0, 90, 0);
             m_LastRoatation = rotation;
@@ -130,7 +115,7 @@ public class PlayerGraphicUpdate : MonoBehaviour
     }
 
 
-    private void IdleJump() 
+    private void IdleJump()
     {
         if (rb.velocity.y < 0 - 0.5)
         {
@@ -153,50 +138,39 @@ public class PlayerGraphicUpdate : MonoBehaviour
 
 
 
-    private void PushBox() 
+    private void PushBox()
     {
 
 
-        bool IsMobingBox = PlayerInput.currentActionMap.name == "MoveBox";
+        bool IsInMoveBoxMap = PlayerInput.currentActionMap.name == "MoveBox";
 
-        if (!IsMobingBox)
+        if (!IsInMoveBoxMap)
         {
             m_PlayerGraphicAnimator.SetBool("PushingBox", false);
             return;
         }
-        else 
+        else
         {
             m_PlayerGraphicAnimator.SetBool("PushingBox", true);
         }
 
         if (m_PlayerPushBox.m_CurrentBox != null)
         {
-
-            
-            
-
-
             Vector3 vectorBox = (m_PlayerPos.position - m_PlayerPushBox.m_CurrentBox.transform.position).normalized;
 
 
             Vector3 lookatRotation = new Vector3(m_PlayerPushBox.m_CurrentBox.transform.position.x, this.transform.position.y, this.transform.position.z);
             this.transform.LookAt(lookatRotation);
 
-            
+
             if (vectorBox.x > 0)
             {
 
-                    m_PlayerGraphicAnimator.SetFloat("PushingBoxMovment", (m_PlayerMovement.movement.x));
-
-
-
+                m_PlayerGraphicAnimator.SetFloat("PushingBoxMovment", (m_PlayerMovement.movement.x));
             }
             else if (vectorBox.x < 0)
             {
-            
-                    m_PlayerGraphicAnimator.SetFloat("PushingBoxMovment", -(m_PlayerMovement.movement.x));
-
-
+                m_PlayerGraphicAnimator.SetFloat("PushingBoxMovment", -(m_PlayerMovement.movement.x));
             }
 
 
@@ -225,6 +199,7 @@ public class PlayerGraphicUpdate : MonoBehaviour
         m_PlayerPushBox = GetComponentInParent<PlayerPushBox>();
         maxIdleJump = 1f;
         m_PlayerPos = transform.GetChild(0).transform;
+        m_PlayerInteraction = GetComponentInParent<PlayerInteraction>();
     }
     void Start()
     {
@@ -245,30 +220,36 @@ public class PlayerGraphicUpdate : MonoBehaviour
 
 
         SetAnimator();
-        if(m_PlayerPushBox.m_CurrentBox == null)
-        UpdateRotation();
+        if (m_PlayerPushBox.m_CurrentBox == null)
+            UpdateRotation();
+        LeverAnimation();
     }
 
-
-
-    private void LeftFoot() 
+    private void LeverAnimation()
     {
-        
-            m_PlayerGraphicAnimator.SetIKPositionWeight(AvatarIKGoal.LeftFoot, m_WeightFoot);
-            m_PlayerGraphicAnimator.SetIKRotationWeight(AvatarIKGoal.LeftFoot, m_WeightFoot);
+
+        m_PlayerGraphicAnimator.SetBool("Onlever", m_PlayerInteraction.LeverInteraction);
+
+    }
+
+    private void LeftFoot()
+    {
+
+        m_PlayerGraphicAnimator.SetIKPositionWeight(AvatarIKGoal.LeftFoot, m_WeightFoot);
+        m_PlayerGraphicAnimator.SetIKRotationWeight(AvatarIKGoal.LeftFoot, m_WeightFoot);
 
 
 
-            RaycastHit hit;
+        RaycastHit hit;
 
-            Ray ray = new Ray(m_PlayerGraphicAnimator.GetIKPosition(AvatarIKGoal.LeftFoot) + Vector3.up, Vector3.down);
+        Ray ray = new Ray(m_PlayerGraphicAnimator.GetIKPosition(AvatarIKGoal.LeftFoot) + Vector3.up, Vector3.down);
 
-            if (Physics.Raycast(ray, out hit, DistanceFromGround + 1f, m_LayerMask))
-            {
-                Vector3 footPos = hit.point;
-                footPos.y += DistanceFromGround;
-                m_PlayerGraphicAnimator.SetIKPosition(AvatarIKGoal.LeftFoot, footPos);
-            }
+        if (Physics.Raycast(ray, out hit, DistanceFromGround + 1f, m_LayerMask))
+        {
+            Vector3 footPos = hit.point;
+            footPos.y += DistanceFromGround;
+            m_PlayerGraphicAnimator.SetIKPosition(AvatarIKGoal.LeftFoot, footPos);
+        }
     }
 
     private void RightFoot()

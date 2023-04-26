@@ -14,6 +14,17 @@ public class SceneLoader : MonoBehaviour
     private Animator m_Animator;
 
 
+    [SerializeField]
+    private float m_SecondsToLoad;
+
+    IEnumerator LoadScene() 
+    {
+        m_Animator.SetTrigger("FadeOutChanageScene");
+        yield return new WaitForSeconds(m_SecondsToLoad);
+        SceneManager.LoadScene(m_SceneToLoad);
+
+    }
+
 
 
     // Start is called before the first frame update
@@ -21,8 +32,9 @@ public class SceneLoader : MonoBehaviour
     {
         if(other.gameObject.tag == "Player") 
         {
+            other.GetComponentInParent<PlayerStatus>().IsInvicible = true;
             m_Animator.SetTrigger("FadeOutChanageScene");
-            SceneManager.LoadScene(m_SceneToLoad);
+            StartCoroutine(LoadScene());
         }
     }
 

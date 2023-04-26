@@ -8,6 +8,7 @@ public class CheckIsGround : MonoBehaviour
     [SerializeField]
     public bool isGrounded;
 
+
     private Transform m_GraphicIsGrounded;
 
     [SerializeField,Range(0,180)]
@@ -19,7 +20,11 @@ public class CheckIsGround : MonoBehaviour
     [SerializeField]
     private int m_nbrOfColldier;
 
+    [SerializeField,Range(0,10)]
+    private float m_RaycastDistance;
 
+    [SerializeField]
+    private LayerMask m_LayerMask;
 
     bool CheckCollsion(Collision collision)
     {
@@ -65,6 +70,7 @@ public class CheckIsGround : MonoBehaviour
     private void Awake()
     {
         colliders = new List<Collider>();
+        m_GraphicIsGrounded = transform.GetChild(0).transform;
     }
 
     // Start is called before the first frame update
@@ -82,7 +88,20 @@ public class CheckIsGround : MonoBehaviour
         {
             isGrounded = false;
         }
-      
+
+        Debug.DrawRay(m_GraphicIsGrounded.position, Vector3.down,Color.green);
+
+
+        if (!isGrounded)
+        {
+            Ray r = new Ray(m_GraphicIsGrounded.position, Vector3.down);
+            if(Physics.Raycast(r, m_RaycastDistance, m_LayerMask)) 
+            {
+                isGrounded = true;
+            }
+        }
+
+
     }
 
 

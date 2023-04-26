@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GabrielScene/GabrielScene.unity
     guid: 0cd3b4ad7e14bee4885cec273df48183
+  - enabled: 1
+    path: Assets/Scenes/Leonard/LeonardScene.unity
+    guid: bffcd2943241c004aa87429dbe011d2b
   m_configObjects: {}
