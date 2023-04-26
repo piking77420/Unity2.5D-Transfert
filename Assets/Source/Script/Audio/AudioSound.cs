@@ -5,8 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class AudioSound 
 {
-    public string audioName;
 
+    public AudioClip audioClip;    
 
     [Range(0,2)]
     public float volume;

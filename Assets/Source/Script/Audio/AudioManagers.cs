@@ -2,117 +2,253 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
+using static UnityEditor.Progress;
 
 public class AudioManagers : MonoBehaviour
 {
     // Start is called before the first frame update
-    public enum BiomeStat
-    {
-        Interior,
-        Interior2,
-        Village,// fusionner movbox
-        Forest,// fusionner movbox
-        CountrySide,
 
-    };
 
-    public enum SourceFrom 
+    // In Child Has to be in order
+    public enum SourceFrom
     {
-        FootPlayer,
+        WalkPlayer,
         Box,
         Slime,
         TheEnemy,
+        PlayerRun,
+        PlayerFlight,
+        PlayerVoice,
+        PlayerImpact
+
     };
 
+    // In Child Has to be in order
+    public enum BiomeStat
+    {
+        Interior,
+        Village,// fusionner movbox
+        Forest,// fusionner movbox
+        CountrySide,
+        Tower
+    };
+
+
+
+
+    private enum IndependantSource 
+    {
+        Ambiance,Clip
+
+    }
+
+ 
+    private enum AudioManagerAudioSoure 
+    {
+        AmbianceNormal , 
+        AmbianceCorr,
+        Music
+    }
 
 
     // ambiance dimension et biome
 
     public static AudioManagers instance;
 
-    public GameObject m_prefabs;
-
-    [Serialize]
-    private MusicClass[] m_Musics;
-
 
 
     [SerializeField]
-    private AudioSource m_CurrentSong;
+    private AudioMixer m_Mixer;
+
+
+    [SerializeField]
+    private BiomeStat m_Biomecurrent;
+
+
+    [SerializeField]
+    public DimensionScript.Dimension currentPlayerDimension;
+
+
+    [SerializeField]
+    private AudioSource[] m_IndepandanteSource;
 
 
     [SerializeField]
     private List<SourceClipArray> ListAudioClipTranferts = new List<SourceClipArray>();
 
+    [SerializeField]
+    private List<BiomeAudioBaseArray> ListAudioAmbianceTranferts = new List<BiomeAudioBaseArray>();
 
+    [SerializeField]
+    private List<BiomeAudioBaseArray> ListAudioMusicsTranferts = new List<BiomeAudioBaseArray>();
+
+
+    [SerializeField,Range(0,3)]
+    private float SwapDimensionLerp;
+
+
+
+    const string MIXER_NORMAL = "amb_irl";
+    const string MIXER_SPECIAL = "amb_corrupted";
+    const string MASTER_LEVEL = "MasterLevel";
+
+
+    public enum MixerStateOnChange
+    {   LowerNormal,
+        UpperNormal,
+    }
+
+    private bool SwapValueMixer;
+    public bool GetMixerState;
+
+    public MixerStateOnChange StateMixer;
+
+    private List<SourceClipArray> GetClip(Transform child) 
+    {
+        List<SourceClipArray> array = new List<SourceClipArray>();
+
+        for (int i = 0; i < child.childCount; i++)
+        {
+            array.Add(child.GetChild(i).GetComponent<SourceClipArray>());
+        }
+
+        return array;
+    }
+
+    private List<BiomeAudioBaseArray> GetAmbianceAndMusic(Transform child)
+    {
+        List<BiomeAudioBaseArray> array = new List<BiomeAudioBaseArray>();
+
+        for (int i = 0; i < child.childCount; i++)
+        {
+            array.Add(child.GetChild(i).GetComponent<BiomeAudioBaseArray>());
+        }
+
+        return array;
+    }
+
+
+    public void SwapVolume() 
+    {
+        Debug.Log("sdqd");
+
+        if (m_IndepandanteSource[(int)DimensionScript.Dimension.Normal].volume > 1f) 
+        {
+            m_IndepandanteSource[(int)DimensionScript.Dimension.Normal].volume = 0;
+            m_IndepandanteSource[(int)DimensionScript.Dimension.Special].volume = 1f;
+
+        }
+        else 
+        {
+           
+                m_IndepandanteSource[(int)DimensionScript.Dimension.Normal].volume = 1f;
+                m_IndepandanteSource[(int)DimensionScript.Dimension.Special].volume = 0f;
+        }
+
+
+    }
 
 
     private void Awake()
     {
-        m_CurrentSong = GetComponent<AudioSource>();
-        if (m_CurrentSong == null) 
-        {
-            m_CurrentSong.AddComponent<AudioSource>();  
-        }
+        m_IndepandanteSource = GetComponentsInChildren<AudioSource>();
+      
 
-        if(this != instance) 
+        if (this != instance)
         {
             instance = this;
         }
 
+        // ListAudioClipTranferts.AddRange(transform.GetComponentsInChildren<SourceClipArray>());
 
-        
-        int nbrOfArray = transform.GetChild(0).childCount;
+       ListAudioClipTranferts = GetClip(transform.GetChild((int)IndependantSource.Clip));
+        ListAudioAmbianceTranferts = GetAmbianceAndMusic(transform.GetChild((int)IndependantSource.Ambiance));
 
+    
 
-        for (int i = 0; i < nbrOfArray; i++)
-        {
+        UpdateAmbianceAndMusics();
 
-
-            
-                ListAudioClipTranferts.Add(transform.GetChild(0).GetChild(i).GetComponent<SourceClipArray>());
-
-            
-        }
-     
     }
 
-   
-    public void PlayMusic(string name) 
-    {
-        
-    }
 
-  
-    public void PlayAudioAt(SourceFrom sourceFrom , BiomeStat Biome , AudioSource source) 
+    public void UpdateAmbianceAndMusics()
     {
 
-        for (int i = 0; i < ListAudioClipTranferts.Count; i++)
+        foreach (var item in ListAudioAmbianceTranferts[(int)m_Biomecurrent].ClipArray)
         {
-            if (ListAudioClipTranferts[i].SourceType == sourceFrom)
-            for (int k = 0; k < ListAudioClipTranferts[i].ClipArray.Length; k++)
+            if (item.Dimension == DimensionScript.Dimension.Normal )
             {
-                    if (ListAudioClipTranferts[i].ClipArray[k].ClipBiome == Biome) 
-                    {
-                        source.clip = ListAudioClipTranferts[i].ClipArray[k].AuduioClip;
-                    }
+                m_IndepandanteSource[(int)item.Dimension].clip = item.sound.audioClip;
+
+            } 
+
+            if(item.Dimension == DimensionScript.Dimension.Special)
+            {
+                m_IndepandanteSource[(int)item.Dimension].clip = item.sound.audioClip;
 
             }
         }
-    
-        //Instantiate(m_prefabs,transform,true);
+
+
+        m_Mixer.GetFloat(MASTER_LEVEL, out float masterLevel );
+
+        if(currentPlayerDimension  == DimensionScript.Dimension.Normal) 
+        {
+
+
+            Debug.Log("1");
+            m_Mixer.SetFloat(MIXER_NORMAL, Mathf.Log10(masterLevel) * 20f);
+            m_Mixer.SetFloat(MIXER_SPECIAL, Mathf.Log10(masterLevel) * -80f);
+
+        }
+        else 
+        {
+            m_Mixer.SetFloat(MIXER_NORMAL, Mathf.Log10(masterLevel) * -80f);
+            m_Mixer.SetFloat(MIXER_SPECIAL, Mathf.Log10(masterLevel) * 20f);
+        }
+
+
+        foreach (var item in m_IndepandanteSource)
+        {
+            item.Play();
+        }
     }
 
-    void Start()
+
+
+
+    public void PlayAudioAt(SourceFrom sourceFrom, BiomeStat Biome, AudioSource source)
     {
+        int sourceFromInt = (int)sourceFrom;
+        int BiomeFromInt = (int)Biome;
         
+
+
+        List<AudioClipTranfert> audioclipList = new List<AudioClipTranfert>();
+
+        foreach (var item in ListAudioClipTranferts[sourceFromInt].ClipArray)
+        {
+            if (item.ClipBiome == Biome)
+            {
+                audioclipList.Add(item);
+            }
+        }
+
+        source.clip = audioclipList[UnityEngine.Random.Range(0, audioclipList.Count)].sound.audioClip;        
+
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateAmbianceAndMusics(BiomeStat Biome)
     {
-        
+        this.m_Biomecurrent = Biome;
     }
+
+
+
+
 }

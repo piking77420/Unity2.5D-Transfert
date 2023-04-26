@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CheckIsGround : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class CheckIsGround : MonoBehaviour
     [SerializeField]
     private LayerMask m_LayerMask;
 
+    [SerializeField]
+    public UnityEvent OnImpact;
+
     bool CheckCollsion(Collision collision)
     {
         for (int i = 0; i < collision.contacts.Length; i++)
@@ -35,7 +39,9 @@ public class CheckIsGround : MonoBehaviour
 
             if (getangle < DesiredAngle)
             {
-               
+
+                OnImpact.Invoke();
+
                 return true;
             }
         }

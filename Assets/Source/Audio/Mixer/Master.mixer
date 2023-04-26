@@ -450,7 +450,13 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 92e4d66b10a20be40a67984bd42780a9
+    name: MasterLevel
+  - guid: d939afccbdf31df4cb884a8558f26836
+    name: amb_corrupted
+  - guid: be74a5b123600bb49ad0aef87bc172ba
+    name: amb_irl
   m_AudioMixerGroupViews:
   - guids:
     - f6aa9848130648244a052db5a2dcc8d8
@@ -540,8 +546,9 @@ AudioMixerSnapshotController:
     9fa5ea172e79c3246ba9c7a93e066703: -5079
     d61a2af868016e9488239cfa42e8386c: 0
     1b28b16bfa12ee8448e4432600554c13: -0.6708204
-    92e4d66b10a20be40a67984bd42780a9: -11.944499
+    92e4d66b10a20be40a67984bd42780a9: -8.362404
     c086e5ac08430384b86fe1d6c86ffb1a: 0
+    d939afccbdf31df4cb884a8558f26836: -80
     9f7a3b8d77ac96d448938ed239f69ae0: 0
     90a84fbd52434d04cb412ceeb7113226: 0.0454
   m_TransitionOverrides: {}

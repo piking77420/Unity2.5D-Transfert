@@ -20,6 +20,7 @@ public class DimensionScriptPlayer : DimensionScript
     protected override void Awake()
     {
         m_PlayerStatus = GetComponent<PlayerStatus>();
+        AudioManagers.instance.currentPlayerDimension = CurrentDimension;
         base.Awake();
     }
 

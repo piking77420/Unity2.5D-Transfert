@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerSoundOutpout : MonoBehaviour
 {
     [SerializeField]
-    private AudioManagers.SourceFrom SoundSourceType;
+    public AudioManagers.SourceFrom SoundSourceType;
 
     [SerializeField]
     private PlayerMovement m_PlayerMovment;
@@ -21,36 +21,37 @@ public class PlayerSoundOutpout : MonoBehaviour
 
     private void Awake()
     {
-        m_PlayerJump= GetComponent<PlayerJump>();
-        m_PlayerMovment =  GetComponent<PlayerMovement>();
-        m_PlayerPushBox = GetComponent<PlayerPushBox>();
+        m_PlayerJump= GetComponentInParent<PlayerJump>();
+        m_PlayerMovment = GetComponentInParent<PlayerMovement>();
+        m_PlayerPushBox = GetComponentInParent<PlayerPushBox>();
 
     }
 
 
-    private void GetPlayerSoundState()
+    public void OnPlayerBox()
     {
-        /*
-       if(m_PlayerJump.IsJumping)
-       {
-            // Start Jump;  
-            //SoundSourceType = AudioManagers.SourceFrom.
-            return 
-       }*/
-
-        if(m_PlayerPushBox.m_CurrentBox != null) 
-        {
-            SoundSourceType = AudioManagers.SourceFrom.Box;
-            return;
-        }
-      
+        
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnPlayerJump()
     {
-        GetPlayerSoundState();
+
     }
 
+
+    public void OnPlayerRun()
+    {
+
+    }
+
+
+    public void OnPlayeWalk()
+    {
+
+    }
+
+
+
+ 
    
 }

@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class AudioClipTranfert 
-{
 
+[System.Serializable]
+public class AmbianceMusicClip 
+{
     public AudioSound sound;
 
-    public AudioManagers.BiomeStat ClipBiome;
+    public DimensionScript.Dimension Dimension;
 }
