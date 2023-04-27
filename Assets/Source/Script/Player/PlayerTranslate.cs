@@ -50,8 +50,12 @@ public class PlayerTranslate : TranSlate
 
     private void PlayAudio() 
     {
-        m_AudioSource.clip = m_AudioClip;
-        m_AudioSource.Play();
+        if (this.enabled == true) 
+        {
+            m_AudioSource.clip = m_AudioClip;
+            m_AudioSource.Play();
+        }
+        
     }
 
     public override void OnChangingDimension(InputAction.CallbackContext _context)
