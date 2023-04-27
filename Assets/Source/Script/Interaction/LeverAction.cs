@@ -22,10 +22,17 @@ public class LeverAction : MonoBehaviour
     [SerializeField, Tooltip("EVENT PLAY EACH FRAME")]
     public UnityEvent<float> OnAccomplish;
 
+    [SerializeField, Tooltip("EVENT PLAY EACH FRAME")]
+    public UnityEvent<float> OnNonAccomplish;
 
+    [Header("Audio")]
     [SerializeField]
     private AudioSource m_AudioSource;
-
+    [SerializeField]
+    private AudioClip m_AudioClip1;
+    [SerializeField]
+    private AudioClip m_AudioClip2;
+    [Space(2)]
 
     [SerializeField, Range(0, 10)]
     private float OpenDoorStreght;
@@ -48,8 +55,8 @@ public class LeverAction : MonoBehaviour
 
 
 
-
-    private float LeverReadValue;
+    [SerializeField]
+    public float m_LeverReadValue;
     public void OnQuit(InputAction.CallbackContext _callbackContext)
     {
         if (_callbackContext.performed)
@@ -62,6 +69,26 @@ public class LeverAction : MonoBehaviour
     }
 
 
+    private void PlaySound() 
+    {
+        int value  = Random.Range(0, 1);
+        if(value == 0) 
+        {
+            m_AudioSource.clip = m_AudioClip1;
+        }
+        else 
+        {
+            m_AudioSource.clip = m_AudioClip2;
+        }
+
+
+        if(!m_AudioSource.isPlaying) 
+        {
+            m_AudioSource.PlayOneShot(m_AudioSource.clip);
+        }
+    }
+
+
     public void OnleverAction(InputAction.CallbackContext _callbackContext)
     {
 
@@ -71,25 +98,32 @@ public class LeverAction : MonoBehaviour
         {
             case InputActionPhase.Started:
                 PlayerInAction = true;
+                IsAcomplish = false;
                 
-                m_AudioSource.Play();
                 break;
             case InputActionPhase.Performed:
 
                 float readValue = _callbackContext.ReadValue<float>();
-                if (readValue < 0f)
+                if (readValue <= 0f)
                 {
-                    LeverReadValue = -1f;
+                    m_LeverReadValue = -1f;
                 }
-                else if (readValue > 0f)
+                else if (readValue >= 0f)
                 {
-                    LeverReadValue = 1f;
+                    m_LeverReadValue = 1f;
                 }
+                else 
+                {
+                    m_LeverReadValue = 0;
+                    m_AudioSource.Stop();
 
+                }
+                PlayerInAction = true;
                 break;
             case InputActionPhase.Canceled:
+                m_LeverReadValue = 0;
                 PlayerInAction = false;
-                m_AudioSource.Stop();
+
                 break;
 
         }
@@ -118,7 +152,8 @@ public class LeverAction : MonoBehaviour
         if (PlayerInAction)
         {
 
-            m_LeverValueStatue += Time.fixedDeltaTime * LeverReadValue;
+            PlaySound();
+            m_LeverValueStatue += Time.deltaTime  * m_LeverReadValue;
         }
 
         if (m_LeverValueStatue > 1f)
@@ -141,37 +176,43 @@ public class LeverAction : MonoBehaviour
 
             return;
         }
+        
 
-        if (!PlayerInAction && !IsAcomplish && m_LeverValueStatue >= 0)
+
+        if (!PlayerInAction && !IsAcomplish && m_LeverValueStatue > 0)
         {
-            // m_Animator.SetFloat("Status", m_LeverValueStatue);
-
-            m_LeverValueStatue -= Time.deltaTime * DecreaseStreght;
-
+            m_LeverValueStatue -= Time.deltaTime;
+            OnNonAccomplish.Invoke(m_LeverValueStatue);
 
         }
     }
 
     private void CheckStatue()
     {
-        if (m_LeverValueStatue <= 1f)
+        if (m_LeverValueStatue >= 1f)
+        {
+            IsAcomplish = true;
+            return;
+        }
+
+        if (m_LeverValueStatue <= 1f && PlayerInAction)
         {
             OnAccomplish?.Invoke(m_LeverValueStatue);
         }
-        else
-        {
-            IsAcomplish = true;
-        }
+        
+
+        
     }
 
 
     // Update is called once per frame
-    private void FixedUpdate()
+    private void Update()
     {
+        CheckStatue();
+
         OpenDoor();
         CloseDoor();
 
-        CheckStatue();
         m_Animator.SetFloat("Status", m_LeverValueStatue);
     }
 

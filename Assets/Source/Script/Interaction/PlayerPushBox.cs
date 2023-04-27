@@ -112,7 +112,6 @@ public class PlayerPushBox : MonoBehaviour
         m_PhysicsMaterialBox = null;
         m_PlayerPhysicsMaterial.staticFriction = m_baseStaticFriction;
         m_PlayerPhysicsMaterial.dynamicFriction = m_baseDynamicFriction;
-        m_PlayerInput.SwitchCurrentActionMap("Gameplay");
     }
 
 
@@ -208,6 +207,8 @@ public class PlayerPushBox : MonoBehaviour
         m_ConfigurableJoint.angularXMotion = ConfigurableJointMotion.Free;
         m_ConfigurableJoint.angularYMotion = ConfigurableJointMotion.Free;
         m_ConfigurableJoint.angularZMotion = ConfigurableJointMotion.Limited;
+        m_PlayerInput.SwitchCurrentActionMap("Gameplay");
+
     }
 
     private void TakeBox()

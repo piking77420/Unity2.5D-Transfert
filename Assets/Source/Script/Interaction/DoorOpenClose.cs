@@ -30,7 +30,7 @@ public class DoorOpenClose : MonoBehaviour
     private bool IsOnAction;
 
 
-    private float m_leverCurrentValue;
+
 
     private void OnDrawGizmos()
     {
@@ -48,7 +48,9 @@ public class DoorOpenClose : MonoBehaviour
     {
 
         m_LeverAction = transform.parent.parent.GetComponentInChildren<LeverAction>();
-        m_LeverAction.OnAccomplish.AddListener(UpdateDoor);
+        m_LeverAction.OnAccomplish.AddListener(OpendDoor);
+        m_LeverAction.OnNonAccomplish.AddListener(CloseDoor);
+
         m_Source = GetComponent<AudioSource>();
 
     }
@@ -60,25 +62,60 @@ public class DoorOpenClose : MonoBehaviour
 
 
 
+    private void CloseDoor(float value) 
+    {
+        if(value == 0) 
+        {
+            return;
+        }
+
+        if(value > 0) 
+        {
+
+            this.transform.position = Vector3.Lerp(m_StartPos, m_StartPos + m_ReachPos, value);
+            Debug.Log("close");
+
+            if (!m_Source.isPlaying && m_LeverAction.m_LeverReadValue != 0)
+            {
+                Debug.Log("open");
+
+                m_Source.PlayOneShot(m_Source.clip);
+            }
+        }
+
+    }
 
 
-    private void UpdateDoor(float leverAction)
+
+
+    private void OpendDoor(float value)
     {
 
-        this.transform.position = Vector3.Lerp(m_StartPos, m_StartPos + m_ReachPos, m_leverCurrentValue);
-        
-        if(!m_Source.isPlaying || this.transform.position == m_StartPos)
-        m_Source.PlayOneShot(m_Source.clip);
+
+        if (value <= 1f)
+        {
+
+            this.transform.position = Vector3.Lerp(m_StartPos, m_StartPos + m_ReachPos, value);
+
+            if (!m_Source.isPlaying && m_LeverAction.m_LeverReadValue != 0)
+            {
+                m_Source.PlayOneShot(m_Source.clip);
+            }
+           
+
+
+        }
+
+
+
 
     }
 
 
     private void Update()
     {
-        if (!m_LeverAction.PlayerInAction) 
-        {
-          m_Source.Stop();
-        }            
+          if(m_LeverAction.m_LeverReadValue == 0)
+            m_Source.Stop();
     }
 
 

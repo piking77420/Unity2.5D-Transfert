@@ -25,7 +25,8 @@ public class AudioManagers : MonoBehaviour
         PlayerRun,
         PlayerFlight,
         PlayerVoice,
-        PlayerImpact
+        PlayerImpact,
+        FemaleEffort
 
     };
 
@@ -138,8 +139,7 @@ public class AudioManagers : MonoBehaviour
 
     public void SwapVolume() 
     {
-        Debug.Log("sdqd");
-
+    
         if (m_IndepandanteSource[(int)DimensionScript.Dimension.Normal].volume > m_IndepandanteSource[(int)DimensionScript.Dimension.Special].volume) 
         {
             m_IndepandanteSource[(int)DimensionScript.Dimension.Normal].volume = 0;
