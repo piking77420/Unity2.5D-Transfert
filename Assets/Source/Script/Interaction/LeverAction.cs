@@ -23,7 +23,8 @@ public class LeverAction : MonoBehaviour
     public UnityEvent<float> OnAccomplish;
 
 
-
+    [SerializeField]
+    private AudioSource m_AudioSource;
 
 
     [SerializeField, Range(0, 10)]
@@ -40,7 +41,7 @@ public class LeverAction : MonoBehaviour
     [SerializeField]
     public bool IsAcomplish;
     [SerializeField]
-    private bool PlayerInAction;
+    public bool PlayerInAction;
 
     [SerializeField]
     public bool IsObstruct;
@@ -54,6 +55,8 @@ public class LeverAction : MonoBehaviour
         if (_callbackContext.performed)
         {
             PlayerInAction = false;
+            m_AudioSource.Stop();
+
         }
 
     }
@@ -68,6 +71,8 @@ public class LeverAction : MonoBehaviour
         {
             case InputActionPhase.Started:
                 PlayerInAction = true;
+                
+                m_AudioSource.Play();
                 break;
             case InputActionPhase.Performed:
 
@@ -84,6 +89,7 @@ public class LeverAction : MonoBehaviour
                 break;
             case InputActionPhase.Canceled:
                 PlayerInAction = false;
+                m_AudioSource.Stop();
                 break;
 
         }
@@ -99,6 +105,7 @@ public class LeverAction : MonoBehaviour
     {
         m_LevierIntercation = GetComponent<LevierIntercation>();
         m_Animator = GetComponent<Animator>();
+        m_AudioSource = GetComponent<AudioSource>();
 
     }
 

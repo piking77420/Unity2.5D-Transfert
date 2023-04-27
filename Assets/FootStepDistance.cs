@@ -62,15 +62,14 @@ public class FootStepDistance : MonoBehaviour
 
             foreach (var coll in sphere)
             {
-                Debug.Log(coll.gameObject.name);
 
                 if (coll.gameObject.TryGetComponent<SoundEffect>(out SoundEffect effect))
-                {
+               {
                  return effect.m_BiomeStat;
-                }
+               }
             }
 
-        return BiomeStat.Village;
+        return BiomeStat.Interior;
 
       
    }

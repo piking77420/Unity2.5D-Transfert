@@ -108,7 +108,7 @@
                 {
                     "name": "Negative",
                     "id": "b4b5bcee-f691-453b-99e5-59fc5384051c",
-                    "path": "<XInputController>/leftStick/left",
+                    "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
