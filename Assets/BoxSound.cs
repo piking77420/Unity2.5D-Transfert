@@ -95,11 +95,17 @@ public class BoxSound : MonoBehaviour
 
     
 
-        if (rb.velocity.magnitude > 4 ) 
+        if (rb.velocity.magnitude > 2f ) 
         {
             if(!m_AudioSource.isPlaying)
             PlaySound(AudioManagers.SourceFrom.MoveBox_Move);
             return;
         }
+
+        if((rb.velocity.x < -1f && rb.velocity.x > 1f) && m_AudioSource.isPlaying ||joint.connectedBody == null)
+        {
+            m_AudioSource.Stop();
+        }
+
     }
 }

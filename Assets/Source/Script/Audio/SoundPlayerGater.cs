@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.LowLevel;
+using static AudioManagers;
 using static Unity.VisualScripting.Member;
 
 public class SoundPlayerGater : MonoBehaviour
@@ -77,6 +78,10 @@ public class SoundPlayerGater : MonoBehaviour
 
     private void OnplayerImpactGround() 
     {
+
+        if (m_IsGhost)
+            return;
+
         AudioManagers.SourceFrom Impact = AudioManagers.SourceFrom.PlayerImpact;
 
         AudioManagers.BiomeStat currentBiome = PlayerFoot[0].GetBiomeCollider();
@@ -88,5 +93,19 @@ public class SoundPlayerGater : MonoBehaviour
     }
 
 
+
+
+    private void OnPlayerEffort() 
+    {
+        if (m_IsGhost)
+            return;
+
+        AudioManagers.SourceFrom Source = AudioManagers.SourceFrom.FemaleEffort;
+
+        AudioManagers.BiomeStat currentBiome = BiomeStat.Interior;
+
+        AudioManagers.instance.PlayAudioAt(Source, currentBiome, m_PlayerAuduioSource[(int)PlayerSoundOutPut.PlayerImpact]);
+        m_PlayerAuduioSource[(int)PlayerSoundOutPut.PlayerImpact].PlayOneShot(m_PlayerAuduioSource[(int)PlayerSoundOutPut.PlayerImpact].clip);
+    }
 
 }
