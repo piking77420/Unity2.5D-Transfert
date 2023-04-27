@@ -17,7 +17,9 @@ public class AudioManagers : MonoBehaviour
     public enum SourceFrom
     {
         WalkPlayer,
-        Box,
+        MoveBox_Start,
+        MoveBox_Move,
+        MoveBox_End,
         Slime,
         TheEnemy,
         PlayerRun,
@@ -72,7 +74,9 @@ public class AudioManagers : MonoBehaviour
     [SerializeField]
     public DimensionScript.Dimension currentPlayerDimension;
 
-
+    [SerializeField]
+    public Animator m_Animator;
+    
     [SerializeField]
     private AudioSource[] m_IndepandanteSource;
 
@@ -136,17 +140,17 @@ public class AudioManagers : MonoBehaviour
     {
         Debug.Log("sdqd");
 
-        if (m_IndepandanteSource[(int)DimensionScript.Dimension.Normal].volume > 1f) 
+        if (m_IndepandanteSource[(int)DimensionScript.Dimension.Normal].volume > m_IndepandanteSource[(int)DimensionScript.Dimension.Special].volume) 
         {
             m_IndepandanteSource[(int)DimensionScript.Dimension.Normal].volume = 0;
-            m_IndepandanteSource[(int)DimensionScript.Dimension.Special].volume = 1f;
+            m_IndepandanteSource[(int)DimensionScript.Dimension.Special].volume = 1;
 
         }
         else 
         {
            
-                m_IndepandanteSource[(int)DimensionScript.Dimension.Normal].volume = 1f;
-                m_IndepandanteSource[(int)DimensionScript.Dimension.Special].volume = 0f;
+                m_IndepandanteSource[(int)DimensionScript.Dimension.Normal].volume = 1;
+                m_IndepandanteSource[(int)DimensionScript.Dimension.Special].volume = 0;
         }
 
 
@@ -156,8 +160,8 @@ public class AudioManagers : MonoBehaviour
     private void Awake()
     {
         m_IndepandanteSource = GetComponentsInChildren<AudioSource>();
-      
 
+        m_Animator = GetComponent<Animator>();
         if (this != instance)
         {
             instance = this;
@@ -195,7 +199,7 @@ public class AudioManagers : MonoBehaviour
 
 
         m_Mixer.GetFloat(MASTER_LEVEL, out float masterLevel );
-
+        /*
         if(currentPlayerDimension  == DimensionScript.Dimension.Normal) 
         {
 
@@ -209,7 +213,7 @@ public class AudioManagers : MonoBehaviour
         {
             m_Mixer.SetFloat(MIXER_NORMAL, Mathf.Log10(masterLevel) * -80f);
             m_Mixer.SetFloat(MIXER_SPECIAL, Mathf.Log10(masterLevel) * 20f);
-        }
+        }*/
 
 
         foreach (var item in m_IndepandanteSource)

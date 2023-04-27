@@ -17,6 +17,9 @@ public class PlayerTranslate : TranSlate
     [SerializeField]
     private PlayerGhostDetection m_PlayerGhost;
 
+    
+    
+    private AudioSource m_AudioSource;
 
     [SerializeField]
     private PlayerJump m_PlayerJump;
@@ -35,12 +38,21 @@ public class PlayerTranslate : TranSlate
     [SerializeField]
     private Renderer[] m_RenderersGhost;
 
+    [SerializeField]
+    private AudioClip m_AudioClip;
+
+
     private IEnumerator CoolDownTranslate() 
     {
         yield return new WaitForSeconds(CoolDownCanSTranslate);
         m_CanTranslate = true;
     }
 
+    private void PlayAudio() 
+    {
+        m_AudioSource.clip = m_AudioClip;
+        m_AudioSource.Play();
+    }
 
     public override void OnChangingDimension(InputAction.CallbackContext _context)
     {
@@ -49,12 +61,13 @@ public class PlayerTranslate : TranSlate
         if (_context.canceled && m_CanTranslate && m_PlayerGhost.IsCanPlayerTranslate())
         {
             m_Animator.SetTrigger("Translate");
-
+            PlayAudio();
             DimensionScript.Dimension current = CurrentObjectDimension.CurrentDimension;
 
             m_Animator.SetInteger("Dimension", (int)current);
             m_CanTranslate = false;
             StartCoroutine(CoolDownTranslate());
+
 
         }
 
@@ -62,12 +75,25 @@ public class PlayerTranslate : TranSlate
 
 
 
+    private void SwapSound(DimensionScript.Dimension dimension) 
+    {
+        if(dimension == DimensionScript.Dimension.Normal) 
+        {
+            AudioManagers.instance.m_Animator.SetTrigger("TransfertIn");
+        }
+        else
+        {
+            AudioManagers.instance.m_Animator.SetTrigger("TransfertOut");
+
+        }
+    }
+
 
 
     public override void StartTranslation()
     {
         m_Rigidbody.velocity = Vector3.zero;
-  
+        SwapSound(CurrentObjectDimension.CurrentDimension);
 
         if(rbStatus == false) 
         {
@@ -143,6 +169,7 @@ public class PlayerTranslate : TranSlate
         m_PlayerJump = GetComponent<PlayerJump>();
         m_Renderers = transform.GetChild(0).GetComponentsInChildren<SkinnedMeshRenderer>();
         m_RenderersGhost = transform.GetChild(1).GetComponentsInChildren<SkinnedMeshRenderer>();
+        m_AudioSource = GetComponent<AudioSource>();
 
     }
 }

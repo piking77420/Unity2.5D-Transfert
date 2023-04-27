@@ -155,7 +155,6 @@ public class PlayerPushBox : MonoBehaviour
 
         if (Vector3.Distance(Playerpos, @object.transform.position) < m_RangeBetweenPlayerAndBox)
         {
-
             m_CurrentBox = @object.gameObject;
             m_BoxRb = m_CurrentBox.GetComponentInParent<Rigidbody>();
             m_PhysicsMaterialBox = @object.GetComponent<Collider>().material;
@@ -246,49 +245,28 @@ public class PlayerPushBox : MonoBehaviour
             // get Vector From box dPLayer 
 
             Vector3 dir = (boxPos - playerPos);
-            dir.Set(dir.x, m_CurrentBox.transform.position.y, dir.z);
+            dir.Set(dir.x, 0, dir.z);
 
             Ray r = new Ray(playerPos, dir);
 
-     
+
             if (Physics.Raycast(r, out RaycastHit hit, m_RangeBetweenPlayerAndBox, m_LayerMask) && hit.rigidbody == m_BoxRb)
             {
-
-
                 m_PlayerMovement._Speed = PlayerVelocityOnPushBox * PlayerVelocityMultiplicator;
                 TakeBox();
-
             }
             else
             {
                 DropBox();
                 m_CurrentBox = null;
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
-
-
-
-
     }
 }
 
 
- 
+
+
 
 
 
