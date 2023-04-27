@@ -29,6 +29,9 @@ public class DoorOpenClose : MonoBehaviour
 
     private bool IsOnAction;
 
+
+    private float m_leverCurrentValue;
+
     private void OnDrawGizmos()
     {
         if (m_ShowGizmo)
@@ -61,9 +64,10 @@ public class DoorOpenClose : MonoBehaviour
 
     private void UpdateDoor(float leverAction)
     {
-        this.transform.position = Vector3.Lerp(m_StartPos, m_StartPos + m_ReachPos, leverAction);
+
+        this.transform.position = Vector3.Lerp(m_StartPos, m_StartPos + m_ReachPos, m_leverCurrentValue);
         
-        if(!m_Source.isPlaying)
+        if(!m_Source.isPlaying || this.transform.position == m_StartPos)
         m_Source.PlayOneShot(m_Source.clip);
 
     }
@@ -73,7 +77,7 @@ public class DoorOpenClose : MonoBehaviour
     {
         if (!m_LeverAction.PlayerInAction) 
         {
-            m_Source.Stop();
+          m_Source.Stop();
         }            
     }
 
