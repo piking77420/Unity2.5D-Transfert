@@ -60,6 +60,9 @@ public class PlayerDragObject : MonoBehaviour
     private bool m_ShowRadius;
 
 
+    [SerializeField]
+    public bool IsLearned;
+
     private bool IsObjectSameDimenSionHasPlayer(SelectableObject @object) 
     {
         @object.gameObject.TryGetComponent<DimensionScript>(out DimensionScript script);
@@ -118,7 +121,7 @@ public class PlayerDragObject : MonoBehaviour
     private void GetPlayerRadius(InputAction.CallbackContext _context) 
     {
         
-        if(m_IsGround.isGrounded)   
+        if(m_IsGround.isGrounded && IsLearned)   
         switch (_context.phase)
         {
             case InputActionPhase.Started:

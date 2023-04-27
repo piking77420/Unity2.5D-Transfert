@@ -6,68 +6,61 @@ using UnityEngine;
 
 public class PlayerLearningSkill : MonoBehaviour
 {
-    private enum PlayerSkill 
+    public enum PlayerSkill
     {
-        Translate , DragObject , ThroWEnemy,
+        Translate, DragObject, ThroWEnemy,
 
     }
-    [SerializeField]
-    private PlayerSkill m_SkillToLearn;
 
-    [SerializeField,Range(0,5)]
-    private float m_LearningRadius;
+    private LearningEffect LearnignEffect;
 
+    private PlayerTranslate m_PlayerTranslate;
 
-    [SerializeField]
-    private bool m_ShowGizmo;
+    private PlayerThrowEnemy m_PlayerThrowEnemy;
 
+    private PlayerDragObject m_PlayerDragObject;
 
-
-    [SerializeField]
-    private GameObject m_LearnignEffect;
-
-    private void OnDrawGizmos()
+    private void Awake()
     {
-        if (m_ShowGizmo) 
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(this.transform.position, m_LearningRadius);
+        m_PlayerTranslate = GetComponentInParent<PlayerTranslate>();
+        m_PlayerThrowEnemy = GetComponentInParent<PlayerThrowEnemy>();
+        m_PlayerDragObject = GetComponentInParent<PlayerDragObject>();
+        LearnignEffect = GetComponentInChildren<LearningEffect>();
 
-        }
     }
 
-    private void LearnSkill(PlayerSkill skillToLearn,Collider coll) 
+
+    private void SpawnEffect() 
+    {
+        StartCoroutine(LearnignEffect.SpawnEffect());
+    }
+
+    public void LearnSkill(PlayerSkill skillToLearn) 
     {
 
         if(skillToLearn == PlayerSkill.Translate) 
         {
-            if (coll.gameObject.TryGetComponent<PlayerTranslate>(out PlayerTranslate playerTranslate)) 
-            {
-                playerTranslate.enabled = true;
-            }
+            SpawnEffect();
+            m_PlayerTranslate.ISLearned = true;
+            
         }
         else if (skillToLearn == PlayerSkill.DragObject) 
         {
-            if (coll.gameObject.TryGetComponent<PlayerDragObject>(out PlayerDragObject playerDragObject))
-            {
-                playerDragObject.enabled = true;
-            }
+            SpawnEffect();
+            m_PlayerThrowEnemy.IsLearned = true;
         }
-
         else if (skillToLearn == PlayerSkill.ThroWEnemy)
         {
-            if (coll.gameObject.TryGetComponent<PlayerThrowEnemy>(out PlayerThrowEnemy playerThrowEnemy))
-            {
-                playerThrowEnemy.enabled = true;
-            }
+            SpawnEffect();
+            m_PlayerDragObject.IsLearned = true;
         }
 
-     
 
 
 
 
 
+        Destroy(this.gameObject.GetComponent<PlayerLearningSkill>());  
     }
 
 
@@ -75,17 +68,6 @@ public class PlayerLearningSkill : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Collider[] coll = Physics.OverlapSphere(this.transform.position, m_LearningRadius);
-
-
-        foreach (var item in coll)
-        {
-            if(item.TryGetComponent<PlayerGraphicUpdate>(out PlayerGraphicUpdate graphicUpdate)) 
-            {
-                LearnSkill(m_SkillToLearn, item);
-                Instantiate(m_LearnignEffect, graphicUpdate.transform);
-                
-            }
-        }
+    
     }
 }

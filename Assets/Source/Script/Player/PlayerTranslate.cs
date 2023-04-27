@@ -41,6 +41,8 @@ public class PlayerTranslate : TranSlate
     [SerializeField]
     private AudioClip m_AudioClip;
 
+    public bool ISLearned;
+
 
     private IEnumerator CoolDownTranslate() 
     {
@@ -62,7 +64,7 @@ public class PlayerTranslate : TranSlate
     {
 
 
-        if (_context.canceled && m_CanTranslate && m_PlayerGhost.IsCanPlayerTranslate())
+        if (_context.canceled && m_CanTranslate && m_PlayerGhost.IsCanPlayerTranslate() && ISLearned)
         {
             m_Animator.SetTrigger("Translate");
             PlayAudio();
