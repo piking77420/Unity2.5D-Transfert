@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30166
+  m_Name: pb_Mesh36060
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1244,7 +1244,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30504
+  m_Name: pb_Mesh36426
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1414,6 +1414,7 @@ GameObject:
   - component: {fileID: 100254122}
   - component: {fileID: 100254121}
   - component: {fileID: 100254120}
+  - component: {fileID: 100254123}
   m_Layer: 0
   m_Name: Village (2)
   m_TagString: Untagged
@@ -1456,7 +1457,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100254118}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1499,6 +1500,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100254118}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &100254123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100254118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 1
 --- !u!1 &116221183
 GameObject:
   m_ObjectHideFlags: 0
@@ -4306,6 +4320,7 @@ GameObject:
   - component: {fileID: 170348038}
   - component: {fileID: 170348037}
   - component: {fileID: 170348036}
+  - component: {fileID: 170348039}
   m_Layer: 0
   m_Name: Interior (11)
   m_TagString: Untagged
@@ -4348,7 +4363,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170348034}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -4391,6 +4406,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170348034}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &170348039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170348034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 0
 --- !u!1 &170367674
 GameObject:
   m_ObjectHideFlags: 0
@@ -4923,7 +4951,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30746
+  m_Name: pb_Mesh36732
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10343,7 +10371,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30236
+  m_Name: pb_Mesh36132
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13982,7 +14010,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-385748
+  m_Name: pb_Mesh36538
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14146,7 +14174,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-387164
+  m_Name: pb_Mesh36154
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14425,7 +14453,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-30194
+  m_Name: pb_Mesh35868
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17656,7 +17684,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-325262
+  m_Name: pb_Mesh36566
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17884,7 +17912,7 @@ MonoBehaviour:
   minGrowCoef: 4.5
   maxGrowCoef: 6.5
   newLegCooldown: 0.3
-  velocity: {x: -0.67546904, y: 0, z: 0.00360447}
+  velocity: {x: 0.30529535, y: 0, z: 0.10853403}
 --- !u!4 &560210981
 Transform:
   m_ObjectHideFlags: 0
@@ -18028,7 +18056,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30436
+  m_Name: pb_Mesh36356
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18295,6 +18323,7 @@ GameObject:
   - component: {fileID: 728257451}
   - component: {fileID: 728257450}
   - component: {fileID: 728257449}
+  - component: {fileID: 728257452}
   m_Layer: 0
   m_Name: Village (4)
   m_TagString: Untagged
@@ -18337,7 +18366,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728257447}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -18380,6 +18409,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728257447}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &728257452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728257447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 1
 --- !u!1 &738829337
 GameObject:
   m_ObjectHideFlags: 0
@@ -31596,6 +31638,7 @@ GameObject:
   - component: {fileID: 800582356}
   - component: {fileID: 800582355}
   - component: {fileID: 800582354}
+  - component: {fileID: 800582357}
   m_Layer: 0
   m_Name: Village (1)
   m_TagString: Untagged
@@ -31638,7 +31681,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800582352}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -31681,13 +31724,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800582352}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &800582357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800582352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 1
 --- !u!43 &801433926
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30048
+  m_Name: pb_Mesh35906
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -33620,7 +33676,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30560
+  m_Name: pb_Mesh36494
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -33790,6 +33846,7 @@ GameObject:
   - component: {fileID: 892094869}
   - component: {fileID: 892094868}
   - component: {fileID: 892094867}
+  - component: {fileID: 892094870}
   m_Layer: 0
   m_Name: Interior (3)
   m_TagString: Untagged
@@ -33832,7 +33889,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 892094865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -33875,6 +33932,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 892094865}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &892094870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892094865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 0
 --- !u!1 &896587627
 GameObject:
   m_ObjectHideFlags: 0
@@ -33887,6 +33957,7 @@ GameObject:
   - component: {fileID: 896587631}
   - component: {fileID: 896587630}
   - component: {fileID: 896587629}
+  - component: {fileID: 896587632}
   m_Layer: 0
   m_Name: Interior (10)
   m_TagString: Untagged
@@ -33929,7 +34000,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896587627}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -33972,6 +34043,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896587627}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &896587632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896587627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 0
 --- !u!1 &896651846
 GameObject:
   m_ObjectHideFlags: 0
@@ -36018,7 +36102,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30518
+  m_Name: pb_Mesh36440
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -36658,6 +36742,7 @@ GameObject:
   - component: {fileID: 956724826}
   - component: {fileID: 956724825}
   - component: {fileID: 956724824}
+  - component: {fileID: 956724827}
   m_Layer: 0
   m_Name: Village (10)
   m_TagString: Untagged
@@ -36700,7 +36785,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 956724822}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -36743,13 +36828,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 956724822}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &956724827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956724822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 1
 --- !u!43 &973162673
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30760
+  m_Name: pb_Mesh36746
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -36919,6 +37017,7 @@ GameObject:
   - component: {fileID: 990335635}
   - component: {fileID: 990335634}
   - component: {fileID: 990335633}
+  - component: {fileID: 990335636}
   m_Layer: 0
   m_Name: Village (11)
   m_TagString: Untagged
@@ -36961,7 +37060,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 990335631}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -37004,6 +37103,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 990335631}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &990335636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990335631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 1
 --- !u!1 &996344224
 GameObject:
   m_ObjectHideFlags: 0
@@ -37493,6 +37605,7 @@ GameObject:
   - component: {fileID: 1051706345}
   - component: {fileID: 1051706344}
   - component: {fileID: 1051706343}
+  - component: {fileID: 1051706346}
   m_Layer: 0
   m_Name: Village (3)
   m_TagString: Untagged
@@ -37535,7 +37648,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051706341}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -37578,6 +37691,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051706341}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1051706346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051706341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 1
 --- !u!1001 &1051961810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38295,6 +38421,7 @@ GameObject:
   - component: {fileID: 1060763141}
   - component: {fileID: 1060763140}
   - component: {fileID: 1060763139}
+  - component: {fileID: 1060763142}
   m_Layer: 0
   m_Name: Village (6)
   m_TagString: Untagged
@@ -38337,7 +38464,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060763137}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -38380,13 +38507,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060763137}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1060763142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060763137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 1
 --- !u!43 &1072192422
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30574
+  m_Name: pb_Mesh36508
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -38671,6 +38811,7 @@ GameObject:
   - component: {fileID: 1116608179}
   - component: {fileID: 1116608178}
   - component: {fileID: 1116608177}
+  - component: {fileID: 1116608180}
   m_Layer: 0
   m_Name: Village (5)
   m_TagString: Untagged
@@ -38713,7 +38854,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1116608175}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -38756,6 +38897,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1116608175}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1116608180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116608175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 1
 --- !u!1001 &1118521633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39017,7 +39171,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30112
+  m_Name: pb_Mesh35984
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -39181,7 +39335,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-150414
+  m_Name: pb_Mesh35970
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -39351,6 +39505,7 @@ GameObject:
   - component: {fileID: 1159174708}
   - component: {fileID: 1159174707}
   - component: {fileID: 1159174706}
+  - component: {fileID: 1159174709}
   m_Layer: 0
   m_Name: Village (7)
   m_TagString: Untagged
@@ -39393,7 +39548,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1159174704}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -39436,6 +39591,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1159174704}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1159174709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159174704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 1
 --- !u!1 &1184240026
 GameObject:
   m_ObjectHideFlags: 0
@@ -47427,7 +47595,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-178434
+  m_Name: pb_Mesh36598
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -47597,6 +47765,7 @@ GameObject:
   - component: {fileID: 1212360365}
   - component: {fileID: 1212360364}
   - component: {fileID: 1212360363}
+  - component: {fileID: 1212360366}
   m_Layer: 0
   m_Name: Village (8)
   m_TagString: Untagged
@@ -47639,7 +47808,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212360361}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -47682,6 +47851,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212360361}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1212360366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212360361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 1
 --- !u!1 &1221925030
 GameObject:
   m_ObjectHideFlags: 0
@@ -47694,6 +47876,7 @@ GameObject:
   - component: {fileID: 1221925034}
   - component: {fileID: 1221925033}
   - component: {fileID: 1221925032}
+  - component: {fileID: 1221925035}
   m_Layer: 0
   m_Name: Interior (12)
   m_TagString: Untagged
@@ -47736,7 +47919,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1221925030}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -47779,6 +47962,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1221925030}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1221925035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221925030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 0
 --- !u!1 &1247553316
 GameObject:
   m_ObjectHideFlags: 0
@@ -47901,13 +48097,14 @@ GameObject:
   - component: {fileID: 1277252942}
   - component: {fileID: 1277252941}
   - component: {fileID: 1277252940}
+  - component: {fileID: 1277252943}
   m_Layer: 0
   m_Name: Village (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1277252939
 Transform:
   m_ObjectHideFlags: 0
@@ -47943,7 +48140,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277252938}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -47986,6 +48183,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277252938}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1277252943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277252938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 1
 --- !u!1 &1285615968
 GameObject:
   m_ObjectHideFlags: 0
@@ -53493,6 +53703,7 @@ GameObject:
   - component: {fileID: 1359277142}
   - component: {fileID: 1359277141}
   - component: {fileID: 1359277140}
+  - component: {fileID: 1359277143}
   m_Layer: 0
   m_Name: Village (9)
   m_TagString: Untagged
@@ -53535,7 +53746,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1359277138}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -53578,13 +53789,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1359277138}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1359277143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359277138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 1
 --- !u!43 &1420016083
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30086
+  m_Name: pb_Mesh35944
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -53748,7 +53972,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29974
+  m_Name: pb_Mesh35816
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -55457,6 +55681,7 @@ GameObject:
   - component: {fileID: 1471367936}
   - component: {fileID: 1471367935}
   - component: {fileID: 1471367934}
+  - component: {fileID: 1471367937}
   m_Layer: 0
   m_Name: Interior
   m_TagString: Untagged
@@ -55499,7 +55724,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471367932}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -55542,6 +55767,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471367932}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1471367937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471367932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 0
 --- !u!1 &1474771061
 GameObject:
   m_ObjectHideFlags: 0
@@ -56618,6 +56856,7 @@ GameObject:
   - component: {fileID: 1483224777}
   - component: {fileID: 1483224776}
   - component: {fileID: 1483224775}
+  - component: {fileID: 1483224778}
   m_Layer: 0
   m_Name: Interior (7)
   m_TagString: Untagged
@@ -56660,7 +56899,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1483224773}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -56703,6 +56942,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1483224773}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1483224778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483224773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 0
 --- !u!1 &1509594221
 GameObject:
   m_ObjectHideFlags: 0
@@ -56715,6 +56967,7 @@ GameObject:
   - component: {fileID: 1509594225}
   - component: {fileID: 1509594224}
   - component: {fileID: 1509594223}
+  - component: {fileID: 1509594226}
   m_Layer: 0
   m_Name: Interior (6)
   m_TagString: Untagged
@@ -56757,7 +57010,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1509594221}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -56800,6 +57053,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1509594221}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1509594226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509594221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 0
 --- !u!1 &1536241973
 GameObject:
   m_ObjectHideFlags: 0
@@ -56812,6 +57078,7 @@ GameObject:
   - component: {fileID: 1536241977}
   - component: {fileID: 1536241976}
   - component: {fileID: 1536241975}
+  - component: {fileID: 1536241978}
   m_Layer: 0
   m_Name: Interior (2)
   m_TagString: Untagged
@@ -56854,7 +57121,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536241973}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -56897,13 +57164,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536241973}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1536241978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536241973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 0
 --- !u!43 &1538642631
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30152
+  m_Name: pb_Mesh36046
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -57073,6 +57353,7 @@ GameObject:
   - component: {fileID: 1542942053}
   - component: {fileID: 1542942052}
   - component: {fileID: 1542942051}
+  - component: {fileID: 1542942054}
   m_Layer: 0
   m_Name: Interior (9)
   m_TagString: Untagged
@@ -57115,7 +57396,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542942049}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -57158,6 +57439,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542942049}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1542942054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542942049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 0
 --- !u!1 &1571319381
 GameObject:
   m_ObjectHideFlags: 0
@@ -57170,6 +57464,7 @@ GameObject:
   - component: {fileID: 1571319385}
   - component: {fileID: 1571319384}
   - component: {fileID: 1571319383}
+  - component: {fileID: 1571319386}
   m_Layer: 0
   m_Name: Interior (4)
   m_TagString: Untagged
@@ -57212,7 +57507,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571319381}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -57255,13 +57550,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571319381}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1571319386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571319381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 0
 --- !u!43 &1584393872
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-428042
+  m_Name: pb_Mesh36186
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -57643,6 +57951,7 @@ GameObject:
   - component: {fileID: 1619192561}
   - component: {fileID: 1619192560}
   - component: {fileID: 1619192559}
+  - component: {fileID: 1619192562}
   m_Layer: 0
   m_Name: Interior (5)
   m_TagString: Untagged
@@ -57685,7 +57994,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1619192557}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -57728,13 +58037,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1619192557}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1619192562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619192557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 0
 --- !u!43 &1626245262
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30722
+  m_Name: pb_Mesh36698
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -57898,7 +58220,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30222
+  m_Name: pb_Mesh36118
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -58521,7 +58843,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30128
+  m_Name: pb_Mesh36008
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -58685,7 +59007,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30072
+  m_Name: pb_Mesh35930
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -61303,7 +61625,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30588
+  m_Name: pb_Mesh36522
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -61588,6 +61910,7 @@ GameObject:
   - component: {fileID: 1771601802}
   - component: {fileID: 1771601801}
   - component: {fileID: 1771601800}
+  - component: {fileID: 1771601803}
   m_Layer: 0
   m_Name: Interior (1)
   m_TagString: Untagged
@@ -61630,7 +61953,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1771601798}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -61673,6 +61996,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1771601798}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1771601803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771601798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 0
 --- !u!1 &1796243267
 GameObject:
   m_ObjectHideFlags: 0
@@ -61685,6 +62021,7 @@ GameObject:
   - component: {fileID: 1796243271}
   - component: {fileID: 1796243270}
   - component: {fileID: 1796243269}
+  - component: {fileID: 1796243272}
   m_Layer: 0
   m_Name: Interior (8)
   m_TagString: Untagged
@@ -61727,7 +62064,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1796243267}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -61770,6 +62107,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1796243267}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1796243272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796243267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 0
 --- !u!1 &1813200483
 GameObject:
   m_ObjectHideFlags: 0
@@ -62012,6 +62362,7 @@ GameObject:
   - component: {fileID: 1840020148}
   - component: {fileID: 1840020147}
   - component: {fileID: 1840020146}
+  - component: {fileID: 1840020149}
   m_Layer: 0
   m_Name: Interior (13)
   m_TagString: Untagged
@@ -62054,7 +62405,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840020144}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -62097,6 +62448,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840020144}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1840020149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840020144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 0
 --- !u!1 &1873414221
 GameObject:
   m_ObjectHideFlags: 0
@@ -62109,6 +62473,7 @@ GameObject:
   - component: {fileID: 1873414225}
   - component: {fileID: 1873414224}
   - component: {fileID: 1873414223}
+  - component: {fileID: 1873414226}
   m_Layer: 0
   m_Name: Village (12)
   m_TagString: Untagged
@@ -62194,6 +62559,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1873414221}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1873414226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873414221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 1
 --- !u!1 &1875358760
 GameObject:
   m_ObjectHideFlags: 0
@@ -62206,6 +62584,7 @@ GameObject:
   - component: {fileID: 1875358764}
   - component: {fileID: 1875358763}
   - component: {fileID: 1875358762}
+  - component: {fileID: 1875358765}
   m_Layer: 0
   m_Name: Village
   m_TagString: Untagged
@@ -62248,7 +62627,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875358760}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -62291,6 +62670,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875358760}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1875358765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875358760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 1
 --- !u!1001 &1927468655
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62834,6 +63226,7 @@ GameObject:
   - component: {fileID: 2088977770}
   - component: {fileID: 2088977769}
   - component: {fileID: 2088977768}
+  - component: {fileID: 2088977771}
   m_Layer: 0
   m_Name: Interior (14)
   m_TagString: Untagged
@@ -62919,13 +63312,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2088977766}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2088977771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088977766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eebf1366f0fb6b42b0c18012a36b123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BiomeStat: 0
 --- !u!43 &2089401888
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30300
+  m_Name: pb_Mesh36222
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

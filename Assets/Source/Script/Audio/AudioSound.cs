@@ -5,30 +5,18 @@ using UnityEngine;
 [System.Serializable]
 public class AudioSound 
 {
-    public string audioName;
 
-    public AudioSource source;
+    public AudioClip audioClip;    
 
-    public AudioClip clip;
-
+    [Range(0,2)]
     public float volume;
 
+    [Range(0, 2)]
     public float pitch;
 
+    [Range(0, 2)]
     public float roll;
 
+    [Range(0, 2)]
     public float duration;
-
-   
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
