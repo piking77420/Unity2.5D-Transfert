@@ -52,6 +52,10 @@ public class PlayerThrowEnemy : MonoBehaviour
 
     private Vector3 aimpos;
 
+
+    [SerializeField]
+    public bool IsLearned;
+
     private void OnDrawGizmos()
     {
         
@@ -108,7 +112,7 @@ public class PlayerThrowEnemy : MonoBehaviour
 
     public void GetEnemy(InteractableObject interactableObject) 
     {
-        if(interactableObject is EnemyPickable && TimerToThrow == TimerToThrowCooldown) 
+        if(interactableObject is EnemyPickable && TimerToThrow == TimerToThrowCooldown && IsLearned) 
         {
             EnemyTaken = interactableObject.gameObject;
             EnemyIsTaken(EnemyTaken.transform.parent.GetComponent<Rigidbody>());

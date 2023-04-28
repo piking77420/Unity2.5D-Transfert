@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using static UnityEditor.Progress;
+using static DimensionScript.Dimension;
 
 public class AudioManagers : MonoBehaviour
 {
@@ -45,17 +46,12 @@ public class AudioManagers : MonoBehaviour
 
     private enum IndependantSource 
     {
-        Ambiance,Clip
+        Ambiance,Clip,LifeBar
 
     }
 
- 
-    private enum AudioManagerAudioSoure 
-    {
-        AmbianceNormal , 
-        AmbianceCorr,
-        Music
-    }
+
+  
 
 
     // ambiance dimension et biome
@@ -102,15 +98,9 @@ public class AudioManagers : MonoBehaviour
     const string MASTER_LEVEL = "MasterLevel";
 
 
-    public enum MixerStateOnChange
-    {   LowerNormal,
-        UpperNormal,
-    }
-
     private bool SwapValueMixer;
     public bool GetMixerState;
 
-    public MixerStateOnChange StateMixer;
 
     private List<SourceClipArray> GetClip(Transform child) 
     {
@@ -137,9 +127,26 @@ public class AudioManagers : MonoBehaviour
     }
 
 
-    public void SwapVolume() 
+    private void LifeBarCheck(DimensionScript.Dimension dimensionPlayer) 
     {
-    
+        if(dimensionPlayer == DimensionScript.Dimension.Normal) 
+        {
+            m_IndepandanteSource[(int)IndependantSource.LifeBar].Stop();
+        }
+        else 
+        {
+            m_IndepandanteSource[(int)IndependantSource.LifeBar].Play();
+        }
+    }
+
+
+    public void SwapVolume(int dimensionValue) 
+    {
+        DimensionScript.Dimension dimensionPlayer = (DimensionScript.Dimension)dimensionValue;
+
+        LifeBarCheck(dimensionPlayer);
+
+
         if (m_IndepandanteSource[(int)DimensionScript.Dimension.Normal].volume > m_IndepandanteSource[(int)DimensionScript.Dimension.Special].volume) 
         {
             m_IndepandanteSource[(int)DimensionScript.Dimension.Normal].volume = 0;
@@ -153,7 +160,7 @@ public class AudioManagers : MonoBehaviour
                 m_IndepandanteSource[(int)DimensionScript.Dimension.Special].volume = 0;
         }
 
-
+        
     }
 
 
@@ -170,9 +177,9 @@ public class AudioManagers : MonoBehaviour
         // ListAudioClipTranferts.AddRange(transform.GetComponentsInChildren<SourceClipArray>());
 
        ListAudioClipTranferts = GetClip(transform.GetChild((int)IndependantSource.Clip));
-        ListAudioAmbianceTranferts = GetAmbianceAndMusic(transform.GetChild((int)IndependantSource.Ambiance));
+       ListAudioAmbianceTranferts = GetAmbianceAndMusic(transform.GetChild((int)IndependantSource.Ambiance));
 
-    
+
 
         UpdateAmbianceAndMusics();
 

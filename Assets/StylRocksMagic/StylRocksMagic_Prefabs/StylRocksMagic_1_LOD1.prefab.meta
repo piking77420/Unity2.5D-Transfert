@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/StylRocksMagic/StylRocksMagic_Prefabs/StylRocksMagic_1_LOD1.prefab.meta
 guid: 82b6ef6930b6d6942a4c61f7fa80ee69
 PrefabImporter:
+=======
+guid: d00dc9efaddc3b74994d6a807f212152
+DefaultImporter:
+>>>>>>> fccb5173194845de7d7e21eb5de8f0ad56a263e5:Assets/Scenes/GabrielScene/GabrielScene.unity.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

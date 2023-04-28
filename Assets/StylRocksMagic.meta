@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/StylRocksMagic.meta
 guid: a5b742c6628a26344b00af2a18c11de0
+=======
+guid: 4ec54a6d3de81a54e8c723dee50d031a
+>>>>>>> fccb5173194845de7d7e21eb5de8f0ad56a263e5:Assets/Scenes/GabrielScene/GabrielScene.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using static PlayerLearningSkill;
 
 
 
@@ -19,7 +19,7 @@ public class PlayerTranslate : TranSlate
 
     
     
-    private AudioSource m_AudioSource;
+
 
     [SerializeField]
     private PlayerJump m_PlayerJump;
@@ -38,8 +38,17 @@ public class PlayerTranslate : TranSlate
     [SerializeField]
     private Renderer[] m_RenderersGhost;
 
+    [Header("AudioSource")]
+
     [SerializeField]
     private AudioClip m_AudioClip;
+    [SerializeField]
+    private AudioSource[] m_AudioSource;
+
+
+
+    [Space,Tooltip("If player has learn this skill")]
+    public bool ISLearned;
 
 
     private IEnumerator CoolDownTranslate() 
@@ -52,8 +61,8 @@ public class PlayerTranslate : TranSlate
     {
         if (this.enabled == true) 
         {
-            m_AudioSource.clip = m_AudioClip;
-            m_AudioSource.Play();
+            m_AudioSource[(int)PlayerSkill.Translate].clip = m_AudioClip;
+            m_AudioSource[(int)PlayerSkill.Translate].Play();
         }
         
     }
@@ -62,7 +71,7 @@ public class PlayerTranslate : TranSlate
     {
 
 
-        if (_context.canceled && m_CanTranslate && m_PlayerGhost.IsCanPlayerTranslate())
+        if (_context.canceled && m_CanTranslate && m_PlayerGhost.IsCanPlayerTranslate() && ISLearned)
         {
             m_Animator.SetTrigger("Translate");
             PlayAudio();
@@ -173,7 +182,7 @@ public class PlayerTranslate : TranSlate
         m_PlayerJump = GetComponent<PlayerJump>();
         m_Renderers = transform.GetChild(0).GetComponentsInChildren<SkinnedMeshRenderer>();
         m_RenderersGhost = transform.GetChild(1).GetComponentsInChildren<SkinnedMeshRenderer>();
-        m_AudioSource = GetComponent<AudioSource>();
+        m_AudioSource = GetComponents<AudioSource>();
 
     }
 }

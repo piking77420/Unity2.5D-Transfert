@@ -8,6 +8,13 @@ public class EnemyThrowedBehaviour : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    private enum SlimeSound 
+    {
+        BeTaken,
+        Throwed
+    }
+
+
     [Header("Dependencies")]
     [SerializeField]
     private Animator m_Animator;
@@ -23,9 +30,18 @@ public class EnemyThrowedBehaviour : MonoBehaviour
     [SerializeField,Tooltip("Timer for destroy enemie while staying throwed for too long"),Range(0,10)]
     private float TimerForEnemyDie;
 
-
+    
     private float m_MaxTimerForEnemyDie;
 
+    /*
+
+    [Header("AudioPart")]
+    [SerializeField]
+    private AudioSource m_AudioSource;
+
+    private AudioClip[] m_AudioClip;
+
+    */
     private void OnTriggerEnter()
     {
         if (Is_Throwed) 
@@ -41,11 +57,15 @@ public class EnemyThrowedBehaviour : MonoBehaviour
 
 
 
+
+
+
     private void Awake()
     {
         m_Animator = GetComponentInParent<Animator>();
         m_rb = GetComponentInParent<Rigidbody>();
         m_MaxTimerForEnemyDie = TimerForEnemyDie;
+       // m_AudioClip = GetComponents<AudioClip>();
     }
 
     void Start()
