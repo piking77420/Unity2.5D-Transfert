@@ -4850,7 +4850,7 @@ PrefabInstance:
     - target: {fileID: 4725785867421509300, guid: a9f60f53fe6e5c0439a6779b9d7d1d2d,
         type: 3}
       propertyPath: m_ListOfWaypoint.Array.data[1].x
-      value: 7.84
+      value: 6.92
       objectReference: {fileID: 0}
     - target: {fileID: 4725785867421509301, guid: a9f60f53fe6e5c0439a6779b9d7d1d2d,
         type: 3}
