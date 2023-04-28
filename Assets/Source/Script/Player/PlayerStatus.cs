@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class PlayerStatus : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class PlayerStatus : MonoBehaviour
 
     [SerializeField]
     private PlayerInput m_PlayerInput;
+
+    [SerializeField]
+    private DimensionScriptPlayer m_DimensionScriptPlayer;
 
     [SerializeField]
     private Animator m_Animator;
@@ -29,10 +33,6 @@ public class PlayerStatus : MonoBehaviour
     [HideInInspector,SerializeField]
     public UnityEvent OnPlayerDeath;
 
-
-
-    private string OldActionMapBuffer;
-
     [SerializeField]
     private float TimerFadeDeath;
 
@@ -43,18 +43,37 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField]
     public bool IsInvicible;
 
+
+
+
+    [SerializeField]
+    private FadeSystem fadeSystem;
+
+
+    [SerializeField]
+    private Animator m_AnimatorForTranslate;
+
+    private void ResetPos() 
+    {
+        m_DimensionScriptPlayer.transform.position = new Vector3(PlayerCurrentCheckpoint.x, PlayerCurrentCheckpoint.y, 0);
+
+
+        if (m_DimensionScriptPlayer.CurrentDimension == DimensionScript.Dimension.Special) 
+        {
+            m_Animator.SetTrigger("Translate");
+            m_Animator.SetInteger("Dimension",(int)DimensionScript.Dimension.Special);
+        }
+
+    }
+
     IEnumerator DeathPlayer()
     {
 
-        m_Animator.SetBool("FadeIn",true);
         m_PlayerInput.SwitchCurrentActionMap("None");
         yield return new WaitForSeconds(TimerFadeDeath/2f);
-
-
-        transform.root.position = new Vector3(PlayerCurrentCheckpoint.x, PlayerCurrentCheckpoint.y, 0);
+        ResetPos();
         yield return new WaitForSeconds(TimerFadeDeath/2f);
         m_PlayerInput.SwitchCurrentActionMap("Gameplay");
-        m_Animator.SetBool("FadeIn", false);
 
 
     }
@@ -67,38 +86,20 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
-    public void LoadBaseMenue() 
-    {
-        // SceneManager.LoadScene();
 
-        // Boolean On BaseMenue Menue
-    }
-    public void LoadPauseMenue()
-    {
-        OldActionMapBuffer = m_PlayerInput.currentActionMap.name;
 
-        
-        // Boolean On pause Menue
-
-        // SceneManager.LoadScene();
-    }
-
-    private void OnDeath() 
-    {
-
-        StartCoroutine(DeathPlayer());
-        IsDead = false;
-    }
 
 
     private void Awake()
     {
         m_PlayerInput= GetComponent<PlayerInput>();
 
-        OnPlayerDeath.AddListener(OnDeath);
 
-       
+        fadeSystem = FindObjectOfType<FadeSystem>();
+        OnPlayerDeath.AddListener(fadeSystem.OnPlayerDeathFadeSystem);
 
+        m_DimensionScriptPlayer = GetComponent<DimensionScriptPlayer>();
+        m_AnimatorForTranslate = GetComponentInParent<Animator>(); 
     }
 
     void Start()
@@ -111,7 +112,9 @@ public class PlayerStatus : MonoBehaviour
         if (IsDead)
         {
             IsDead = false;
+            StartCoroutine(DeathPlayer());
             OnPlayerDeath?.Invoke();
+            Debug.Log("ds");
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }

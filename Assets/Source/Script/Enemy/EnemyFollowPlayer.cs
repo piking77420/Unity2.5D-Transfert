@@ -7,7 +7,7 @@ public class EnemyFollowPlayer : MonoBehaviour
 {
     [Header("Dependencies")]
     [SerializeField]
-    public Transform m_PlayerTransform;
+    public Transform playerTransform;
     [SerializeField]
     private DimensionScript m_DimensionScriptPlayer;
 
@@ -68,7 +68,7 @@ public class EnemyFollowPlayer : MonoBehaviour
 
     public Transform ReturnPlayerTransform() 
     {
-        return m_PlayerTransform;
+        return playerTransform;
     }
 
     private void OnDrawGizmos()
@@ -116,7 +116,7 @@ public class EnemyFollowPlayer : MonoBehaviour
 
     private void Movment() 
     {
-        Vector3 PlayerNormalWorldOffset = m_PlayerTransform.position;
+        Vector3 PlayerNormalWorldOffset = playerTransform.position;
         PlayerNormalWorldOffset.z = -DimensionScript.DimensionSize / 2f;
 
         m_Agent.SetDestination(PlayerNormalWorldOffset);

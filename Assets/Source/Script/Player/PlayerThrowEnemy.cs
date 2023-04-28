@@ -37,7 +37,7 @@ public class PlayerThrowEnemy : MonoBehaviour
 
 
 
-    [SerializeField,Range(2,4)]
+    [SerializeField, Range(2, 4)]
     private float TimerToThrow;
 
     private float TimerToThrowCooldown;
@@ -58,7 +58,7 @@ public class PlayerThrowEnemy : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        
+
         /*
         Vector3 pos = m_PlayerTransform.position;
         pos.x = pos.x + Mathf.Cos(angle) * 2 ;
@@ -71,7 +71,7 @@ public class PlayerThrowEnemy : MonoBehaviour
     public void OnPlayerAiming(InputAction.CallbackContext _callbackContext)
     {
 
-        if ( EnemyTaken != null)
+        if (EnemyTaken != null)
         {
             if (!_callbackContext.performed)
             {
@@ -79,14 +79,14 @@ public class PlayerThrowEnemy : MonoBehaviour
 
 
             }
-            else 
+            else
             {
                 m_AimReadValue = _callbackContext.ReadValue<Vector2>();
 
 
             }
 
-            if (_callbackContext.canceled) 
+            if (_callbackContext.canceled)
             {
             }
 
@@ -110,10 +110,17 @@ public class PlayerThrowEnemy : MonoBehaviour
 
 
 
-    public void GetEnemy(InteractableObject interactableObject) 
+    public void GetEnemy(InteractableObject interactableObject)
     {
-        if(interactableObject is EnemyPickable && TimerToThrow == TimerToThrowCooldown && IsLearned) 
+        if (interactableObject is EnemyPickable && TimerToThrow == TimerToThrowCooldown && IsLearned)
         {
+            interactableObject.TryGetComponent<EnemyThrowedBehaviour>(out EnemyThrowedBehaviour enemyThrowedBehaviour);
+
+            if (EnemyTaken == null)
+            {
+                enemyThrowedBehaviour.OnPick();
+            }
+
             EnemyTaken = interactableObject.gameObject;
             EnemyIsTaken(EnemyTaken.transform.parent.GetComponent<Rigidbody>());
             EnemyTaken.transform.position = this.transform.position;
@@ -121,6 +128,8 @@ public class PlayerThrowEnemy : MonoBehaviour
             EnemyTaken.GetComponent<EnemyPatrol>().enabled = false;
             EnemyTaken.GetComponent<NavMeshAgent>().enabled = false;
             EnemyTaken.transform.parent.GetComponent<Animator>().enabled = false;
+
+          
         }
     }
 
@@ -130,8 +139,8 @@ public class PlayerThrowEnemy : MonoBehaviour
     {
 
         Vector3 value;
-            
-        if(m_AimReadValue == Vector2.zero) 
+
+        if (m_AimReadValue == Vector2.zero)
         {
             value = Vector3.up;
         }
@@ -149,18 +158,18 @@ public class PlayerThrowEnemy : MonoBehaviour
 
 
 
-        EnemyTaken.GetComponentInParent<Rigidbody>().useGravity = false; 
+        EnemyTaken.GetComponentInParent<Rigidbody>().useGravity = false;
 
         Vector3 enemyPos = m_PlayerTransform.position;
         enemyPos.x = enemyPos.x + Mathf.Cos(currentAngle) * DistanceFromPlayer;
         enemyPos.y = enemyPos.y + Mathf.Sin(currentAngle) * DistanceFromPlayer;
-    
+
         EnemyTaken.transform.position = enemyPos;
 
 
     }
 
-    private void EnemyIsTaken(Rigidbody rb) 
+    private void EnemyIsTaken(Rigidbody rb)
     {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
@@ -182,40 +191,29 @@ public class PlayerThrowEnemy : MonoBehaviour
         EnemyAnimator.enabled = false;
 
 
-     
-
-         if (!m_PlayerHasThrow && m_AimReadValue != Vector2.zero) 
-         {
 
 
-            ForcAdded = new Vector3(m_PlayerForce.x, m_PlayerForce.y , 0) * PlayerThrowForce * baseMultiplicator;
-
-
-            m_IsPlayerAiming = true;
-         }
-
-        if (!m_PlayerHasThrow && m_IsPlayerAiming && mag == 1f)
+        if (!m_PlayerHasThrow && m_AimReadValue != Vector2.zero)
         {
 
 
+            ForcAdded = new Vector3(m_PlayerForce.x, m_PlayerForce.y, 0) * PlayerThrowForce * baseMultiplicator;
 
 
+            m_IsPlayerAiming = true;
+        }
+
+        if (!m_PlayerHasThrow && m_IsPlayerAiming && mag == 1f)
+        {
             EnemyTaken.GetComponentInParent<Rigidbody>().isKinematic = false;
-
             EnemyRigidBody.AddForce(ForcAdded * EnemyRigidBody.mass);
             ForcAdded = Vector3.zero;
             m_AimReadValue = Vector2.zero;
-
             EnemyTaken.TryGetComponent<EnemyThrowedBehaviour>(out EnemyThrowedBehaviour enemyThrowedBehaviour);
-
-
-
             enemyThrowedBehaviour.Is_Throwed = true;
             m_IsPlayerAiming = false;
-
-
-
             m_PlayerHasThrow = true;
+            enemyThrowedBehaviour.OnThrow();
             EnemyTaken = null;
         }
 
@@ -232,19 +230,19 @@ public class PlayerThrowEnemy : MonoBehaviour
 
         if (EnemyTaken != null)
         {
-            
+
             Debug.Assert(EnemyTaken.GetComponent<EnemyPatrol>() != null);
             UpdateProjectilePos();
             ThrowProjectile();
         }
 
-        if (m_PlayerHasThrow) 
+        if (m_PlayerHasThrow)
         {
-            if(TimerToThrow >= 0) 
+            if (TimerToThrow >= 0)
             {
                 TimerToThrow -= Time.deltaTime;
             }
-            else 
+            else
             {
                 m_PlayerHasThrow = false;
                 TimerToThrow = TimerToThrowCooldown;

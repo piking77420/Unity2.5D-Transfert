@@ -3866,10 +3866,6 @@ MonoBehaviour:
   DesiredAngle: 90
   colliders: []
   m_nbrOfColldier: 0
-  m_RaycastDistance: 4.13
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 64
   OnImpact:
     m_PersistentCalls:
       m_Calls: []
@@ -3886,7 +3882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentDimension: 0
-  MaxTimeForOtherDimension: 12
+  MaxTimeForOtherDimension: 10
   CurrentForOtherDimension: 0
 --- !u!114 &7819271376476893932
 MonoBehaviour:

@@ -17,8 +17,8 @@ public class PlayerTranslate : TranSlate
     [SerializeField]
     private PlayerGhostDetection m_PlayerGhost;
 
-    
-    
+
+
 
 
     [SerializeField]
@@ -71,7 +71,7 @@ public class PlayerTranslate : TranSlate
     {
 
 
-        if (_context.canceled && m_CanTranslate && m_PlayerGhost.IsCanPlayerTranslate() && ISLearned)
+        if (_context.canceled && m_CanTranslate && m_PlayerGhost.IsCanPlayerTranslate() && ISLearned )
         {
             m_Animator.SetTrigger("Translate");
             PlayAudio();
@@ -107,8 +107,9 @@ public class PlayerTranslate : TranSlate
     {
         m_Rigidbody.velocity = Vector3.zero;
         SwapSound(CurrentObjectDimension.CurrentDimension);
+        AudioManagers.instance.LifeBarCheck(CurrentObjectDimension.CurrentDimension);
 
-        if(rbStatus == false) 
+        if (rbStatus == false) 
         {
             m_Rigidbody.constraints = RigidbodyConstraints.FreezeAll;
             rbStatus = true;
@@ -137,7 +138,7 @@ public class PlayerTranslate : TranSlate
     public override void EndTranslation()
     {
 
-
+    
         m_Rigidbody.velocity = Vector3.zero;
 
 
@@ -167,6 +168,7 @@ public class PlayerTranslate : TranSlate
 
 
         CurrentObjectDimension.SwapDimension();
+        AudioManagers.instance.LifeBarCheck(CurrentObjectDimension.CurrentDimension);
         m_PlayerGhost.GetComponent<DimensionScript>().SwapDimension();
             
     }
@@ -183,6 +185,7 @@ public class PlayerTranslate : TranSlate
         m_Renderers = transform.GetChild(0).GetComponentsInChildren<SkinnedMeshRenderer>();
         m_RenderersGhost = transform.GetChild(1).GetComponentsInChildren<SkinnedMeshRenderer>();
         m_AudioSource = GetComponents<AudioSource>();
+
 
     }
 }
