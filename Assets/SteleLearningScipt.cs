@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class SteleLearningScipt : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class SteleLearningScipt : MonoBehaviour
 
 
 
-
+    [SerializeField]
+    private VisualEffect m_VisualEffect;
 
     [SerializeField, Range(0, 5)]
     private float m_LearningRadius;
@@ -38,7 +40,7 @@ public class SteleLearningScipt : MonoBehaviour
 
     void Start()
     {
-        
+        m_VisualEffect =  GetComponentInChildren<VisualEffect>();    
     }
 
     // Update is called once per frame
@@ -52,6 +54,7 @@ public class SteleLearningScipt : MonoBehaviour
             if (item.TryGetComponent<PlayerLearningSkill>(out PlayerLearningSkill PlayerLearning))
             {
                 PlayerLearning.LearnSkill(m_SkillToLearn);
+                m_VisualEffect.enabled = false;
             }
         }
     }

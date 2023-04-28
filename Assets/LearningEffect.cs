@@ -13,16 +13,29 @@ public class LearningEffect : MonoBehaviour
     private VisualEffect m_VisualEffect;
 
 
+    [Space,Header("Audio")]
+
+    [SerializeField]
+    private AudioSource m_AudioSource; 
+
+
+    [SerializeField]
+    private AudioClip m_AudioClip;
+
     private void Awake()
     {
+        m_AudioSource = GetComponent<AudioSource>();
         m_VisualEffect = GetComponentInChildren<VisualEffect>();
+        m_AudioSource.clip = m_AudioClip;
         m_VisualEffect.enabled = false;
     }
 
     public IEnumerator SpawnEffect() 
     {
         m_VisualEffect.enabled = true;
+        m_AudioSource.Play();
         yield return new WaitForSeconds(LifeTime);
+        m_AudioSource.Stop();
         m_VisualEffect.enabled = false;
 
     }
