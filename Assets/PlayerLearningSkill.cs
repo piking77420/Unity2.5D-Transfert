@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerLearningSkill : MonoBehaviour
 {
-    public enum PlayerSkill
+    public enum PlayerSkill : int
     {
         Translate, DragObject, ThroWEnemy,
 

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
+using static PlayerLearningSkill;
+
 
 public class PlayerDragObject : MonoBehaviour
 {
@@ -62,6 +64,13 @@ public class PlayerDragObject : MonoBehaviour
 
     [SerializeField]
     public bool IsLearned;
+
+    [Header("Audio")]
+    [SerializeField]
+    private AudioSource[] m_AudioSource;
+
+    [SerializeField]
+    private AudioClip m_Clip;
 
     private bool IsObjectSameDimenSionHasPlayer(SelectableObject @object) 
     {
@@ -126,6 +135,7 @@ public class PlayerDragObject : MonoBehaviour
         {
             case InputActionPhase.Started:
                 m_TranslateButton = true;
+                    m_AudioSource[(int)PlayerSkill.DragObject].Play();
                 break;
             case InputActionPhase.Performed:
                     if (m_PlayerTranslate.m_CanTranslate)
@@ -133,7 +143,8 @@ public class PlayerDragObject : MonoBehaviour
                 break;
             case InputActionPhase.Canceled:
                 m_TranslateButton = false;
-                FindAllDragableObject();
+                    m_AudioSource[(int)PlayerSkill.DragObject].Stop();
+                    FindAllDragableObject();
                 TransSlateObject(_context);
                 m_SelectionRadius= 0;
                 m_TransformPlayerDom.transform.localScale = Vector3.zero;
@@ -171,6 +182,10 @@ public class PlayerDragObject : MonoBehaviour
         m_rb = GetComponent<Rigidbody>();
         m_PlayerTranslate = GetComponent<PlayerTranslate>();
         m_DomeRender = m_TransformPlayerDom.gameObject.GetComponent<Renderer>();
+        m_AudioSource = GetComponents<AudioSource>();
+        m_AudioSource[(int)PlayerSkill.DragObject].clip = m_Clip;
+
+
     }
     void Start()
     {
