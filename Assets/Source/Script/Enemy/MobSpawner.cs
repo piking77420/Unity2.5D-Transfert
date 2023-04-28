@@ -41,7 +41,7 @@ public class MobSpawner : MonoBehaviour
             foreach (var item in m_ListOfWaypoint) 
             {
                 Gizmos.color = Color.yellow;
-                Gizmos.DrawWireSphere(item, m_GizmoSpawnPoint);
+                Gizmos.DrawWireSphere(item + this.transform.position, m_GizmoSpawnPoint);
             }
 
         }

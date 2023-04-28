@@ -12,14 +12,14 @@ public class CameraFollowPlayer : MonoBehaviour
 
     [Header("Camera Setting")]
 
-    [SerializeField,Range(0, 50)]
-    private float m_DistanceX;
+    [Range(0, 50)]
+    public float m_DistanceX;
 
-    [SerializeField,Range(0, 50)]
-    private float m_Height;
+    [Range(0, 50)]
+    public float m_Height;
    
-    [SerializeField,Range(0,20)]
-    private float m_DistanceZ;
+    [Range(0,20)]
+    public float m_DistanceZ;
 
 
 
