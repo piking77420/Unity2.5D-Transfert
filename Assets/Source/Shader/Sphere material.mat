@@ -126,7 +126,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FrenelColor: {r: 11.447212, g: 11.447212, b: 11.447212, a: 0}
+    - _FrenelColor: {r: 0.057634458, g: 0.057634458, b: 0.057634458, a: 0}
     - _GliterColor: {r: 0, g: 0, b: 0, a: 1}
     - _InColor: {r: 0, g: 0, b: 0, a: 0}
     - _NoiseScale: {r: 1, g: 1, b: 0, a: 0}
