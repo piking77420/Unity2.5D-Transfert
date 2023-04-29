@@ -111,6 +111,7 @@ public class EnemyFollowPlayer : MonoBehaviour
     private void Awake()
     {
         m_Agent = GetComponent<NavMeshAgent>();
+        m_DimensionScriptPlayer = playerTransform.transform.parent.GetComponent<DimensionScript>();
         GetAllWaypoint();
     }
 
