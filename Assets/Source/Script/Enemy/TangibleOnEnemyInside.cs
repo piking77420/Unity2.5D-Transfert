@@ -13,6 +13,9 @@ public class TangibleOnEnemyInside : MonoBehaviour
     [SerializeField]
     private Collider m_collid;
 
+    [SerializeField]
+    private float m_TimerToBackOriginal;
+    private float m_MaxTimerToBackOriginal;
 
     [SerializeField]
     EnemyPickable enemyPickable;
@@ -37,6 +40,7 @@ public class TangibleOnEnemyInside : MonoBehaviour
         m_rb = GetComponent<Rigidbody>();
         m_collid = GetComponent<Collider>();
         m_collid.isTrigger = true;
+        m_MaxTimerToBackOriginal = m_TimerToBackOriginal;
     }
 
     void Start()
@@ -47,6 +51,15 @@ public class TangibleOnEnemyInside : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(m_collid.isTrigger == false) 
+        {
+            m_TimerToBackOriginal -= Time.deltaTime;
+            if(m_TimerToBackOriginal < 0) 
+            {
+                m_collid.isTrigger = true;
+                m_TimerToBackOriginal = m_MaxTimerToBackOriginal;
+            }
+
+        }
     }
 }
