@@ -178,7 +178,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 68656752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.78, y: 2.59, z: -0.88}
+  m_LocalPosition: {x: -3.78, y: -0.35, z: -0.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -308,7 +308,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 297601763}
   m_LocalRotation: {x: 0.2606885, y: 0, z: 0, w: 0.965423}
-  m_LocalPosition: {x: -14.28, y: 8, z: -12.8}
+  m_LocalPosition: {x: -13.44, y: 8, z: -12.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -389,7 +389,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303224961}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -28.69, y: 5.18, z: -0.88}
+  m_LocalPosition: {x: -28.69, y: -0.3, z: -0.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -730,7 +730,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527869852}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.82, y: 1.96, z: -0.88}
+  m_LocalPosition: {x: 3.82, y: 0, z: -0.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2855,7 +2855,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1862007912}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.12, y: 2.81, z: -0.88}
+  m_LocalPosition: {x: -13.12, y: -0.15, z: -0.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3773,6 +3773,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerParent
       objectReference: {fileID: 0}
+    - target: {fileID: 3185797230159795516, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a7685aed5e9356946960c8d5beef80e8, type: 2}
     - target: {fileID: 3185797230159795517, guid: e1bf66778b4504340b65629569aba485,
         type: 3}
       propertyPath: m_RootOrder
@@ -3828,6 +3833,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3185797231440027534, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -3163035017711758500, guid: 0c04760cbaa1477498fea6991449d95f,
+        type: 3}
+    - target: {fileID: 3185797231466009175, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 7579029184719476209, guid: 0c04760cbaa1477498fea6991449d95f,
+        type: 3}
+    - target: {fileID: 4107179835825685575, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: MaxTimeForOtherDimension
+      value: 20000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8362948640509318062, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 8201437419870775723, guid: 0c04760cbaa1477498fea6991449d95f,
+        type: 3}
+    - target: {fileID: 8362948640509318062, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -1293887620268828351, guid: 0c04760cbaa1477498fea6991449d95f,
+        type: 3}
+    - target: {fileID: 8435892529591103462, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -3076181267399317282, guid: 0c04760cbaa1477498fea6991449d95f,
+        type: 3}
+    - target: {fileID: 8435892529591103462, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435892529591103462, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -7921080490354883109, guid: 0c04760cbaa1477498fea6991449d95f,
+        type: 3}
+    - target: {fileID: 8435892529591103462, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: -7921080490354883109, guid: bdb8d14d61ce97e40b1f09131f1e6f0a,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1bf66778b4504340b65629569aba485, type: 3}
 --- !u!1001 &4725785867959682445
@@ -4430,7 +4487,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8534903965124670560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -104.36, y: 1.25, z: -2.5}
+  m_LocalPosition: {x: -104.36, y: 3.25, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4468,7 +4525,7 @@ MonoBehaviour:
   minGrowCoef: 4.5
   maxGrowCoef: 6.5
   newLegCooldown: 0.3
-  velocity: {x: -0.36895066, y: 0, z: -0.9011784}
+  velocity: {x: -0.15326482, y: 0, z: 0.3832362}
 --- !u!1001 &8631490181104575466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4592,18 +4649,18 @@ MonoBehaviour:
   m_DimensionScriptPlayer: {fileID: 1497899871402771614}
   m_Agent: {fileID: 0}
   m_WayPointTransforms:
-  - {x: -63.66, y: 4.6239996, z: -3.38}
+  - {x: -63.66, y: 1.6839999, z: -3.38}
   - {x: -44.620003, y: 2.034, z: -3.12}
   - {x: -24.41, y: 2.034, z: -3.12}
   - {x: 6.4900017, y: 2.034, z: -3.12}
-  - {x: -88.57, y: 7.2139997, z: -3.38}
-  - {x: -56.06, y: 3.994, z: -3.38}
-  - {x: -73, y: 4.844, z: -3.38}
+  - {x: -88.57, y: 1.734, z: -3.38}
+  - {x: -56.06, y: 2.034, z: -3.38}
+  - {x: -73, y: 1.884, z: -3.38}
   m_CurrentsWaypointTransforms: []
   m_ListWaypoint: {fileID: 253392617}
   m_ShowGizmo: 1
   m_ColorWaypoints: {r: 0, g: 0.75355816, b: 1, a: 1}
-  m_ColorSelectedWaypoints: {r: 0, g: 1, b: 0.020730019, a: 1}
+  m_ColorSelectedWaypoints: {r: 1, g: 0.023584902, b: 0.08031111, a: 1}
   m_WaypointSize: 1
 --- !u!54 &8675915457607030734
 Rigidbody:
