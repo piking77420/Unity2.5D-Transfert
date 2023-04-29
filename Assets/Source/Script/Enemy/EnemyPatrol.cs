@@ -16,7 +16,7 @@ public class EnemyPatrol : MonoBehaviour
     protected CheckIsGround m_CheckIsGrounded;
 
     [SerializeField]
-    protected Vector3[] m_WayPoints;
+    protected List<Vector3> m_WayPoints;
 
     [SerializeField]
     protected int m_CurrentWaypoint;
@@ -40,16 +40,21 @@ public class EnemyPatrol : MonoBehaviour
 
 
 
-    public void SetPath(Vector3[] GivedPath) 
+    public void SetPath(List<Vector3> GivedPath,MobSpawner mobSpawner) 
     {
-        m_WayPoints = GivedPath;
+        for (int i = 0; i < GivedPath.Count; i++)
+        {
+            m_WayPoints[i] = GivedPath[i] + mobSpawner.transform.position;
+        }
+
+        
     }
 
 
     private void OnDrawGizmos()
     {
         if (ShowWayPoint)
-            for (int i = 0; i < m_WayPoints.Length; i++)
+            for (int i = 0; i < m_WayPoints.Count; i++)
             {
                 if (i == m_CurrentWaypoint)
                 {
@@ -117,19 +122,19 @@ public class EnemyPatrol : MonoBehaviour
     public void OnChangingDimension() 
     {
         Debug.Log("before");
-        for (int i = 0; i < m_WayPoints.Length; i++)
+        for (int i = 0; i < m_WayPoints.Count; i++)
         {
             Debug.Log(m_WayPoints[i]);
 
         }
 
-        for (int i = 0; i < m_WayPoints.Length; i++)
+        for (int i = 0; i < m_WayPoints.Count; i++)
         {
-            m_WayPoints[i].z = -m_WayPoints[i].z;
+            m_WayPoints[i].Set(m_WayPoints[i].x, m_WayPoints[i].y, -m_WayPoints[i].z);
         }
 
         Debug.Log("Atfer");
-        for (int i = 0; i < m_WayPoints.Length; i++)
+        for (int i = 0; i < m_WayPoints.Count; i++)
         {
             Debug.Log(m_WayPoints[i]);
 

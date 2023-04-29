@@ -54,7 +54,10 @@ public class CheckIsGround : MonoBehaviour
     {
         for (int i = 0; i < collision.contacts.Length; i++)
         {
-            CheckCollisionAngle(collision.contacts[i].normal);
+            if (CheckCollisionAngle(collision.contacts[i].normal)) 
+            {
+                return true;
+            }
         }
 
         return false;
@@ -112,24 +115,25 @@ public class CheckIsGround : MonoBehaviour
             isGrounded = false;
         }
 
-        Debug.DrawRay(m_GraphicIsGrounded.position, Vector3.down,Color.green);
 
-        
+        float extraDistance = 0.02f;
 
+        if (!isGrounded)
         if (m_collider is CapsuleCollider && !isGrounded)
         {
-            float extraDistance = 0.2f;   
             if(Physics.Raycast(m_collider.bounds.center, Vector3.down,out RaycastHit hit ,  m_collider.bounds.extents.y + extraDistance)) 
             {
-                if(hit.collider != null) 
+
+                if(hit.collider != null && hit.collider.tag != "Player") 
                 {
 
-                   isGrounded = CheckCollisionAngle(hit.normal);
+                  // isGrounded = CheckCollisionAngle(hit.normal);
 
                 }
             }
         }
 
+        Debug.DrawRay(m_collider.bounds.center , Vector3.down * (m_collider.bounds.extents.y + extraDistance));
 
     }
 

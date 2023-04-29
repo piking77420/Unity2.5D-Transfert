@@ -1441,6 +1441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_rb: {fileID: 0}
   m_collid: {fileID: 0}
+  m_TimerToBackOriginal: 4
   enemyPickable: {fileID: 0}
 --- !u!1 &988678445 stripped
 GameObject:
@@ -3719,7 +3720,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4c99d2776aaf16948a7ab5ed378499fd, type: 2}
+      objectReference: {fileID: 2100000, guid: ae084d9f2e473734d896276d52440441, type: 2}
     - target: {fileID: 1095979470319134699, guid: 14af7264d65769c4c9147c7ead8fff94,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -4332,10 +4333,55 @@ PrefabInstance:
       propertyPath: _Speed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7819271376476893718, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: m_SpeedMultiplactorOnRunning
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7819271376476893922, guid: e1bf66778b4504340b65629569aba485,
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819271376476893922, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: m_JumpStrengt
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819271376476893922, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: FallClampValue
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819271376476893922, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: m_GravityValue
+      value: 3.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819271376476893922, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: BetterJumpvalue
+      value: 7.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819271376476893922, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: m_ApexModifiers
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819271376476893922, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: fallAcceleration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819271376476893922, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: m_ApexTimerNoGravity
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819271376476893922, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: m_HoldingTimeForGreatJump
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7819271376476893926, guid: e1bf66778b4504340b65629569aba485,
         type: 3}
@@ -4345,7 +4391,7 @@ PrefabInstance:
     - target: {fileID: 7819271376476893927, guid: e1bf66778b4504340b65629569aba485,
         type: 3}
       propertyPath: IsLearned
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7819271376476893927, guid: e1bf66778b4504340b65629569aba485,
         type: 3}
@@ -4399,12 +4445,12 @@ PrefabInstance:
     - target: {fileID: 4725785867421509300, guid: a9f60f53fe6e5c0439a6779b9d7d1d2d,
         type: 3}
       propertyPath: m_ListOfWaypoint.Array.data[0].x
-      value: 2.16
+      value: -9.03
       objectReference: {fileID: 0}
     - target: {fileID: 4725785867421509300, guid: a9f60f53fe6e5c0439a6779b9d7d1d2d,
         type: 3}
       propertyPath: m_ListOfWaypoint.Array.data[1].x
-      value: 7.84
+      value: 14.45
       objectReference: {fileID: 0}
     - target: {fileID: 4725785867421509301, guid: a9f60f53fe6e5c0439a6779b9d7d1d2d,
         type: 3}
@@ -4414,7 +4460,7 @@ PrefabInstance:
     - target: {fileID: 4725785867421509301, guid: a9f60f53fe6e5c0439a6779b9d7d1d2d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.27
+      value: -28.85
       objectReference: {fileID: 0}
     - target: {fileID: 4725785867421509301, guid: a9f60f53fe6e5c0439a6779b9d7d1d2d,
         type: 3}
@@ -4932,6 +4978,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906759720868772606, guid: 8d0944010b836774b9843546eedd0bc6,
+        type: 3}
+      propertyPath: m_SkillToLearn
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8631490180981601693, guid: 8d0944010b836774b9843546eedd0bc6,
         type: 3}

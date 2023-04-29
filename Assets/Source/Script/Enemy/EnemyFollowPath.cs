@@ -30,11 +30,11 @@ public class EnemyFollowPath : EnemyPatrol
     protected new void HasReachLastPoint() 
     {
 
-        if(m_CurrentWaypoint == m_WayPoints.Length)
+        if(m_CurrentWaypoint == m_WayPoints.Count)
         {
 
             StartCoroutine(EnemyWaitTime(m_WaitTime));
-            System.Array.Reverse(m_WayPoints);
+            m_WayPoints.Reverse();
         }
     }
 
