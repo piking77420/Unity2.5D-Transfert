@@ -755,9 +755,13 @@ MonoBehaviour:
   OnNonAccomplish:
     m_PersistentCalls:
       m_Calls: []
+  OnQuitLever:
+    m_PersistentCalls:
+      m_Calls: []
   m_AudioSource: {fileID: 0}
-  m_AudioClip1: {fileID: 8300000, guid: df265eb0d0e74234f8e0c0c101b79dc4, type: 3}
-  m_AudioClip2: {fileID: 8300000, guid: e0a3aac3d5fe7254bb7d8fce56eafb6e, type: 3}
+  m_AudioClip:
+  - {fileID: 8300000, guid: df265eb0d0e74234f8e0c0c101b79dc4, type: 3}
+  - {fileID: 8300000, guid: e0a3aac3d5fe7254bb7d8fce56eafb6e, type: 3}
   OpenDoorStreght: 0.23
   DecreaseStreght: 0.262
   IsAcomplish: 0
