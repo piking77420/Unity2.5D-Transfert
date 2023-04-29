@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PauseMenue",
+                    "type": "Button",
+                    "id": "d3b9edea-5c5e-46a9-b8a5-3e29ddd09a62",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -256,6 +265,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interaction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "70f98a81-0e4e-4db2-aec9-0a107d76a357",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseMenue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -464,7 +484,7 @@
                 {
                     "name": "New action",
                     "type": "Button",
-                    "id": "619b910f-df16-49f7-b417-77cdba08d4dd",
+                    "id": "377f52fe-9452-492a-989e-088fbc8dc5dd",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -483,7 +503,7 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "a55513cd-99af-490c-90f8-7aab37712f8a",
+                    "id": "b7bad95a-ac90-4eb6-8315-277f9a164cc2",
                     "path": "",
                     "interactions": "",
                     "processors": "",

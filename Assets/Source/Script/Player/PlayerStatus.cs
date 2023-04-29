@@ -30,8 +30,9 @@ public class PlayerStatus : MonoBehaviour
     public Vector3 PlayerCurrentCheckpoint;
 
 
-    [HideInInspector,SerializeField]
     public UnityEvent OnPlayerDeath;
+    public UnityEvent OnRespawn;
+
 
     [SerializeField]
     private float TimerFadeDeath;
@@ -44,14 +45,16 @@ public class PlayerStatus : MonoBehaviour
     public bool IsInvicible;
 
 
-
-
     [SerializeField]
     private FadeSystem fadeSystem;
 
 
     [SerializeField]
     private Animator m_AnimatorForTranslate;
+
+
+    [SerializeField]
+    private bool m_KillPlayer;
 
     private void ResetPos() 
     {
@@ -68,21 +71,23 @@ public class PlayerStatus : MonoBehaviour
 
     IEnumerator DeathPlayer()
     {
-
+        
         m_PlayerInput.SwitchCurrentActionMap("None");
-        yield return new WaitForSeconds(TimerFadeDeath/2f);
+        OnPlayerDeath.Invoke();
+        yield return new WaitForSeconds(TimerFadeDeath);
         ResetPos();
-        yield return new WaitForSeconds(TimerFadeDeath/2f);
+        yield return new WaitForSeconds(TimerFadeDeath/2);
         m_PlayerInput.SwitchCurrentActionMap("Gameplay");
-
-
+        OnRespawn.Invoke();
+        IsInvicible = false;
     }
 
     public void KillPlayer() 
     {
-        if (!IsInvicible) 
+        if (!IsInvicible && !IsDead) 
         {
             IsDead = true;
+            IsInvicible = true;
         }
     }
 
@@ -94,9 +99,9 @@ public class PlayerStatus : MonoBehaviour
     {
         m_PlayerInput= GetComponent<PlayerInput>();
 
-
+        m_Animator = GetComponent<Animator>();
         fadeSystem = FindObjectOfType<FadeSystem>();
-        OnPlayerDeath.AddListener(fadeSystem.OnPlayerDeathFadeSystem);
+        OnPlayerDeath.AddListener(fadeSystem.OnDeathPlayer);
 
         m_DimensionScriptPlayer = GetComponent<DimensionScriptPlayer>();
         m_AnimatorForTranslate = GetComponentInParent<Animator>(); 
@@ -111,11 +116,19 @@ public class PlayerStatus : MonoBehaviour
     {
         if (IsDead)
         {
-            IsDead = false;
-            StartCoroutine(DeathPlayer());
-            OnPlayerDeath?.Invoke();
+            IsDead = false; 
+            StartCoroutine(DeathPlayer()); 
+
+
             Debug.Log("ds");
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+
+        if (m_KillPlayer) 
+        {
+            IsDead = true;
+            m_KillPlayer = false;
         }
     }
 }

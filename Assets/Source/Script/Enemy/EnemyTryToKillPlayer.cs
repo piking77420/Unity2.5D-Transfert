@@ -16,7 +16,7 @@ public class EnemyTryToKillPlayer : MonoBehaviour
 
     [SerializeField]
     private Transform m_Player;
-
+    [SerializeField]
     private PlayerStatus m_PlayerStatus;
 
     [SerializeField, Range(0, 10)]
@@ -31,20 +31,17 @@ public class EnemyTryToKillPlayer : MonoBehaviour
     [SerializeField]
     private NavMeshAgent m_Agent;
 
-    [SerializeField, Range(0, 10)]
-    private float m_EndGameDistance;
 
 
 
 
 
+    [SerializeField]
+    private float TimeToBeFreez;
 
 
 
-
-
-
-    private void ResetPosOnPlayerDeath() 
+    public void ResetPosOnPlayerDeath() 
     {
         int playerIndexCheckPoint = m_PlayerStatus.currentCheckpointIndex;
 
@@ -111,10 +108,20 @@ public class EnemyTryToKillPlayer : MonoBehaviour
         
     }
 
-    private void OnRespawnPlayer() 
+
+    IEnumerator StopEnemy() 
     {
-        // tranform = last hceckpoint
+        m_Agent.isStopped = true;
+        yield return new WaitForSeconds(TimeToBeFreez);
+        m_Agent.isStopped = false;
+
     }
+
+    private void Freeze() 
+    {
+        StartCoroutine(StopEnemy());
+    }
+
 
     private void Awake()
     {
@@ -125,13 +132,13 @@ public class EnemyTryToKillPlayer : MonoBehaviour
     void Start()
     {
         m_PlayerStatus = m_Player.parent.GetComponent<PlayerStatus>();
-        m_PlayerStatus.OnPlayerDeath.AddListener(OnRespawnPlayer);
         m_PlayerStatus.OnPlayerDeath.AddListener(ResetPosOnPlayerDeath);
+        m_PlayerStatus.OnRespawn.AddListener(Freeze);
     }
 
     void Update()
     {
-
+        
         OnKillHitBox();
 
     }
