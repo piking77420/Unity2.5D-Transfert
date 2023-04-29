@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Shader Monster
-  m_Shader: {fileID: -6465566751694194690, guid: fc737621648931e4389850c5f80918a1,
+  m_Shader: {fileID: -6465566751694194690, guid: 7b53e67982250ed4a87aaf9b7df23001,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []

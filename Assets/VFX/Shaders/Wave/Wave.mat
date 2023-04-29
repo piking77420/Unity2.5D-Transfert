@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Wave
-  m_Shader: {fileID: -6465566751694194690, guid: 268a3bff23a76a44bb684a59d598d36e,
+  m_Shader: {fileID: -6465566751694194690, guid: 2c8a5cc2f677d074d92c2c2af9b4070f,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -39,7 +39,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Health: 0.19183792
+    - _Health: 0.19263619
     - _Magnification: -0.5
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -49,7 +49,7 @@ Material:
     m_Colors:
     - _FocalPoint: {r: 0.5, g: 0.5, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &487186184244056707
+--- !u!114 &1764138800982611807
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
