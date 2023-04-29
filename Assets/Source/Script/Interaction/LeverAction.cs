@@ -25,22 +25,23 @@ public class LeverAction : MonoBehaviour
     [SerializeField, Tooltip("EVENT PLAY EACH FRAME")]
     public UnityEvent<float> OnNonAccomplish;
 
+    public UnityEvent OnQuitLever;
+
     [Header("Audio")]
     [SerializeField]
     private AudioSource m_AudioSource;
     [SerializeField]
-    private AudioClip m_AudioClip1;
-    [SerializeField]
-    private AudioClip m_AudioClip2;
+    private AudioClip[] m_AudioClip;
+
     [Space(2)]
 
-    [SerializeField, Range(0, 10)]
+    [SerializeField, Range(0,1)]
     private float OpenDoorStreght;
 
     private float LeverPlayerStrenght;
 
 
-    [SerializeField, Range(0, 2)]
+    [SerializeField, Range(0,1)]
     private float DecreaseStreght;
 
 
@@ -63,6 +64,7 @@ public class LeverAction : MonoBehaviour
         {
             PlayerInAction = false;
             m_AudioSource.Stop();
+            OnQuitLever.Invoke();
 
         }
 
@@ -71,20 +73,12 @@ public class LeverAction : MonoBehaviour
 
     private void PlaySound() 
     {
-        int value  = Random.Range(0, 1);
-        if(value == 0) 
-        {
-            m_AudioSource.clip = m_AudioClip1;
-        }
-        else 
-        {
-            m_AudioSource.clip = m_AudioClip2;
-        }
 
 
-        if(!m_AudioSource.isPlaying) 
+
+        if (!m_AudioSource.isPlaying)
         {
-            m_AudioSource.PlayOneShot(m_AudioSource.clip);
+            m_AudioSource.PlayOneShot(m_AudioClip[Random.Range(0,1)]);
         }
     }
 
@@ -140,8 +134,7 @@ public class LeverAction : MonoBehaviour
         m_LevierIntercation = GetComponent<LevierIntercation>();
         m_Animator = GetComponent<Animator>();
         m_AudioSource = GetComponent<AudioSource>();
-
-    }
+        }
 
 
 
@@ -153,7 +146,7 @@ public class LeverAction : MonoBehaviour
         {
 
             PlaySound();
-            m_LeverValueStatue += Time.deltaTime  * m_LeverReadValue;
+            m_LeverValueStatue += Time.deltaTime  * m_LeverReadValue * OpenDoorStreght;
         }
 
         if (m_LeverValueStatue > 1f)
@@ -181,7 +174,7 @@ public class LeverAction : MonoBehaviour
 
         if (!PlayerInAction && !IsAcomplish && m_LeverValueStatue > 0)
         {
-            m_LeverValueStatue -= Time.deltaTime;
+            m_LeverValueStatue -= Time.deltaTime * DecreaseStreght;
             OnNonAccomplish.Invoke(m_LeverValueStatue);
 
         }

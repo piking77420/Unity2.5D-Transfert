@@ -17,6 +17,10 @@ public class SceneLoader : MonoBehaviour
     [SerializeField]
     private float m_SecondsToLoad;
 
+
+
+
+
     IEnumerator LoadScene() 
     {
         m_Animator.SetTrigger("FadeOutChanageScene");

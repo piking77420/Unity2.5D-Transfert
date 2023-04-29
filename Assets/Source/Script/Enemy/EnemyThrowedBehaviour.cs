@@ -33,15 +33,15 @@ public class EnemyThrowedBehaviour : MonoBehaviour
     
     private float m_MaxTimerForEnemyDie;
 
-    /*
+    
 
     [Header("AudioPart")]
     [SerializeField]
     private AudioSource m_AudioSource;
-
+    [SerializeField]
     private AudioClip[] m_AudioClip;
 
-    */
+    
     private void OnTriggerEnter()
     {
         if (Is_Throwed) 
@@ -50,14 +50,24 @@ public class EnemyThrowedBehaviour : MonoBehaviour
             m_rb.useGravity = true;
             Is_Throwed = false;
             m_rb.isKinematic = true;
+            m_AudioSource.loop = false;
+            m_AudioSource.Stop(); 
         }
     }
 
 
 
+    public void OnPick() 
+    {
+        m_AudioSource.loop = false;
+        m_AudioSource.PlayOneShot(m_AudioClip[(int)SlimeSound.BeTaken]);
+    }
 
-
-
+    public void OnThrow() 
+    {
+        m_AudioSource.loop = true;
+        m_AudioSource.PlayOneShot(m_AudioClip[(int)SlimeSound.Throwed]);
+    }
 
 
     private void Awake()
@@ -65,7 +75,8 @@ public class EnemyThrowedBehaviour : MonoBehaviour
         m_Animator = GetComponentInParent<Animator>();
         m_rb = GetComponentInParent<Rigidbody>();
         m_MaxTimerForEnemyDie = TimerForEnemyDie;
-       // m_AudioClip = GetComponents<AudioClip>();
+        m_AudioSource = GetComponent<AudioSource>();
+
     }
 
     void Start()

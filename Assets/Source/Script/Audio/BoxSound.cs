@@ -88,6 +88,7 @@ public class BoxSound : MonoBehaviour
         if (joint.connectedBody == null)
         {
             m_PlayerInput.SwitchCurrentActionMap("GamePlay");
+            m_AudioSource.Stop();
             return;
         }
       

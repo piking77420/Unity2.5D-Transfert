@@ -91,7 +91,8 @@ public class PlayerDragObject : MonoBehaviour
         if (m_ShowRadius)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(m_PlayerTransform.position, m_SelectionRadius);
+            
+            Gizmos.DrawWireSphere(m_TransformPlayerDom.transform.position, m_SelectionRadius);
         }
     }
         
@@ -99,7 +100,7 @@ public class PlayerDragObject : MonoBehaviour
 
     private void FindAllDragableObject()
     {
-        Collider[] sphereDrag = Physics.OverlapSphere(m_PlayerTransform.position, m_SelectionRadius);
+        Collider[] sphereDrag = Physics.OverlapSphere(m_DomeRender.transform.position, m_SelectionRadius);
 
         foreach (Collider collider in sphereDrag)
         {
@@ -129,32 +130,43 @@ public class PlayerDragObject : MonoBehaviour
 
     private void GetPlayerRadius(InputAction.CallbackContext _context) 
     {
-        
-        if(m_IsGround.isGrounded && IsLearned)   
-        switch (_context.phase)
-        {
-            case InputActionPhase.Started:
-                m_TranslateButton = true;
-                    m_AudioSource[(int)PlayerSkill.DragObject].Play();
-                break;
-            case InputActionPhase.Performed:
-                    if (m_PlayerTranslate.m_CanTranslate)
-                m_PlayerJump.isGravityApplie = false;
-                break;
-            case InputActionPhase.Canceled:
-                m_TranslateButton = false;
+        if (!IsLearned)
+            return;
+
+
+
+
+        bool canDragObject = m_PlayerTranslate.m_CanTranslate && m_IsGround.isGrounded;
+
+
+            switch (_context.phase)
+            {
+                case InputActionPhase.Started:
+                    if (canDragObject) 
+                    {
+
+                        m_TranslateButton = true;
+                        m_AudioSource[(int)PlayerSkill.DragObject].Play();
+                    }
+                    break;
+                case InputActionPhase.Performed:
+                    break;
+                case InputActionPhase.Canceled:
+                    m_TranslateButton = false;
                     m_AudioSource[(int)PlayerSkill.DragObject].Stop();
                     FindAllDragableObject();
-                TransSlateObject(_context);
-                m_SelectionRadius= 0;
-                m_TransformPlayerDom.transform.localScale = Vector3.zero;
-                m_PlayerJump.isGravityApplie = true;
+                    TransSlateObject(_context);
+                    m_SelectionRadius = 0;
+                    m_TransformPlayerDom.transform.localScale = Vector3.zero;
+                    m_PlayerJump.isGravityApplie = true;
 
-                DragAbleObject.Clear();
-                m_DomeRender.enabled = false;
+                    DragAbleObject.Clear();
+                    m_DomeRender.enabled = false;
 
                     break;
-        }
+            }
+        
+   
 
 
     }
@@ -198,15 +210,16 @@ public class PlayerDragObject : MonoBehaviour
         if (m_TranslateButton && m_SelectionRadius  <= m_MaxRadius && m_PlayerTranslate.m_CanTranslate) 
         {
             float addedValue = Time.deltaTime * m_SelectRadiusMultiplicator;
-            Vector3 scaleDome = new Vector3(addedValue, addedValue, addedValue);
 
             if (m_SelectionRadius >= m_MinimRadiusValue) 
             {
                 m_DomeRender.enabled = true;
             }
-            m_TransformPlayerDom.transform.localScale += scaleDome;
 
             m_SelectionRadius += addedValue;
+            Vector3 scaleDome = new Vector3(addedValue, addedValue, addedValue);
+            m_TransformPlayerDom.transform.localScale += scaleDome;
+
 
         }
     }

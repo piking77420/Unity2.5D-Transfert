@@ -44,13 +44,18 @@ public class DoorOpenClose : MonoBehaviour
     }
 
 
+    private void StopDoorSound() 
+    {
+        m_Source.Stop();
+    }
+
     private void Awake()
     {
 
         m_LeverAction = transform.parent.parent.GetComponentInChildren<LeverAction>();
         m_LeverAction.OnAccomplish.AddListener(OpendDoor);
         m_LeverAction.OnNonAccomplish.AddListener(CloseDoor);
-
+        m_LeverAction.OnQuitLever.AddListener(StopDoorSound);
         m_Source = GetComponent<AudioSource>();
 
     }
