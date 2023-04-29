@@ -60,8 +60,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.15635546
-        functionName: NewEvent
+      - time: 0.4983127
+        functionName: OnPlayEffort
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: fa66275459a4d6045832d65abc4e462d,
           type: 3}
