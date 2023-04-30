@@ -390,6 +390,62 @@ Transform:
   m_Father: {fileID: 253392618}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &345792061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 345792063}
+  - component: {fileID: 345792062}
+  m_Layer: 0
+  m_Name: ReverbeZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!167 &345792062
+AudioReverbZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345792061}
+  m_Enabled: 1
+  m_MinDistance: 0
+  m_MaxDistance: 15
+  m_ReverbPreset: 10
+  m_Room: -1000
+  m_RoomHF: -698
+  m_DecayTime: 7.24
+  m_DecayHFRatio: 0.33
+  m_Reflections: -1166
+  m_ReflectionsDelay: 0.02
+  m_Reverb: 16
+  m_ReverbDelay: 0.03
+  m_HFReference: 5000
+  m_Diffusion: 100
+  m_Density: 100
+  m_LFReference: 250
+  m_RoomLF: 0
+--- !u!4 &345792063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345792061}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 26
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &405719495
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,7 +1044,7 @@ PrefabInstance:
     - target: {fileID: 7366999011317531703, guid: dc4acb4c1b245ee44bc1f18a14f6d51e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -7.5436707
+      value: -7.543701
       objectReference: {fileID: 0}
     - target: {fileID: 7366999011430284288, guid: dc4acb4c1b245ee44bc1f18a14f6d51e,
         type: 3}
@@ -4570,7 +4626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8534903965124670562
 Transform:
   m_ObjectHideFlags: 0
@@ -4617,7 +4673,7 @@ MonoBehaviour:
   minGrowCoef: 4.5
   maxGrowCoef: 6.5
   newLegCooldown: 0.3
-  velocity: {x: 0.5227946, y: 0, z: 0.11695372}
+  velocity: {x: -0.45814297, y: 0, z: -0.3103368}
 --- !u!1001 &8631490181104575466
 PrefabInstance:
   m_ObjectHideFlags: 0
