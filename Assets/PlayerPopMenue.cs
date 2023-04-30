@@ -13,7 +13,7 @@ public class PlayerPopMenue : MonoBehaviour
 
     private const string Menue = "Menue";
 
-
+    [SerializeField]
     private string m_actionMapBuffer;
 
     private void Awake()
@@ -51,6 +51,6 @@ public class PlayerPopMenue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SceneToLoad: LeonardScene
-  m_Animator: {fileID: 0}
-  m_SecondsToLoad: 1
+  m_FadeSystem: {fileID: 0}
+  m_SecondsToLoad: 3
 --- !u!135 &3575059218453514930
 SphereCollider:
   m_ObjectHideFlags: 0

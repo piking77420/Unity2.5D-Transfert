@@ -16,7 +16,7 @@ public class EnemyTryToKillPlayer : MonoBehaviour
 
     [SerializeField]
     private Transform m_Player;
-
+    [SerializeField]
     private PlayerStatus m_PlayerStatus;
 
     [SerializeField, Range(0, 10)]
@@ -31,20 +31,19 @@ public class EnemyTryToKillPlayer : MonoBehaviour
     [SerializeField]
     private NavMeshAgent m_Agent;
 
-    [SerializeField, Range(0, 10)]
-    private float m_EndGameDistance;
 
 
 
 
 
+    [SerializeField]
+    private float TimeToBeFreez;
+
+    [SerializeField]
+    private float m_TimeToChanPosAfterPlayerDeath = 2 ;
 
 
-
-
-
-
-    private void ResetPosOnPlayerDeath() 
+    IEnumerator RespawnEnemy() 
     {
         int playerIndexCheckPoint = m_PlayerStatus.currentCheckpointIndex;
 
@@ -53,8 +52,9 @@ public class EnemyTryToKillPlayer : MonoBehaviour
         for (int i = 0; i < m_ListeOfWaypoint.transform.childCount; i++)
         {
 
-            if(i == playerIndexCheckPoint) 
+            if (i == playerIndexCheckPoint)
             {
+                yield return new WaitForSeconds(m_TimeToChanPosAfterPlayerDeath); 
                 posToRespawn = m_ListeOfWaypoint.transform.GetChild(i).position;
                 break;
             }
@@ -66,9 +66,16 @@ public class EnemyTryToKillPlayer : MonoBehaviour
 
 
 
+    public void ResetPosOnPlayerDeath() 
+    {
+        StartCoroutine(RespawnEnemy());
+    }
+
+
+
     public void OnKillHitBox() 
     {
-        if (m_PlayerStatus.IsDead)
+        if (m_PlayerStatus.IsDead || m_Agent.isStopped)
         {
             return;
         }
@@ -88,7 +95,7 @@ public class EnemyTryToKillPlayer : MonoBehaviour
 
                     if(Physics.Raycast(r, out RaycastHit hit, m_DistanceToKillPlayer) && hit.collider == m_Player.GetComponent<Collider>()) 
                     {
-                        m_PlayerStatus.KillPlayer();
+                        m_PlayerStatus.KillPlayer(PlayerStatus.PlayerDiedSource.FromEnemy);
                     }
                 }
             }
@@ -111,10 +118,20 @@ public class EnemyTryToKillPlayer : MonoBehaviour
         
     }
 
-    private void OnRespawnPlayer() 
+
+    IEnumerator StopEnemy() 
     {
-        // tranform = last hceckpoint
+        m_Agent.isStopped = true;
+        yield return new WaitForSeconds(TimeToBeFreez);
+        m_Agent.isStopped = false;
+
     }
+
+    private void Freeze() 
+    {
+        StartCoroutine(StopEnemy());
+    }
+
 
     private void Awake()
     {
@@ -125,13 +142,13 @@ public class EnemyTryToKillPlayer : MonoBehaviour
     void Start()
     {
         m_PlayerStatus = m_Player.parent.GetComponent<PlayerStatus>();
-        m_PlayerStatus.OnPlayerDeath.AddListener(OnRespawnPlayer);
         m_PlayerStatus.OnPlayerDeath.AddListener(ResetPosOnPlayerDeath);
+        m_PlayerStatus.OnRespawn.AddListener(Freeze);
     }
 
     void Update()
     {
-
+        
         OnKillHitBox();
 
     }

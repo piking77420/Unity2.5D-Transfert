@@ -42,6 +42,14 @@ public class EnemyFollowPlayer : MonoBehaviour
     private int CurrentWaypointIndex = 0;
 
 
+
+
+
+
+
+
+
+
     private void GetAllWaypoint() 
     {
         Transform[] points;
