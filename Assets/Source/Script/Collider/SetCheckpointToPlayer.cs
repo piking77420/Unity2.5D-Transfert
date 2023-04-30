@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class SetCheckpointToPlayer : MonoBehaviour
@@ -9,9 +10,29 @@ public class SetCheckpointToPlayer : MonoBehaviour
     private DimensionScript.Dimension m_Dimension;
 
 
-
+    [SerializeField]
+    private Transform m_positionEnemyToSpawn;
 
     private int m_CheckpointIndex;
+
+
+
+    [SerializeField]
+    private bool m_DrawGizmo;
+
+    [SerializeField]
+    private float m_sizeGizmo;
+    private void OnDrawGizmos()
+    {
+        if(m_DrawGizmo)
+        {
+            m_positionEnemyToSpawn = transform.GetChild(0);
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(m_positionEnemyToSpawn.position, m_sizeGizmo);
+        }
+    }
+
 
     private void OnValidate()
     {
@@ -44,9 +65,11 @@ public class SetCheckpointToPlayer : MonoBehaviour
                 m_CheckpointIndex = i;
             }
         }
+
+        m_positionEnemyToSpawn = transform.GetChild(0);
     }
 
-
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -56,7 +79,7 @@ public class SetCheckpointToPlayer : MonoBehaviour
             {
                 status.PlayerCurrentCheckpoint = this.transform.position;
                 status.currentCheckpointIndex = m_CheckpointIndex;
-
+                status.EnemyRespownCheckpoint = m_positionEnemyToSpawn.position;
             }
 
         }
