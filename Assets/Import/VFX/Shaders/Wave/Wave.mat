@@ -39,15 +39,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-<<<<<<< HEAD
-<<<<<<< HEAD:Assets/Import/VFX/Shaders/Wave/Wave.mat
     - _Health: 0.19160837
-=======
-    - _Health: 0.19090052
->>>>>>> 9099dba064d9bfb296bf4859f4e32026a103c8c6:Assets/VFX/Shaders/Wave/Wave.mat
-=======
-    - _Health: 0.19160837
->>>>>>> origin/LeonardV2
     - _Magnification: -0.5
     - _QueueControl: 0
     - _QueueOffset: 0

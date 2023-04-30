@@ -49,18 +49,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _Edge_Width: 0.02
-<<<<<<<< HEAD:Assets/Import/VFX/Shaders/Dissolve/Dissolve_Bloc_Niv1.mat
     - _Health: 0.795
     - _Noise_Scale: 2
-========
-<<<<<<< HEAD:Assets/Import/VFX/Shaders/Dissolve/Dissolve_Bloc_Niv1.mat
-    - _Health: 0.795
-    - _Noise_Scale: 2
-=======
-    - _Health: 0.52
-    - _Noise_Scale: 4
->>>>>>> 9099dba064d9bfb296bf4859f4e32026a103c8c6:Assets/VFX/Shaders/Dissolve/Shader Graphs_Dissolve 3.mat
->>>>>>>> origin/LeonardV2:Assets/Import/Low Poly Woods/Shaders/Shader Graphs_Dissolve 3.mat
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
