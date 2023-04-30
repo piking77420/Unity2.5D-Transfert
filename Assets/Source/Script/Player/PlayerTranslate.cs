@@ -67,11 +67,10 @@ public class PlayerTranslate : TranSlate
         
     }
 
-    public override void OnChangingDimension(InputAction.CallbackContext _context)
+
+    public void Translate() 
     {
-
-
-        if (_context.canceled && m_CanTranslate && m_PlayerGhost.IsCanPlayerTranslate() && ISLearned )
+        if ( m_CanTranslate && m_PlayerGhost.IsCanPlayerTranslate() && ISLearned) 
         {
             m_Animator.SetTrigger("Translate");
             PlayAudio();
@@ -80,7 +79,18 @@ public class PlayerTranslate : TranSlate
             m_Animator.SetInteger("Dimension", (int)current);
             m_CanTranslate = false;
             StartCoroutine(CoolDownTranslate());
+        }
+      
+    } 
 
+    public void OnChangingDimension(InputAction.CallbackContext _context)
+    {
+
+
+        if (_context.canceled )
+        {
+
+            Translate();
 
         }
 

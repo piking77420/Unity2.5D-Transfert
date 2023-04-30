@@ -28,8 +28,8 @@ public class AudioManagers : MonoBehaviour
         PlayerFlight,
         PlayerVoice,
         PlayerImpact,
-        FemaleEffort
-
+        FemaleEffort,
+       
     };
 
     // In Child Has to be in order
@@ -215,14 +215,11 @@ public class AudioManagers : MonoBehaviour
         }
 
 
+        m_IndepandanteSource[(int)DimensionScript.Dimension.Normal].loop = true;
+        m_IndepandanteSource[(int)DimensionScript.Dimension.Normal].Play();
+        m_IndepandanteSource[(int)DimensionScript.Dimension.Special].loop = true;
+        m_IndepandanteSource[(int)DimensionScript.Dimension.Special].Play();
 
-
-        foreach (var item in m_IndepandanteSource)
-        {
-            if(!item == m_IndepandanteSource[(int)IndependantSource.LifeBar] || !item == m_IndepandanteSource[(int)IndependantSource.Musics])
-            item.Play();
-
-        }
     }
 
 
