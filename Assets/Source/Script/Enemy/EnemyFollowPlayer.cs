@@ -48,6 +48,12 @@ public class EnemyFollowPlayer : MonoBehaviour
 
 
 
+    public void OnTrackPlayer(Transform PlayerTransform) 
+    {
+        playerTransform = PlayerTransform;
+        m_DimensionScriptPlayer = playerTransform.transform.parent.GetComponent<DimensionScript>();
+    }
+
 
 
     private void GetAllWaypoint() 
@@ -119,7 +125,6 @@ public class EnemyFollowPlayer : MonoBehaviour
     private void Awake()
     {
         m_Agent = GetComponent<NavMeshAgent>();
-        m_DimensionScriptPlayer = playerTransform.transform.parent.GetComponent<DimensionScript>();
         GetAllWaypoint();
     }
 
@@ -213,14 +218,19 @@ public class EnemyFollowPlayer : MonoBehaviour
 
     void Update()
     {
-        if (IfPlayerIsInSpecialZone()) 
+
+        if(playerTransform != null && m_DimensionScriptPlayer != null) 
         {
-            WaitingPlayer();
+            if (IfPlayerIsInSpecialZone())
+            {
+                WaitingPlayer();
+            }
+            else
+            {
+                Movment();
+            }
         }
-        else 
-        {
-            Movment();
-        }
+    
 
 
     }

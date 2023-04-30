@@ -42,10 +42,11 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField]
     public Vector3 PlayerCurrentCheckpoint;
 
+    [SerializeField]
+    public Vector3 EnemyRespownCheckpoint;
 
-    [HideInInspector]
+
     public UnityEvent OnPlayerDeath;
-    [HideInInspector]
     public UnityEvent OnRespawn;
 
 
@@ -141,7 +142,7 @@ public class PlayerStatus : MonoBehaviour
 
         m_Animator = GetComponentInParent<Animator>();
         fadeSystem = FindObjectOfType<FadeSystem>();
-        //OnPlayerDeath.AddListener(fadeSystem.OnDeathPlayer);
+        OnPlayerDeath.AddListener(fadeSystem.OnDeathPlayer);
 
         m_DimensionScriptPlayer = GetComponent<DimensionScriptPlayer>();
         m_AnimatorForTranslate = GetComponentInParent<Animator>();
@@ -158,8 +159,8 @@ public class PlayerStatus : MonoBehaviour
         if (IsDead)
         {
 
-
-            Debug.Log("ds");
+            StartCoroutine(DeathPlayer(PlayerDiedSource.Corruption));
+            IsDead = false;
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
