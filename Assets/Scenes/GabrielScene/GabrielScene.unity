@@ -988,7 +988,7 @@ PrefabInstance:
     - target: {fileID: 7366999011317531703, guid: dc4acb4c1b245ee44bc1f18a14f6d51e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -7.5437317
+      value: -7.5436707
       objectReference: {fileID: 0}
     - target: {fileID: 7366999011430284288, guid: dc4acb4c1b245ee44bc1f18a14f6d51e,
         type: 3}
@@ -3962,200 +3962,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7450095819831616558, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893707, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: IsLearned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[12].m_ActionId
-      value: 0acb1b59-8b16-4cc0-ba84-adf65f1c9f49
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[13].m_ActionId
-      value: d3b9edea-5c5e-46a9-b8a5-3e29ddd09a62
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[14].m_ActionId
-      value: 377f52fe-9452-492a-989e-088fbc8dc5dd
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[12].m_ActionName
-      value: Menue/BackToGame[/XInputControllerWindows/buttonWest,/XInputControllerWindows1/buttonWest]
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[13].m_ActionName
-      value: Gameplay/PauseMenue[/XInputControllerWindows/start]
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[14].m_ActionName
-      value: Menue/New action
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_DeviceLostEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_DeviceLostEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_DeviceLostEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 3264451763541523689}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_DeviceLostEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_DeviceLostEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set_enabled
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 3264451763541523689}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 3264451763541523689}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 3264451763541523689}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnBackToGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnPopPause
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnPopPause
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_DeviceLostEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.Behaviour, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerPopMenue, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerPopMenue, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerPopMenue, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_DeviceLostEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819271376476893932, guid: e1bf66778b4504340b65629569aba485,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1bf66778b4504340b65629569aba485, type: 3}
---- !u!114 &3264451763541523689 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1497899871402771630, guid: e1bf66778b4504340b65629569aba485,
-    type: 3}
-  m_PrefabInstance: {fileID: 3264451763541523688}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55fefe242340f6145aabaded78b7ec16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4725785867959682445
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4454,6 +4262,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2468337529160763456, guid: e35468d9e940b1140a72d8a240ef4ff6,
         type: 3}
+      propertyPath: Priority
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468337529160763456, guid: e35468d9e940b1140a72d8a240ef4ff6,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468337529160763456, guid: e35468d9e940b1140a72d8a240ef4ff6,
+        type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -4517,16 +4335,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6643527301838016808, guid: e35468d9e940b1140a72d8a240ef4ff6,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6643527301838016808, guid: e35468d9e940b1140a72d8a240ef4ff6,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 32067464c85ac3b468da9dc9c8ab64ba, type: 2}
     - target: {fileID: 6643527302222277940, guid: e35468d9e940b1140a72d8a240ef4ff6,
         type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
@@ -4809,7 +4617,7 @@ MonoBehaviour:
   minGrowCoef: 4.5
   maxGrowCoef: 6.5
   newLegCooldown: 0.3
-  velocity: {x: -0.16046864, y: 0, z: 0.056086306}
+  velocity: {x: 0.5227946, y: 0, z: 0.11695372}
 --- !u!1001 &8631490181104575466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5032,5 +4840,5 @@ MonoBehaviour:
   m_VelocityOnKillPlayer: 0
   m_ShowGizmo: 1
   m_Agent: {fileID: 0}
-  m_EndGameDistance: 1
-  TimeToBeFreez: 4
+  TimeToBeFreez: 5
+  m_TimeToChanPosAfterPlayerDeath: 1.8

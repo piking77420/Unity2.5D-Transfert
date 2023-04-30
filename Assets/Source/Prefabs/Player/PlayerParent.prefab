@@ -4248,17 +4248,73 @@ MonoBehaviour:
     m_ActionId: 359f5b8b-9edd-4234-9b0f-80bac79de446
     m_ActionName: OnDeath/New action
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f58cd505-4195-4fd8-8cea-35d795f6c0bd
-    m_ActionName: None/New action
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 619b910f-df16-49f7-b417-77cdba08d4dd
-    m_ActionName: Menue/New action
-  - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1497899871402771630}
+        m_TargetAssemblyTypeName: PlayerPopMenue, Assembly-CSharp
+        m_MethodName: OnBackToGame
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 0acb1b59-8b16-4cc0-ba84-adf65f1c9f49
     m_ActionName: Menue/BackToGame[/XInputControllerWindows/buttonWest,/XInputControllerWindows1/buttonWest]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1497899871402771630}
+        m_TargetAssemblyTypeName: PlayerPopMenue, Assembly-CSharp
+        m_MethodName: OnPopPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d3b9edea-5c5e-46a9-b8a5-3e29ddd09a62
+    m_ActionName: Gameplay/PauseMenue[/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 377f52fe-9452-492a-989e-088fbc8dc5dd
+    m_ActionName: Menue/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1497899871402771630}
+        m_TargetAssemblyTypeName: PlayerPopMenue, Assembly-CSharp
+        m_MethodName: OnPopPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e4d197a9-f886-454d-87e7-c34d533215d7
+    m_ActionName: Lever/Menue[/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1497899871402771630}
+        m_TargetAssemblyTypeName: PlayerPopMenue, Assembly-CSharp
+        m_MethodName: OnPopPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 12b609b8-45a3-4e38-acec-65e6953fc1d8
+    m_ActionName: MoveBox/Menue[/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -4375,7 +4431,7 @@ MonoBehaviour:
   ForcAdded: {x: 0, y: 0, z: 0}
   TimerToThrow: 4
   angle: 0
-  IsLearned: 0
+  IsLearned: 1
 --- !u!114 &7819271376476893709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4391,6 +4447,7 @@ MonoBehaviour:
   PlayerVelocityMultiplicator: 1
   m_RangeBetweenPlayerAndBox: 3
   m_PlayerPos: {fileID: 1645921577015845490}
+  m_PlayerPopMenue: {fileID: 0}
   m_PlayerMovement: {fileID: 0}
   m_ConfigurableJoint: {fileID: 0}
   m_PlayerInput: {fileID: 0}
@@ -4404,6 +4461,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 63
   m_BoxWantedMass: 1
+  m_AudioSource: {fileID: 0}
 --- !u!114 &7450095819831616558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4424,12 +4482,19 @@ MonoBehaviour:
   OnPlayerDeath:
     m_PersistentCalls:
       m_Calls: []
+  OnRespawn:
+    m_PersistentCalls:
+      m_Calls: []
   TimerFadeDeath: 3
   currentCheckpointIndex: 0
   IsInvicible: 0
   fadeSystem: {fileID: 0}
   m_AnimatorForTranslate: {fileID: 0}
   m_KillPlayer: 0
+  DelayForPlayerSound: 2
+  m_AudioClipPlayerDied:
+  - {fileID: 8300000, guid: c842c7c837cea38498cfb0b481c74c2d, type: 3}
+  - {fileID: 8300000, guid: 749adc0abb9d23a438c3cadb4a8a6bd8, type: 3}
 --- !u!82 &3185797231225887828
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4635,6 +4700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerInput: {fileID: 0}
+  m_actionMapBuffer: 
 --- !u!1 &8388481700070506020
 GameObject:
   m_ObjectHideFlags: 0

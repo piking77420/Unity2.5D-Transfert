@@ -70,7 +70,6 @@ public class PlayerTranslate : TranSlate
 
     public void Translate() 
     {
-        Debug.Log("sdq");
         if ( m_CanTranslate && m_PlayerGhost.IsCanPlayerTranslate() && ISLearned) 
         {
             m_Animator.SetTrigger("Translate");

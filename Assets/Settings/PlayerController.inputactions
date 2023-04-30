@@ -302,6 +302,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Menue",
+                    "type": "Button",
+                    "id": "e4d197a9-f886-454d-87e7-c34d533215d7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -348,6 +357,17 @@
                     "action": "LevierInput",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "56617caa-c6fb-4b19-ba08-041d1fcd3795",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -368,6 +388,15 @@
                     "name": "QuitActionMap",
                     "type": "Button",
                     "id": "0c28a0ac-28e7-4278-b3fd-30dbec8025d6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Menue",
+                    "type": "Button",
+                    "id": "12b609b8-45a3-4e38-acec-65e6953fc1d8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -418,6 +447,17 @@
                     "action": "QuitActionMap",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "97e5a565-c574-42c9-aee2-e88ae3c0dbbe",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -439,34 +479,6 @@
                 {
                     "name": "",
                     "id": "4383d9c4-52fc-4624-86e8-06e4b6ba1428",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "None",
-            "id": "31ee4fb5-8c55-45ba-864a-1b4f26c994d1",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "f58cd505-4195-4fd8-8cea-35d795f6c0bd",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "c5d7f232-85c5-4436-a352-33bc70ac7be4",
                     "path": "",
                     "interactions": "",
                     "processors": "",
@@ -515,11 +527,50 @@
                 {
                     "name": "",
                     "id": "9adcbe33-9c8e-4a33-979e-d533c9e9ae06",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "BackToGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cbe4e3ac-3193-4ad9-b7f8-e69450e19504",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BackToGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "None",
+            "id": "783b06e9-9ad9-4d99-bd01-8e4911bb7364",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "e5ec42dd-61cc-4c06-8d9e-b8f2f6a97fc7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1855bdcf-56d6-403e-a072-f436df5e0326",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

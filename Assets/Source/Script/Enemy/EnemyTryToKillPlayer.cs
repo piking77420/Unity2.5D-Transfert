@@ -39,9 +39,11 @@ public class EnemyTryToKillPlayer : MonoBehaviour
     [SerializeField]
     private float TimeToBeFreez;
 
+    [SerializeField]
+    private float m_TimeToChanPosAfterPlayerDeath = 2 ;
 
 
-    public void ResetPosOnPlayerDeath() 
+    IEnumerator RespawnEnemy() 
     {
         int playerIndexCheckPoint = m_PlayerStatus.currentCheckpointIndex;
 
@@ -50,8 +52,9 @@ public class EnemyTryToKillPlayer : MonoBehaviour
         for (int i = 0; i < m_ListeOfWaypoint.transform.childCount; i++)
         {
 
-            if(i == playerIndexCheckPoint) 
+            if (i == playerIndexCheckPoint)
             {
+                yield return new WaitForSeconds(m_TimeToChanPosAfterPlayerDeath); 
                 posToRespawn = m_ListeOfWaypoint.transform.GetChild(i).position;
                 break;
             }
@@ -63,9 +66,16 @@ public class EnemyTryToKillPlayer : MonoBehaviour
 
 
 
+    public void ResetPosOnPlayerDeath() 
+    {
+        StartCoroutine(RespawnEnemy());
+    }
+
+
+
     public void OnKillHitBox() 
     {
-        if (m_PlayerStatus.IsDead)
+        if (m_PlayerStatus.IsDead || m_Agent.isStopped)
         {
             return;
         }
@@ -85,7 +95,7 @@ public class EnemyTryToKillPlayer : MonoBehaviour
 
                     if(Physics.Raycast(r, out RaycastHit hit, m_DistanceToKillPlayer) && hit.collider == m_Player.GetComponent<Collider>()) 
                     {
-                        m_PlayerStatus.KillPlayer();
+                        m_PlayerStatus.KillPlayer(PlayerStatus.PlayerDiedSource.FromEnemy);
                     }
                 }
             }

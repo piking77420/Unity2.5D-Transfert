@@ -8,6 +8,19 @@ using UnityEngine.UIElements;
 
 public class PlayerStatus : MonoBehaviour
 {
+
+  public enum PlayerDiedSource 
+    {
+        Corruption , FromEnemy
+    }
+
+
+
+
+
+
+
+
     // Start is called before the first frame update
 
     [Header("Dependencies")]
@@ -30,7 +43,9 @@ public class PlayerStatus : MonoBehaviour
     public Vector3 PlayerCurrentCheckpoint;
 
 
+    [HideInInspector]
     public UnityEvent OnPlayerDeath;
+    [HideInInspector]
     public UnityEvent OnRespawn;
 
 
@@ -56,6 +71,15 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField]
     private bool m_KillPlayer;
 
+    [Header("PlayerDeathSound")]
+    private AudioSource[] m_AudioSource;
+
+    [SerializeField,Range(0,5)]
+    private float DelayForPlayerSound;
+
+    [SerializeField]
+     private AudioClip[] m_AudioClipPlayerDied;
+
     private void ResetPos() 
     {
         m_DimensionScriptPlayer.transform.position = new Vector3(PlayerCurrentCheckpoint.x, PlayerCurrentCheckpoint.y, 0);
@@ -69,25 +93,41 @@ public class PlayerStatus : MonoBehaviour
 
     }
 
-    IEnumerator DeathPlayer()
+    private void PlayPlayerDeathSound(PlayerDiedSource DyingSource) 
+    {
+        m_AudioSource[0].clip = m_AudioClipPlayerDied[(int)DyingSource];
+        m_AudioSource[0].PlayDelayed(DelayForPlayerSound);
+    }
+
+    IEnumerator DeathPlayer(PlayerDiedSource DyingSource)
     {
         
         m_PlayerInput.SwitchCurrentActionMap("None");
+        
         OnPlayerDeath.Invoke();
-        yield return new WaitForSeconds(TimerFadeDeath);
+        PlayPlayerDeathSound(DyingSource);
+
+       yield return new WaitForSeconds(TimerFadeDeath);
         ResetPos();
-        yield return new WaitForSeconds(TimerFadeDeath/2);
+        yield return new WaitForSeconds(TimerFadeDeath);
         m_PlayerInput.SwitchCurrentActionMap("Gameplay");
+
+
+
         OnRespawn.Invoke();
         IsInvicible = false;
     }
 
-    public void KillPlayer() 
+    public void KillPlayer(PlayerDiedSource DyingSource) 
     {
         if (!IsInvicible && !IsDead) 
         {
             IsDead = true;
+
             IsInvicible = true;
+            StartCoroutine(DeathPlayer(DyingSource));
+            IsDead = false;
+
         }
     }
 
@@ -99,12 +139,13 @@ public class PlayerStatus : MonoBehaviour
     {
         m_PlayerInput= GetComponent<PlayerInput>();
 
-        m_Animator = GetComponent<Animator>();
+        m_Animator = GetComponentInParent<Animator>();
         fadeSystem = FindObjectOfType<FadeSystem>();
         OnPlayerDeath.AddListener(fadeSystem.OnDeathPlayer);
 
         m_DimensionScriptPlayer = GetComponent<DimensionScriptPlayer>();
-        m_AnimatorForTranslate = GetComponentInParent<Animator>(); 
+        m_AnimatorForTranslate = GetComponentInParent<Animator>();
+        m_AudioSource = GetComponents<AudioSource>();
     }
 
     void Start()
@@ -116,8 +157,6 @@ public class PlayerStatus : MonoBehaviour
     {
         if (IsDead)
         {
-            IsDead = false; 
-            StartCoroutine(DeathPlayer()); 
 
 
             Debug.Log("ds");
