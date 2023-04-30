@@ -4475,7 +4475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerInput: {fileID: 0}
-  m_DimensionScriptPlayer: {fileID: 0}
+  m_DimensionScriptPlayer: {fileID: 4107179835825685575}
   m_Animator: {fileID: 0}
   IsDead: 0
   PlayerCurrentCheckpoint: {x: 0, y: 0, z: 0}

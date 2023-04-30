@@ -2081,16 +2081,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1604630367004498049, guid: 0ff8ecf8499e8ba4088ec248de628736,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: a345d4f59566a614782668bb36b7633a, type: 2}
-    - target: {fileID: 1604630367004498063, guid: 0ff8ecf8499e8ba4088ec248de628736,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ff8ecf8499e8ba4088ec248de628736, type: 3}
 --- !u!4 &1650506738 stripped
@@ -3541,11 +3531,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6187391676555763773, guid: 2852904a69524b84ca8a6d42f496f091,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6187391676555763774, guid: 2852904a69524b84ca8a6d42f496f091,
         type: 3}
       propertyPath: m_ShouldFall
@@ -3555,26 +3540,6 @@ PrefabInstance:
         type: 3}
       propertyPath: DecreaseStreght
       value: 0.38
-      objectReference: {fileID: 0}
-    - target: {fileID: 6187391676555763774, guid: 2852904a69524b84ca8a6d42f496f091,
-        type: 3}
-      propertyPath: m_AudioClip.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6187391676555763774, guid: 2852904a69524b84ca8a6d42f496f091,
-        type: 3}
-      propertyPath: m_AudioClip.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: df265eb0d0e74234f8e0c0c101b79dc4, type: 3}
-    - target: {fileID: 6187391676555763774, guid: 2852904a69524b84ca8a6d42f496f091,
-        type: 3}
-      propertyPath: m_AudioClip.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: e0a3aac3d5fe7254bb7d8fce56eafb6e, type: 3}
-    - target: {fileID: 6187391676555763774, guid: 2852904a69524b84ca8a6d42f496f091,
-        type: 3}
-      propertyPath: OnAccomplish.m_PersistentCalls.m_Calls.Array.size
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6187391677932895200, guid: 2852904a69524b84ca8a6d42f496f091,
         type: 3}
@@ -3977,7 +3942,7 @@ MonoBehaviour:
   minGrowCoef: 4.5
   maxGrowCoef: 6.5
   newLegCooldown: 0.3
-  velocity: {x: -0.29201618, y: 0, z: -0.30744517}
+  velocity: {x: 0.5666972, y: 0, z: -0.38274226}
 --- !u!1001 &8631490181104575466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4201,4 +4166,3 @@ MonoBehaviour:
   m_Agent: {fileID: 0}
   TimeToBeFreez: 5
   m_TimeToChanPosAfterPlayerDeath: 1.8
-  PlayerCheckoipoint: {fileID: 0}
