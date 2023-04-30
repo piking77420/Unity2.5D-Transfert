@@ -55,6 +55,8 @@ public class SteleLearningScipt : MonoBehaviour
             {
                 PlayerLearning.LearnSkill(m_SkillToLearn);
                 m_VisualEffect.enabled = false;
+                this.enabled = false;
+
             }
         }
     }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ecd648ef9f93079499f075ccb13df65f
+guid: 6989f9b10ef27774ea889f5898c6a2af
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -60,7 +60,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.3000349
+      - time: 0.25646794
         functionName: PlayerFootStep
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: fa66275459a4d6045832d65abc4e462d,
@@ -68,7 +68,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 6
         messageOptions: 0
-      - time: 0.8025942
+      - time: 0.7457818
         functionName: PlayerFootStep
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: fa66275459a4d6045832d65abc4e462d,

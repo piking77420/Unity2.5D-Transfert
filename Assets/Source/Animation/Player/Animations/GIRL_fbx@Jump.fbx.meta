@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f8d56a7c5bf424c4bb6394b2383654a0
+guid: f9703d651bb54084bbf1b4afbf73dacf
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -60,7 +60,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.015452316
+      - time: 0.008998878
         functionName: OnPlayerStartJump
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: fa66275459a4d6045832d65abc4e462d,

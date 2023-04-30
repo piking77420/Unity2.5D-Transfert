@@ -40,12 +40,12 @@ public class TranSlate : MonoBehaviour
 
     private bool m_GravityStatue;
 
-    public virtual void OnChangingDimension(InputAction.CallbackContext _context)
+    public virtual void OnChangingDimension()
     {
-                
 
+        Debug.Log(isTranslate);
 
-            if (_context.canceled && isTranslate)
+            if ( isTranslate)
             {
                 m_Animator.SetTrigger("Translate");
 

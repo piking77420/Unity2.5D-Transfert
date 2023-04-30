@@ -114,7 +114,7 @@ public class PlayerDragObject : MonoBehaviour
 
     }
 
-    private void TransSlateObject(InputAction.CallbackContext _context) 
+    private void TransSlateObject() 
     {
 
         foreach (var item in DragAbleObject)
@@ -122,10 +122,24 @@ public class PlayerDragObject : MonoBehaviour
             if(m_SelectionRadius >= m_MinimRadiusValue) 
             {
                 item.gameObject.GetComponent<TranSlate>().isTranslate = true;
-                item.gameObject.GetComponent<TranSlate>().OnChangingDimension(_context);
+                item.gameObject.GetComponent<TranSlate>().OnChangingDimension();
             }
         
         }
+    }
+
+    private void DragAndTraslate() 
+    {
+                    m_TranslateButton = false;
+                    m_AudioSource[(int)PlayerSkill.DragObject].Stop();
+                    FindAllDragableObject();
+                    TransSlateObject();
+                    m_SelectionRadius = 0;
+                    m_TransformPlayerDom.transform.localScale = Vector3.zero;
+                    m_PlayerJump.isGravityApplie = true;
+
+                    DragAbleObject.Clear();
+                    m_DomeRender.enabled = false;
     }
 
     private void GetPlayerRadius(InputAction.CallbackContext _context) 
@@ -152,17 +166,8 @@ public class PlayerDragObject : MonoBehaviour
                 case InputActionPhase.Performed:
                     break;
                 case InputActionPhase.Canceled:
-                    m_TranslateButton = false;
-                    m_AudioSource[(int)PlayerSkill.DragObject].Stop();
-                    FindAllDragableObject();
-                    TransSlateObject(_context);
-                    m_SelectionRadius = 0;
-                    m_TransformPlayerDom.transform.localScale = Vector3.zero;
-                    m_PlayerJump.isGravityApplie = true;
-
-                    DragAbleObject.Clear();
-                    m_DomeRender.enabled = false;
-
+                    DragAndTraslate();
+                    m_PlayerTranslate.Translate();
                     break;
             }
         
@@ -220,6 +225,14 @@ public class PlayerDragObject : MonoBehaviour
             Vector3 scaleDome = new Vector3(addedValue, addedValue, addedValue);
             m_TransformPlayerDom.transform.localScale += scaleDome;
 
+
+        }
+
+
+        if(m_SelectionRadius >= m_MaxRadius) 
+        {
+            DragAndTraslate();
+            m_PlayerTranslate.Translate();
 
         }
     }

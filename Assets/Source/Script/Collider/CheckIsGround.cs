@@ -55,6 +55,7 @@ public class CheckIsGround : MonoBehaviour
         for (int i = 0; i < collision.contacts.Length; i++)
         {
             CheckCollisionAngle(collision.contacts[i].normal);
+            return true;
         }
 
         return false;
@@ -124,7 +125,7 @@ public class CheckIsGround : MonoBehaviour
                 if(hit.collider != null) 
                 {
 
-                   isGrounded = CheckCollisionAngle(hit.normal);
+                 //  isGrounded = CheckCollisionAngle(hit.normal);
 
                 }
             }

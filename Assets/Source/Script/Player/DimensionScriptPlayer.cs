@@ -44,7 +44,7 @@ public class DimensionScriptPlayer : DimensionScript
 
             if(CurrentForOtherDimension < 0) 
             {
-                m_PlayerStatus.KillPlayer();
+                m_PlayerStatus.KillPlayer(PlayerStatus.PlayerDiedSource.Corruption);
                 CurrentForOtherDimension = MaxTimeForOtherDimension;
             }
         }
