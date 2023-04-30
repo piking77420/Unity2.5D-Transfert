@@ -40,8 +40,8 @@ MonoBehaviour:
       type: 3}
   m_RendererFeatures:
   - {fileID: -1878332245247344467}
-  - {fileID: 6858604395526692824}
-  m_RendererFeatureMap: adc0de57c6d2eee5d81f4dfa5ba82e5f
+  - {fileID: 6891663558571877852}
+  m_RendererFeatureMap: adc0de57c6d2eee5dc652e307e1ba45f
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -76,12 +76,12 @@ MonoBehaviour:
     zFailOperation: 0
   m_ShadowTransparentReceive: 1
   m_RenderingMode: 0
-  m_DepthPrimingMode: 1
+  m_DepthPrimingMode: 0
   m_AccurateGbufferNormals: 0
   m_ClusteredRendering: 0
   m_TileSize: 32
-  m_IntermediateTextureMode: 0
---- !u!114 &6858604395526692824
+  m_IntermediateTextureMode: 1
+--- !u!114 &6891663558571877852
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,13 +90,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f613dffd8ceb5f3438c897f1002d4f1b, type: 3}
+  m_Script: {fileID: 11500000, guid: d445bd66e174b9a428a845bb23556e4c, type: 3}
   m_Name: Blit
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
     Event: 300
-    blitMaterial: {fileID: 2100000, guid: 8150f0d6203c0e34b8b88f5cd41d905c, type: 2}
+    blitMaterial: {fileID: 2100000, guid: c95a8adfd9bcca94985c545588226be4, type: 2}
     blitMaterialPassIndex: 0
     setInverseViewMatrix: 0
     requireDepthNormals: 0
