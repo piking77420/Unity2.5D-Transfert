@@ -141,7 +141,7 @@ public class PlayerStatus : MonoBehaviour
 
         m_Animator = GetComponentInParent<Animator>();
         fadeSystem = FindObjectOfType<FadeSystem>();
-        OnPlayerDeath.AddListener(fadeSystem.OnDeathPlayer);
+        //OnPlayerDeath.AddListener(fadeSystem.OnDeathPlayer);
 
         m_DimensionScriptPlayer = GetComponent<DimensionScriptPlayer>();
         m_AnimatorForTranslate = GetComponentInParent<Animator>();
