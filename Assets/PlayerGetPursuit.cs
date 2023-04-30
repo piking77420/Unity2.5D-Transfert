@@ -21,6 +21,14 @@ public class PlayerGetPursuit : MonoBehaviour
     [SerializeField]
     private AudioManagers.Music music;
 
+
+    private void Awake()
+    {
+        followPlayer = FindObjectOfType<EnemyFollowPlayer>();
+        
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<PlayerLearningSkill>(out PlayerLearningSkill player))
@@ -28,13 +36,14 @@ public class PlayerGetPursuit : MonoBehaviour
             if (onCollisonBehaviours == OnCollisonBehaviours.StartPursuit)
             {
 
-                followPlayer.playerTransform = followPlayer.transform;
+                followPlayer.OnTrackPlayer(player.transform);
                 AudioManagers.instance.PlayMusic(music);
             }
             else 
             {
                 followPlayer.playerTransform = null;
             }
+
                 
         }
                 
