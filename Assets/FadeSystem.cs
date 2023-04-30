@@ -19,18 +19,24 @@ public class FadeSystem : MonoBehaviour
 
 
     }
+    public void OnEndLevel()
+    {
+        m_Animator.SetTrigger("End");
+    }
 
-
-    private void OnStartLevel() 
+    public void OnStartLevel() 
     {
         m_Animator.SetTrigger("Start");
     }
 
-
-    public void OnPlayerDeathFadeSystem()
+    public void OnDeathPlayer() 
     {
-        m_Animator.SetTrigger("FadePlayerDeath");
+        m_Animator.SetTrigger("OnDeath");
+
     }
+
+
+ 
 
 
 

@@ -771,6 +771,7 @@ MonoBehaviour:
   ListAudioAmbianceTranferts: []
   ListAudioMusicsTranferts: []
   SwapDimensionLerp: 0
+  m_Music: []
   GetMixerState: 0
 --- !u!95 &6643527301838016808
 Animator:

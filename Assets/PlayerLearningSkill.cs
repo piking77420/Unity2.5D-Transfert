@@ -47,12 +47,12 @@ public class PlayerLearningSkill : MonoBehaviour
         else if (skillToLearn == PlayerSkill.DragObject) 
         {
             SpawnEffect();
-            m_PlayerThrowEnemy.IsLearned = true;
+            m_PlayerDragObject.IsLearned = true;
         }
         else if (skillToLearn == PlayerSkill.ThroWEnemy)
         {
             SpawnEffect();
-            m_PlayerDragObject.IsLearned = true;
+            m_PlayerThrowEnemy.IsLearned = true;
         }
 
 
@@ -60,7 +60,6 @@ public class PlayerLearningSkill : MonoBehaviour
 
 
 
-        Destroy(this.gameObject.GetComponent<PlayerLearningSkill>());  
     }
 
 

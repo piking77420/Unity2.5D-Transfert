@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static AudioManagers.BiomeStat;
+using static AudioManagers.SourceFrom;
+
 
 public class PlayerPushBox : MonoBehaviour
 {
@@ -31,6 +34,8 @@ public class PlayerPushBox : MonoBehaviour
     [SerializeField]
     private Transform m_PlayerPos;
 
+    [SerializeField]
+    private PlayerPopMenue m_PlayerPopMenue;
     [SerializeField]
     private PlayerMovement m_PlayerMovement;
 
@@ -92,6 +97,12 @@ public class PlayerPushBox : MonoBehaviour
 
 
     private float m_BaseMass;
+
+
+    [Header("AudioPart"),SerializeField]
+    private AudioSource m_AudioSource;
+
+
     private void OnDrawGizmos()
     {
         if (ShowGizmo)
@@ -131,6 +142,11 @@ public class PlayerPushBox : MonoBehaviour
     {
         if (_callbackContext.performed)
         {
+            if (!m_AudioSource.isPlaying) 
+            {
+                AudioManagers.instance.PlayAudioAt(AudioManagers.SourceFrom.FemaleEffort, AudioManagers.BiomeStat.Interior, m_AudioSource);
+                m_AudioSource.Play();
+            }
 
             m_PushVector = _callbackContext.ReadValue<float>();
         }
@@ -188,7 +204,7 @@ public class PlayerPushBox : MonoBehaviour
         m_PlayerMovement = GetComponent<PlayerMovement>();
 
 
-
+        m_PlayerPopMenue = GetComponent<PlayerPopMenue>();  
     }
 
     void Start()
@@ -233,6 +249,7 @@ public class PlayerPushBox : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
 
         if (m_CurrentBox != null)
         {
