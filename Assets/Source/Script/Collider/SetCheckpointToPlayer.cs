@@ -52,7 +52,7 @@ public class SetCheckpointToPlayer : MonoBehaviour
     {
         if(other.gameObject.transform.parent.TryGetComponent<PlayerStatus>(out PlayerStatus status)) 
         {
-            if(status.currentCheckpointIndex < m_CheckpointIndex)
+            if(status.currentCheckpointIndex <= m_CheckpointIndex)
             {
                 status.PlayerCurrentCheckpoint = this.transform.position;
                 status.currentCheckpointIndex = m_CheckpointIndex;
