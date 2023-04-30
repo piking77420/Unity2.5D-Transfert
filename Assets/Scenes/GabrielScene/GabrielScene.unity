@@ -4312,7 +4312,7 @@ MonoBehaviour:
   minGrowCoef: 4.5
   maxGrowCoef: 6.5
   newLegCooldown: 0.3
-  velocity: {x: -0.15510242, y: 0, z: 0.2057172}
+  velocity: {x: 0.54156536, y: 0, z: 0.66392446}
 --- !u!1001 &8631490181104575466
 PrefabInstance:
   m_ObjectHideFlags: 0

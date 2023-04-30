@@ -43,7 +43,7 @@ public class FootStepDistance : MonoBehaviour
     
 
     public void PlayFootStep(AudioManagers.SourceFrom sourcefrom) 
-    {/*
+    {
         AudioManagers.BiomeStat currentBiom = GetBiomeCollider();
         Debug.Log(currentBiom.ToString());
         Debug.Log(sourcefrom.ToString());
@@ -51,7 +51,7 @@ public class FootStepDistance : MonoBehaviour
 
         AudioManagers.instance.PlayAudioAt(sourcefrom, currentBiom, m_Source);
 
-        m_Source.PlayOneShot(m_Source.clip);*/
+        m_Source.PlayOneShot(m_Source.clip);
     }
 
 
