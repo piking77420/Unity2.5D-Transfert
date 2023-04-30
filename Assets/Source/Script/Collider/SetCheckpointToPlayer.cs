@@ -13,7 +13,6 @@ public class SetCheckpointToPlayer : MonoBehaviour
     [SerializeField]
     private Transform m_positionEnemyToSpawn;
 
-    private int m_CheckpointIndex;
 
 
 
@@ -58,13 +57,7 @@ public class SetCheckpointToPlayer : MonoBehaviour
         }
         
 
-        for (int i = 0; i < transform.parent.childCount; i++) 
-        {
-            if(transform.parent.GetChild(i) == this.transform) 
-            {
-                m_CheckpointIndex = i;
-            }
-        }
+      
 
         m_positionEnemyToSpawn = transform.GetChild(0);
     }
@@ -75,12 +68,11 @@ public class SetCheckpointToPlayer : MonoBehaviour
     {
         if(other.gameObject.transform.parent.TryGetComponent<PlayerStatus>(out PlayerStatus status)) 
         {
-            if(status.currentCheckpointIndex <= m_CheckpointIndex)
-            {
+            
+            
                 status.PlayerCurrentCheckpoint = this.transform.position;
-                status.currentCheckpointIndex = m_CheckpointIndex;
                 status.EnemyRespownCheckpoint = m_positionEnemyToSpawn.position;
-            }
+            
 
         }
     }
