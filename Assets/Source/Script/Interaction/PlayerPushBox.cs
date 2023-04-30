@@ -203,7 +203,7 @@ public class PlayerPushBox : MonoBehaviour
         m_PlayerJump = GetComponent<PlayerJump>();
         m_PlayerMovement = GetComponent<PlayerMovement>();
 
-
+        m_AudioSource  = GetComponent<AudioSource>();   
         m_PlayerPopMenue = GetComponent<PlayerPopMenue>();  
     }
 

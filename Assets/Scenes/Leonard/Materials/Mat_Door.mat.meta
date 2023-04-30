@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/materials/Dimension1 Champ.mat.meta
+guid: 001d3144606cdbb4a8ee5353890619e9
+========
 guid: e227063840ea2c146b671f6a74589fe8
+>>>>>>>> origin/LeonardV2:Assets/Scenes/Leonard/Materials/Mat_Door.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000

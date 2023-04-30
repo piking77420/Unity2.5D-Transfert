@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d445bd66e174b9a428a845bb23556e4c, type: 3}
-  m_Name: Blit
+  m_Name: URP-HighFidelity-Renderer 1
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
