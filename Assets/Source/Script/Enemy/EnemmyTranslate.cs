@@ -10,12 +10,12 @@ public class EnemmyTranslate : TranSlate
     [SerializeField]
     private EnemyPatrol m_EnemyPatrol;
 
-    public override void OnChangingDimension(InputAction.CallbackContext _context)
+    public override void OnChangingDimension()
     {
 
 
 
-        if (_context.canceled && isTranslate)
+        if (isTranslate)
         {
             m_Animator.SetTrigger("Translate");
 

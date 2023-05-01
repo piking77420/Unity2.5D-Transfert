@@ -11,8 +11,26 @@ public class SceneLoader : MonoBehaviour
     private string m_SceneToLoad;
 
     [SerializeField]
-    private Animator m_Animator;
+    private FadeSystem m_FadeSystem;
 
+
+    [SerializeField]
+    private float m_SecondsToLoad;
+
+    private void Awake()
+    {
+        m_FadeSystem = FindObjectOfType<FadeSystem>();
+    }
+
+
+
+    IEnumerator LoadScene() 
+    {
+        m_FadeSystem.OnEndLevel();
+        yield return new WaitForSeconds(m_SecondsToLoad);
+        SceneManager.LoadScene(m_SceneToLoad);
+
+    }
 
 
 
@@ -21,8 +39,8 @@ public class SceneLoader : MonoBehaviour
     {
         if(other.gameObject.tag == "Player") 
         {
-            m_Animator.SetTrigger("FadeOutChanageScene");
-            SceneManager.LoadScene(m_SceneToLoad);
+            other.GetComponentInParent<PlayerStatus>().IsInvicible = true;
+            StartCoroutine(LoadScene());
         }
     }
 

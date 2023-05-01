@@ -1,11 +1,8 @@
 fileFormatVersion: 2
-guid: d418c184f7a87264abdffabfd1ae005b
+guid: 35abe2a1546fe7c4cbd44422ab03d079
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
-  - first:
-      74: 5328921956098450455
-    second: Kneeling Down
   - first:
       74: -203655887218126122
     second: Kneeling Down

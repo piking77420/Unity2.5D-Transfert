@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Athénaîs/AthenaisScene 1/NavMesh-NavmeshSurface.asset.meta
 guid: b87b87da5d61b474e942b37682b4e6ca
+========
+guid: 381c079cd6fcc064dbff17565e81fc04
+>>>>>>>> 14ad5d10719d70d33ccb12a3dde7a64ff19612d9:Assets/Scenes/Athénaîs/AthenaisScene/NavMesh-NavmeshSurface 3.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 23800000

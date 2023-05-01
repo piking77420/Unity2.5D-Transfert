@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,13 +11,11 @@ public class EnemyTryToKillPlayer : MonoBehaviour
 
 
 
-    [SerializeField]
-    private GameObject m_ListeOfWaypoint;
     private EnemyFollowPlayer m_EnemyFollowPlayer;
 
     [SerializeField]
     private Transform m_Player;
-
+    [SerializeField]
     private PlayerStatus m_PlayerStatus;
 
     [SerializeField, Range(0, 10)]
@@ -31,44 +30,42 @@ public class EnemyTryToKillPlayer : MonoBehaviour
     [SerializeField]
     private NavMeshAgent m_Agent;
 
-    [SerializeField, Range(0, 10)]
-    private float m_EndGameDistance;
 
 
 
 
 
+    [SerializeField]
+    private float TimeToBeFreez;
+
+    [SerializeField]
+    private float m_TimeToChanPosAfterPlayerDeath = 2;
 
 
 
 
 
-
-    private void ResetPosOnPlayerDeath() 
+   public IEnumerator RespawnEnemy() 
     {
-        int playerIndexCheckPoint = m_PlayerStatus.currentCheckpointIndex;
+       
 
-        Vector3 posToRespawn = new Vector3();
+        yield return new WaitForSeconds(m_TimeToChanPosAfterPlayerDeath);
+        this.transform.position = m_PlayerStatus.EnemyRespownCheckpoint;
+    }
 
-        for (int i = 0; i < m_ListeOfWaypoint.transform.childCount; i++)
-        {
 
-            if(i == playerIndexCheckPoint) 
-            {
-                posToRespawn = m_ListeOfWaypoint.transform.GetChild(i).position;
-                break;
-            }
-        }
 
-        this.transform.position = posToRespawn;
-
+    public void ResetPosOnPlayerDeath() 
+    {
+        if(m_EnemyFollowPlayer.playerTransform != null)
+        StartCoroutine(RespawnEnemy());
     }
 
 
 
     public void OnKillHitBox() 
     {
-        if (m_PlayerStatus.IsDead)
+        if (m_PlayerStatus.IsDead || m_Agent.isStopped)
         {
             return;
         }
@@ -88,7 +85,7 @@ public class EnemyTryToKillPlayer : MonoBehaviour
 
                     if(Physics.Raycast(r, out RaycastHit hit, m_DistanceToKillPlayer) && hit.collider == m_Player.GetComponent<Collider>()) 
                     {
-                        m_PlayerStatus.IsDead = true;
+                        m_PlayerStatus.KillPlayer(PlayerStatus.PlayerDiedSource.FromEnemy);
                     }
                 }
             }
@@ -111,13 +108,24 @@ public class EnemyTryToKillPlayer : MonoBehaviour
         
     }
 
-    private void OnRespawnPlayer() 
+
+    IEnumerator StopEnemy() 
     {
-        // tranform = last hceckpoint
+        m_Agent.isStopped = true;
+        yield return new WaitForSeconds(TimeToBeFreez);
+        m_Agent.isStopped = false;
+
     }
+
+    private void Freeze() 
+    {
+        StartCoroutine(StopEnemy());
+    }
+
 
     private void Awake()
     {
+        m_PlayerStatus = FindObjectOfType<PlayerStatus>();
         m_EnemyFollowPlayer = GetComponent<EnemyFollowPlayer>();
         m_Agent = GetComponent<NavMeshAgent>();
     }
@@ -125,13 +133,13 @@ public class EnemyTryToKillPlayer : MonoBehaviour
     void Start()
     {
         m_PlayerStatus = m_Player.parent.GetComponent<PlayerStatus>();
-        m_PlayerStatus.OnPlayerDeath.AddListener(OnRespawnPlayer);
         m_PlayerStatus.OnPlayerDeath.AddListener(ResetPosOnPlayerDeath);
+        m_PlayerStatus.OnRespawn.AddListener(Freeze);
     }
 
     void Update()
     {
-
+        if(m_EnemyFollowPlayer.playerTransform!= null)
         OnKillHitBox();
 
     }

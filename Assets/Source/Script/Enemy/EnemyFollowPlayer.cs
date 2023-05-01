@@ -7,7 +7,7 @@ public class EnemyFollowPlayer : MonoBehaviour
 {
     [Header("Dependencies")]
     [SerializeField]
-    public Transform m_PlayerTransform;
+    public Transform playerTransform;
     [SerializeField]
     private DimensionScript m_DimensionScriptPlayer;
 
@@ -42,6 +42,20 @@ public class EnemyFollowPlayer : MonoBehaviour
     private int CurrentWaypointIndex = 0;
 
 
+
+
+
+
+
+
+    public void OnTrackPlayer(Transform PlayerTransform) 
+    {
+        playerTransform = PlayerTransform;
+        m_DimensionScriptPlayer = playerTransform.transform.parent.GetComponent<DimensionScript>();
+    }
+
+
+
     private void GetAllWaypoint() 
     {
         Transform[] points;
@@ -68,7 +82,7 @@ public class EnemyFollowPlayer : MonoBehaviour
 
     public Transform ReturnPlayerTransform() 
     {
-        return m_PlayerTransform;
+        return playerTransform;
     }
 
     private void OnDrawGizmos()
@@ -116,7 +130,7 @@ public class EnemyFollowPlayer : MonoBehaviour
 
     private void Movment() 
     {
-        Vector3 PlayerNormalWorldOffset = m_PlayerTransform.position;
+        Vector3 PlayerNormalWorldOffset = playerTransform.position;
         PlayerNormalWorldOffset.z = -DimensionScript.DimensionSize / 2f;
 
         m_Agent.SetDestination(PlayerNormalWorldOffset);
@@ -204,14 +218,19 @@ public class EnemyFollowPlayer : MonoBehaviour
 
     void Update()
     {
-        if (IfPlayerIsInSpecialZone()) 
+
+        if(playerTransform != null && m_DimensionScriptPlayer != null) 
         {
-            WaitingPlayer();
+            if (IfPlayerIsInSpecialZone())
+            {
+                WaitingPlayer();
+            }
+            else
+            {
+                Movment();
+            }
         }
-        else 
-        {
-            Movment();
-        }
+    
 
 
     }

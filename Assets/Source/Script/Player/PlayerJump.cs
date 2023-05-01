@@ -8,12 +8,9 @@ using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
 [RequireComponent(typeof(PlayerMovement))]
-public class PlayerJump : MonoBehaviour, PlayableAudioScript
+public class PlayerJump : MonoBehaviour
 {
     // Start is called before the first frame update
-
-    [SerializeField]
-    private AudioSource m_AudioSource;
 
 
 
@@ -115,10 +112,12 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
     public void DoJump(float JumpStrenght) 
     {
         StartCoroutine(ApexModifers());
+        m_Rigidbody.velocity.Set(m_Rigidbody.velocity.x, 0, m_Rigidbody.velocity.z);
         m_Rigidbody.velocity += Vector3.up * JumpStrenght;
         m_CheckIsGround.isGrounded = false ;
         m_JumpBuffer = false;
         m_WillJump = false;
+
     }
 
 
@@ -127,19 +126,16 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
   
     public void OnJumping(InputAction.CallbackContext _callbackContext)
     {
-        bool Onpress = _callbackContext.performed;
-        float time = (float)_callbackContext.duration;
-       
         switch (_callbackContext.phase) 
         {
             case InputActionPhase.Started:
-                m_AudioSource.Play();
                 m_WillJump = true;
                 break;
             case InputActionPhase.Performed:
                
                 break;
             case InputActionPhase.Canceled:
+
                 break;
         }
 
@@ -235,8 +231,7 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
     {
         if (isGravityApplie) 
         {
-            Vector3 gravity =  (m_Rigidbody.velocity);
-            gravity.y = Physics.gravity.y * m_GravityValue; 
+           
             m_Rigidbody.AddForce(customGravity);
         }
     }
@@ -264,13 +259,6 @@ public class PlayerJump : MonoBehaviour, PlayableAudioScript
 
 
 
-
-    public void PlayAudio()
-    {
-        throw new System.NotImplementedException();
-    }
-
-        
 
 
 

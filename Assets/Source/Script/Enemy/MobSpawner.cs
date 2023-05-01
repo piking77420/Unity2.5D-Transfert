@@ -15,7 +15,7 @@ public class MobSpawner : MonoBehaviour
     private GameObject m_CurrentEnemy;
 
     [SerializeField]
-    private Vector3[] m_ListOfWaypoint; 
+    private List<Vector3> m_ListOfWaypoint; 
 
 
     [SerializeField,Range(0,10)]
@@ -41,7 +41,7 @@ public class MobSpawner : MonoBehaviour
             foreach (var item in m_ListOfWaypoint) 
             {
                 Gizmos.color = Color.yellow;
-                Gizmos.DrawWireSphere(item, m_GizmoSpawnPoint);
+                Gizmos.DrawWireSphere(item + this.transform.position, m_GizmoSpawnPoint);
             }
 
         }
@@ -61,7 +61,7 @@ public class MobSpawner : MonoBehaviour
 
         if(m_CurrentEnemy.TryGetComponent<EnemyPatrol>(out EnemyPatrol enemyPatrol)) 
         {
-            enemyPatrol.SetPath(m_ListOfWaypoint);
+            enemyPatrol.SetPath(m_ListOfWaypoint,this);
         }
 
 
@@ -81,9 +81,9 @@ public class MobSpawner : MonoBehaviour
             {
                 m_CurrentEnemy = Instantiate(m_Prefab, transform.position, Quaternion.identity);
 
-                if (m_CurrentEnemy.TryGetComponent<EnemyPatrol>(out EnemyPatrol enemyPatrol) && m_ListOfWaypoint.Length != 0 )
+                if (m_CurrentEnemy.GetComponentInChildren<EnemyPatrol>() && m_ListOfWaypoint.Count != 0 )
                 {
-                    enemyPatrol.SetPath(m_ListOfWaypoint);
+                    m_CurrentEnemy.GetComponentInChildren<EnemyPatrol>().SetPath(m_ListOfWaypoint,this);
                 }
                 m_CurrentTimer = m_TimerForSpawner;
             }

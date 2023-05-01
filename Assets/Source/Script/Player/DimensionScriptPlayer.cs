@@ -7,7 +7,7 @@ public class DimensionScriptPlayer : DimensionScript
 
     [Header("TimeLimiteOnOtherDimension")]
 
-    [SerializeField]
+    [SerializeField,Tooltip("Seems good with 12")]
     public float MaxTimeForOtherDimension;
 
     [SerializeField]
@@ -27,6 +27,7 @@ public class DimensionScriptPlayer : DimensionScript
     {
 
         CurrentForOtherDimension = MaxTimeForOtherDimension;
+        AudioManagers.instance.currentPlayerDimension = CurrentDimension;
         base.Start();
     }
 
@@ -43,7 +44,8 @@ public class DimensionScriptPlayer : DimensionScript
 
             if(CurrentForOtherDimension < 0) 
             {
-                m_PlayerStatus.IsDead = true;
+                m_PlayerStatus.KillPlayer(PlayerStatus.PlayerDiedSource.Corruption);
+                CurrentForOtherDimension = MaxTimeForOtherDimension;
             }
         }
 

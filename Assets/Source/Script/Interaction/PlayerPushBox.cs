@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static AudioManagers.BiomeStat;
+using static AudioManagers.SourceFrom;
+
 
 public class PlayerPushBox : MonoBehaviour
 {
@@ -31,6 +34,8 @@ public class PlayerPushBox : MonoBehaviour
     [SerializeField]
     private Transform m_PlayerPos;
 
+    [SerializeField]
+    private PlayerPopMenue m_PlayerPopMenue;
     [SerializeField]
     private PlayerMovement m_PlayerMovement;
 
@@ -92,6 +97,12 @@ public class PlayerPushBox : MonoBehaviour
 
 
     private float m_BaseMass;
+
+
+    [Header("AudioPart"),SerializeField]
+    private AudioSource m_AudioSource;
+
+
     private void OnDrawGizmos()
     {
         if (ShowGizmo)
@@ -112,7 +123,6 @@ public class PlayerPushBox : MonoBehaviour
         m_PhysicsMaterialBox = null;
         m_PlayerPhysicsMaterial.staticFriction = m_baseStaticFriction;
         m_PlayerPhysicsMaterial.dynamicFriction = m_baseDynamicFriction;
-        m_PlayerInput.SwitchCurrentActionMap("Gameplay");
     }
 
 
@@ -132,6 +142,11 @@ public class PlayerPushBox : MonoBehaviour
     {
         if (_callbackContext.performed)
         {
+            if (!m_AudioSource.isPlaying) 
+            {
+                AudioManagers.instance.PlayAudioAt(AudioManagers.SourceFrom.FemaleEffort, AudioManagers.BiomeStat.Interior, m_AudioSource);
+                m_AudioSource.Play();
+            }
 
             m_PushVector = _callbackContext.ReadValue<float>();
         }
@@ -155,7 +170,6 @@ public class PlayerPushBox : MonoBehaviour
 
         if (Vector3.Distance(Playerpos, @object.transform.position) < m_RangeBetweenPlayerAndBox)
         {
-
             m_CurrentBox = @object.gameObject;
             m_BoxRb = m_CurrentBox.GetComponentInParent<Rigidbody>();
             m_PhysicsMaterialBox = @object.GetComponent<Collider>().material;
@@ -189,8 +203,8 @@ public class PlayerPushBox : MonoBehaviour
         m_PlayerJump = GetComponent<PlayerJump>();
         m_PlayerMovement = GetComponent<PlayerMovement>();
 
-
-
+        m_AudioSource  = GetComponent<AudioSource>();   
+        m_PlayerPopMenue = GetComponent<PlayerPopMenue>();  
     }
 
     void Start()
@@ -209,6 +223,8 @@ public class PlayerPushBox : MonoBehaviour
         m_ConfigurableJoint.angularXMotion = ConfigurableJointMotion.Free;
         m_ConfigurableJoint.angularYMotion = ConfigurableJointMotion.Free;
         m_ConfigurableJoint.angularZMotion = ConfigurableJointMotion.Limited;
+        m_PlayerInput.SwitchCurrentActionMap("Gameplay");
+
     }
 
     private void TakeBox()
@@ -234,6 +250,7 @@ public class PlayerPushBox : MonoBehaviour
     void FixedUpdate()
     {
 
+
         if (m_CurrentBox != null)
         {
 
@@ -246,49 +263,28 @@ public class PlayerPushBox : MonoBehaviour
             // get Vector From box dPLayer 
 
             Vector3 dir = (boxPos - playerPos);
-            dir.Set(dir.x, m_CurrentBox.transform.position.y, dir.z);
+            dir.Set(dir.x, 0, dir.z);
 
             Ray r = new Ray(playerPos, dir);
 
-     
+
             if (Physics.Raycast(r, out RaycastHit hit, m_RangeBetweenPlayerAndBox, m_LayerMask) && hit.rigidbody == m_BoxRb)
             {
-
-
                 m_PlayerMovement._Speed = PlayerVelocityOnPushBox * PlayerVelocityMultiplicator;
                 TakeBox();
-
             }
             else
             {
                 DropBox();
                 m_CurrentBox = null;
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         }
-
-
-
-
     }
 }
 
 
- 
+
+
 
 
 

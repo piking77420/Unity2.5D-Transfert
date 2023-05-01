@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PauseMenue",
+                    "type": "Button",
+                    "id": "d3b9edea-5c5e-46a9-b8a5-3e29ddd09a62",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -108,7 +117,7 @@
                 {
                     "name": "Negative",
                     "id": "b4b5bcee-f691-453b-99e5-59fc5384051c",
-                    "path": "<XInputController>/leftStick/left",
+                    "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -258,6 +267,17 @@
                     "action": "Interaction",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "70f98a81-0e4e-4db2-aec9-0a107d76a357",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseMenue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -269,7 +289,7 @@
                     "name": "LevierInput",
                     "type": "PassThrough",
                     "id": "a326941b-c38d-49bd-bb36-2b75dc80e780",
-                    "expectedControlType": "Analog",
+                    "expectedControlType": "Digital",
                     "processors": "",
                     "interactions": "Hold(duration=1.401298E-45,pressPoint=1.401298E-45)",
                     "initialStateCheck": true
@@ -278,6 +298,15 @@
                     "name": "QuitLeverActionMap",
                     "type": "Button",
                     "id": "06aefa49-7767-4a56-91a4-c2ca2e8b673a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Menue",
+                    "type": "Button",
+                    "id": "e4d197a9-f886-454d-87e7-c34d533215d7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -319,7 +348,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "positive",
+                    "name": "negative",
                     "id": "dc8041f5-f4fb-4bbb-b29b-1f5fd33ab682",
                     "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
@@ -328,6 +357,17 @@
                     "action": "LevierInput",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "56617caa-c6fb-4b19-ba08-041d1fcd3795",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -348,6 +388,15 @@
                     "name": "QuitActionMap",
                     "type": "Button",
                     "id": "0c28a0ac-28e7-4278-b3fd-30dbec8025d6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Menue",
+                    "type": "Button",
+                    "id": "12b609b8-45a3-4e38-acec-65e6953fc1d8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -398,6 +447,17 @@
                     "action": "QuitActionMap",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "97e5a565-c574-42c9-aee2-e88ae3c0dbbe",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -430,13 +490,22 @@
             ]
         },
         {
-            "name": "None",
-            "id": "31ee4fb5-8c55-45ba-864a-1b4f26c994d1",
+            "name": "Menue",
+            "id": "7836f4e3-affc-4a98-9915-8762cb091076",
             "actions": [
                 {
                     "name": "New action",
                     "type": "Button",
-                    "id": "f58cd505-4195-4fd8-8cea-35d795f6c0bd",
+                    "id": "377f52fe-9452-492a-989e-088fbc8dc5dd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BackToGame",
+                    "type": "Button",
+                    "id": "0acb1b59-8b16-4cc0-ba84-adf65f1c9f49",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -446,12 +515,90 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "c5d7f232-85c5-4436-a352-33bc70ac7be4",
+                    "id": "b7bad95a-ac90-4eb6-8315-277f9a164cc2",
                     "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9adcbe33-9c8e-4a33-979e-d533c9e9ae06",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BackToGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cbe4e3ac-3193-4ad9-b7f8-e69450e19504",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BackToGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "None",
+            "id": "783b06e9-9ad9-4d99-bd01-8e4911bb7364",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "e5ec42dd-61cc-4c06-8d9e-b8f2f6a97fc7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1855bdcf-56d6-403e-a072-f436df5e0326",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "CheatActionMap",
+            "id": "e8a2f195-0271-4ddd-a529-923cab7d08c9",
+            "actions": [
+                {
+                    "name": "SwapMap",
+                    "type": "Button",
+                    "id": "273b5e53-1f68-4f8e-b5ed-bcdc6d328765",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9cc0903b-3709-4b17-8042-8ccf43e21939",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwapMap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

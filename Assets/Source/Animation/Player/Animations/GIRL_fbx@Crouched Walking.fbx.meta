@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bdb8d14d61ce97e40b1f09131f1e6f0a
+guid: 0c04760cbaa1477498fea6991449d95f
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -53,13 +53,29 @@ ModelImporter:
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
-      keepOriginalPositionY: 0
+      keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
-      heightFromFeet: 1
+      heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.21947336
+        functionName: PlayerFootStep
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: fa66275459a4d6045832d65abc4e462d,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.7030848
+        functionName: PlayerFootStep
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: fa66275459a4d6045832d65abc4e462d,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
