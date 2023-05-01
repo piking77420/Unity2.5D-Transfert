@@ -92,7 +92,7 @@ public class PlayerDragObject : MonoBehaviour
         {
             Gizmos.color = Color.green;
             
-            Gizmos.DrawWireSphere(m_TransformPlayerDom.transform.position, m_SelectionRadius);
+            Gizmos.DrawWireSphere(m_TransformPlayerDom.transform.position, m_SelectionRadius * 2);
         }
     }
         
@@ -100,7 +100,7 @@ public class PlayerDragObject : MonoBehaviour
 
     private void FindAllDragableObject()
     {
-        Collider[] sphereDrag = Physics.OverlapSphere(m_DomeRender.transform.position, m_SelectionRadius);
+        Collider[] sphereDrag = Physics.OverlapSphere(m_DomeRender.transform.position, m_SelectionRadius * 2);
 
         foreach (Collider collider in sphereDrag)
         {
