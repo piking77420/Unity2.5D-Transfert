@@ -451,7 +451,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Gameplay
+  m_DefaultActionMap: e8a2f195-0271-4ddd-a529-923cab7d08c9
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &337278431
@@ -466,6 +466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db05e7bc650f39a48a5c19091999820e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_PlayerInput: {fileID: 0}
 --- !u!1 &345792061
 GameObject:
   m_ObjectHideFlags: 0
@@ -4020,7 +4021,7 @@ MonoBehaviour:
   minGrowCoef: 4.5
   maxGrowCoef: 6.5
   newLegCooldown: 0.3
-  velocity: {x: -0.2532983, y: 0, z: -0.34694976}
+  velocity: {x: -0.33626944, y: 0, z: 0.53472006}
 --- !u!1001 &8631490181104575466
 PrefabInstance:
   m_ObjectHideFlags: 0
