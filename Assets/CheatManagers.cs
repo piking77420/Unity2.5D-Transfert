@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CheatManagers : MonoBehaviour
 {
-    [SerializeField]
-    private float 
 
 
 
