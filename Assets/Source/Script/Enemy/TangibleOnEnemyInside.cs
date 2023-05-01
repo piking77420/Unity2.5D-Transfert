@@ -23,7 +23,7 @@ public class TangibleOnEnemyInside : MonoBehaviour
     private float m_TimeForBeTangible;
 
     [SerializeField,Range(0,1)]
-    private float m_StarValue;
+    private float m_StarValue = 1;
 
     private float m_TimeForTangibleMax;
 

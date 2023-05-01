@@ -35,18 +35,20 @@ public class PlayerGetPursuit : MonoBehaviour
     {
         if (other.TryGetComponent<PlayerLearningSkill>(out PlayerLearningSkill player))
         {
-            if (onCollisonBehaviours == OnCollisonBehaviours.StartPursuit)
-            {
-
-                followPlayer.OnTrackPlayer(player.transform);
-                AudioManagers.instance.PlayMusic(music);
-            }
-            else 
+            if(onCollisonBehaviours == OnCollisonBehaviours.EndPursuit) 
             {
                 followPlayer.playerTransform = null;
             }
 
-                
+
+            if (onCollisonBehaviours == OnCollisonBehaviours.StartPursuit)
+            {
+                followPlayer.OnTrackPlayer(player.transform);
+               
+            }
+
+            AudioManagers.instance.PlayMusic(music);
+
         }
                 
     }
