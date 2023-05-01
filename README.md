@@ -1,4 +1,3 @@
-
 # Translate
 
 Cerise's Unity Game (Platformer / Puzzle game) : 
@@ -30,55 +29,41 @@ UnityVersion  2021.3.5.f :
 ## Level
 
 - Forest
-![gif](./space-shooter.c.gif)
 - Village 1
-![gif](./space-shooter.c.gif)
 - Village 2 
-![gif](./space-shooter.c.gif)
 - Country Side
-![gif](./space-shooter.c.gif)
 
 
 ## Assets
 
 - The Enemy
-![gif](./space-shooter.c.gif)
 https://assetstore.unity.com/packages/3d/characters/creatures/mimic-prototype-245997
 
 - Player 
-![gif](./space-shooter.c.gif)
 https://www.turbosquid.com/fr/3d-models/girl-model-1637866
 
 - Corrompted creatures
-![gif](./space-shooter.c.gif)
 https://assetstore.unity.com/packages/3d/characters/creatures/kawaii-slimes-221172
 
 - Box
-![gif](./space-shooter.c.gif)
 https://assetstore.unity.com/packages/3d/props/furniture/cartoon-wooden-box-242926
 
 - House
-![gif](./space-shooter.c.gif)
 https://assetstore.unity.com/packages/3d/environments/fantasy/cartoon-fantasy-medieval-town-lite-low-poly-3d-by-justcreate-242322
 
 - Woods
-![gif](./space-shooter.c.gif)
 https://assetstore.unity.com/packages/3d/environments/fantasy/cartoon-fantasy-medieval-town-lite-low-poly-3d-by-justcreate-242322
 
 - Electric Tower
-![gif](./space-shooter.c.gif)
 https://assetstore.unity.com/packages/3d/environments/industrial/pillars-pack-228563
 
 - Corn
-![gif](./space-shooter.c.gif)
 https://assetstore.unity.com/packages/3d/environments/industrial/pillars-pack-228563
 
 - Corn2
-![gif](./space-shooter.c.gif)
 https://assetstore.unity.com/packages/3d/environments/landscapes/low-poly-woods-232818 
 
 - Village 
-![gif](./space-shooter.c.gif)
 https://assetstore.unity.com/packages/3d/environments/historic/low-poly-game-ready-history-village-207553
 
 
