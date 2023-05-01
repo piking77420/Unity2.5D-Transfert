@@ -109,7 +109,7 @@ public class EnemyTryToKillPlayer : MonoBehaviour
     }
 
 
-    IEnumerator StopEnemy() 
+    public IEnumerator StopEnemy() 
     {
         m_Agent.isStopped = true;
         yield return new WaitForSeconds(TimeToBeFreez);
@@ -117,7 +117,7 @@ public class EnemyTryToKillPlayer : MonoBehaviour
 
     }
 
-    private void Freeze() 
+    public void Freeze() 
     {
         StartCoroutine(StopEnemy());
     }

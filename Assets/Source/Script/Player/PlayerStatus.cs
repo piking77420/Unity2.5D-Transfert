@@ -109,12 +109,12 @@ public class PlayerStatus : MonoBehaviour
 
        yield return new WaitForSeconds(TimerFadeDeath);
         ResetPos();
+        OnRespawn?.Invoke();
         yield return new WaitForSeconds(TimerFadeDeath);
         m_PlayerInput.SwitchCurrentActionMap("Gameplay");
 
 
 
-        OnRespawn.Invoke();
         IsInvicible = false;
     }
 

@@ -3226,7 +3226,7 @@ PrefabInstance:
     - target: {fileID: 2554023539914345334, guid: be5fbdd48bb830647a071c8ec9059de7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.36
+      value: -27
       objectReference: {fileID: 0}
     - target: {fileID: 2554023539914345334, guid: be5fbdd48bb830647a071c8ec9059de7,
         type: 3}
@@ -3341,6 +3341,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819271376476893927, guid: e1bf66778b4504340b65629569aba485,
+        type: 3}
+      propertyPath: IsLearned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7819271376476893929, guid: e1bf66778b4504340b65629569aba485,
         type: 3}
@@ -3535,6 +3540,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Checkpoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 5385205785416359874, guid: e494fb9be43c885469f0698f8be8ead2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -70.18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e494fb9be43c885469f0698f8be8ead2, type: 3}
@@ -4021,7 +4031,7 @@ MonoBehaviour:
   minGrowCoef: 4.5
   maxGrowCoef: 6.5
   newLegCooldown: 0.3
-  velocity: {x: -0.29812488, y: 0, z: -0.40534535}
+  velocity: {x: -0.23174469, y: 0, z: 0.2641353}
 --- !u!1001 &8631490181104575466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4243,5 +4253,5 @@ MonoBehaviour:
   m_VelocityOnKillPlayer: 0
   m_ShowGizmo: 1
   m_Agent: {fileID: 0}
-  TimeToBeFreez: 5
+  TimeToBeFreez: 10
   m_TimeToChanPosAfterPlayerDeath: 1.8
