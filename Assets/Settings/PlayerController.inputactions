@@ -575,6 +575,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "CheatActionMap",
+            "id": "e8a2f195-0271-4ddd-a529-923cab7d08c9",
+            "actions": [
+                {
+                    "name": "SwapMap",
+                    "type": "Button",
+                    "id": "273b5e53-1f68-4f8e-b5ed-bcdc6d328765",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9cc0903b-3709-4b17-8042-8ccf43e21939",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwapMap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
