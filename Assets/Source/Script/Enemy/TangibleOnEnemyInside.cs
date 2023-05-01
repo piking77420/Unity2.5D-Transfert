@@ -13,6 +13,8 @@ public class TangibleOnEnemyInside : MonoBehaviour
     [SerializeField]
     private Collider m_collid;
 
+    [SerializeField]
+    private Material m_Material;
 
     [SerializeField]
     EnemyPickable enemyPickable;
@@ -20,7 +22,8 @@ public class TangibleOnEnemyInside : MonoBehaviour
     [SerializeField]
     private float m_TimeForBeTangible;
 
-
+    [SerializeField,Range(0,1)]
+    private float m_StarValue;
 
     private float m_TimeForTangibleMax;
 
@@ -33,6 +36,7 @@ public class TangibleOnEnemyInside : MonoBehaviour
             //m_rb.useGravity = true;
             m_collid.isTrigger = false;
             Destroy(enemyPickable.transform.root.gameObject);
+            m_Material.SetFloat("_Health", m_StarValue);
         }
     }
 
@@ -44,7 +48,8 @@ public class TangibleOnEnemyInside : MonoBehaviour
         m_rb = GetComponent<Rigidbody>();
         m_collid = GetComponent<Collider>();
         m_collid.isTrigger = true;
-        m_TimeForTangibleMax = m_TimeForBeTangible; 
+        m_TimeForTangibleMax = m_TimeForBeTangible;
+        m_Material = GetComponent<MeshRenderer>().material;
     }
 
     void Start()
@@ -58,7 +63,15 @@ public class TangibleOnEnemyInside : MonoBehaviour
         if(m_collid.isTrigger == false) 
         {
             m_TimeForBeTangible -= Time.deltaTime;
-            if(m_TimeForBeTangible < 0) 
+            float materialValue = m_Material.GetFloat("_Health");
+
+            if (materialValue > 0) 
+            {
+                m_Material.SetFloat("_Health", materialValue - (Time.deltaTime/ m_TimeForTangibleMax));
+            }
+
+
+            if (m_TimeForBeTangible < 0) 
             {
                 m_collid.isTrigger = true;
                 m_TimeForBeTangible = m_TimeForTangibleMax;

@@ -81,7 +81,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1825412667}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: ad790207a5d8ddf4cba983ab95310c67, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: ab865f88d7c1995488da4299b5570ce4, type: 3}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -4475,10 +4475,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerInput: {fileID: 0}
-  m_DimensionScriptPlayer: {fileID: 0}
+  m_DimensionScriptPlayer: {fileID: 4107179835825685575}
   m_Animator: {fileID: 0}
   IsDead: 0
   PlayerCurrentCheckpoint: {x: 0, y: 0, z: 0}
+  EnemyRespownCheckpoint: {x: 0, y: 0, z: 0}
   OnPlayerDeath:
     m_PersistentCalls:
       m_Calls: []

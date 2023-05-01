@@ -41,8 +41,7 @@ public class EnemyTryToKillPlayer : MonoBehaviour
     [SerializeField]
     private float m_TimeToChanPosAfterPlayerDeath = 2;
 
-    [SerializeField, Tooltip("Put ALL Waypoint Off Player")]
-    private GameObject PlayerCheckoipoint;
+
 
 
 
@@ -126,6 +125,7 @@ public class EnemyTryToKillPlayer : MonoBehaviour
 
     private void Awake()
     {
+        m_PlayerStatus = FindObjectOfType<PlayerStatus>();
         m_EnemyFollowPlayer = GetComponent<EnemyFollowPlayer>();
         m_Agent = GetComponent<NavMeshAgent>();
     }

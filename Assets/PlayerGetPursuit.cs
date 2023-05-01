@@ -22,6 +22,8 @@ public class PlayerGetPursuit : MonoBehaviour
     private AudioManagers.Music music;
 
 
+
+
     private void Awake()
     {
         followPlayer = FindObjectOfType<EnemyFollowPlayer>();

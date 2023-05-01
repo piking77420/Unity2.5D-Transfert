@@ -16,6 +16,7 @@ public class UpdateNavMesh : MonoBehaviour
 
     private void Awake()
     {
+        m_Dimension = FindObjectOfType<DimensionScriptPlayer>();
           m_LastUpdateD = m_Dimension.CurrentDimension;
          m_MeshSurfaces = GetComponents<NavMeshSurface>();
     }
