@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngineInternal;
 using static Unity.VisualScripting.Member;
-using static UnityEditor.Progress;
 using static UnityEngine.InputSystem.InputAction;
 
 public class BoxSound : MonoBehaviour

@@ -6,7 +6,6 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
-using static UnityEditor.Progress;
 using static DimensionScript.Dimension;
 using static AudioManagers;
 
