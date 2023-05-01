@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,6 @@ public class EnemyTryToKillPlayer : MonoBehaviour
 
 
 
-    [SerializeField]
-    private GameObject m_ListeOfWaypoint;
     private EnemyFollowPlayer m_EnemyFollowPlayer;
 
     [SerializeField]
@@ -40,34 +39,25 @@ public class EnemyTryToKillPlayer : MonoBehaviour
     private float TimeToBeFreez;
 
     [SerializeField]
-    private float m_TimeToChanPosAfterPlayerDeath = 2 ;
+    private float m_TimeToChanPosAfterPlayerDeath = 2;
 
 
-    IEnumerator RespawnEnemy() 
+
+
+
+   public IEnumerator RespawnEnemy() 
     {
-        int playerIndexCheckPoint = m_PlayerStatus.currentCheckpointIndex;
+       
 
-        Vector3 posToRespawn = new Vector3();
-
-        for (int i = 0; i < m_ListeOfWaypoint.transform.childCount; i++)
-        {
-
-            if (i == playerIndexCheckPoint)
-            {
-                yield return new WaitForSeconds(m_TimeToChanPosAfterPlayerDeath); 
-                posToRespawn = m_ListeOfWaypoint.transform.GetChild(i).position;
-                break;
-            }
-        }
-
-        this.transform.position = posToRespawn;
-
+        yield return new WaitForSeconds(m_TimeToChanPosAfterPlayerDeath);
+        this.transform.position = m_PlayerStatus.EnemyRespownCheckpoint;
     }
 
 
 
     public void ResetPosOnPlayerDeath() 
     {
+        if(m_EnemyFollowPlayer.playerTransform != null)
         StartCoroutine(RespawnEnemy());
     }
 
@@ -135,6 +125,7 @@ public class EnemyTryToKillPlayer : MonoBehaviour
 
     private void Awake()
     {
+        m_PlayerStatus = FindObjectOfType<PlayerStatus>();
         m_EnemyFollowPlayer = GetComponent<EnemyFollowPlayer>();
         m_Agent = GetComponent<NavMeshAgent>();
     }
@@ -148,7 +139,7 @@ public class EnemyTryToKillPlayer : MonoBehaviour
 
     void Update()
     {
-        
+        if(m_EnemyFollowPlayer.playerTransform!= null)
         OnKillHitBox();
 
     }

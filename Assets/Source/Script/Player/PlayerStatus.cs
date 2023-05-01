@@ -42,10 +42,11 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField]
     public Vector3 PlayerCurrentCheckpoint;
 
+    [SerializeField]
+    public Vector3 EnemyRespownCheckpoint;
 
-    [HideInInspector]
+
     public UnityEvent OnPlayerDeath;
-    [HideInInspector]
     public UnityEvent OnRespawn;
 
 
@@ -64,8 +65,7 @@ public class PlayerStatus : MonoBehaviour
     private FadeSystem fadeSystem;
 
 
-    [SerializeField]
-    private Animator m_AnimatorForTranslate;
+
 
 
     [SerializeField]
@@ -104,7 +104,7 @@ public class PlayerStatus : MonoBehaviour
         
         m_PlayerInput.SwitchCurrentActionMap("None");
         
-        OnPlayerDeath.Invoke();
+        OnPlayerDeath?.Invoke();
         PlayPlayerDeathSound(DyingSource);
 
        yield return new WaitForSeconds(TimerFadeDeath);
@@ -125,7 +125,7 @@ public class PlayerStatus : MonoBehaviour
             IsDead = true;
 
             IsInvicible = true;
-            StartCoroutine(DeathPlayer(DyingSource));
+            StartCoroutine(DeathPlayer(DyingSource));   
             IsDead = false;
 
         }
@@ -143,9 +143,10 @@ public class PlayerStatus : MonoBehaviour
         fadeSystem = FindObjectOfType<FadeSystem>();
         OnPlayerDeath.AddListener(fadeSystem.OnDeathPlayer);
 
-        m_DimensionScriptPlayer = GetComponent<DimensionScriptPlayer>();
-        m_AnimatorForTranslate = GetComponentInParent<Animator>();
-        m_AudioSource = GetComponents<AudioSource>();
+        m_DimensionScriptPlayer = gameObject.GetComponent<DimensionScriptPlayer>();
+        
+
+            m_AudioSource = GetComponents<AudioSource>();
     }
 
     void Start()
@@ -158,8 +159,8 @@ public class PlayerStatus : MonoBehaviour
         if (IsDead)
         {
 
-
-            Debug.Log("ds");
+            StartCoroutine(DeathPlayer(PlayerDiedSource.Corruption));
+            IsDead = false;
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 

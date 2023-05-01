@@ -255,7 +255,17 @@ public class AudioManagers : MonoBehaviour
             return;
         }
 
-        m_IndepandanteSource[(int)IndependantSource.Musics].clip = m_Music[(int)music];
+
+
+            if(m_IndepandanteSource[(int)IndependantSource.Musics].clip != m_Music[(int)music]) 
+            {
+                m_IndepandanteSource[(int)IndependantSource.Musics].clip = m_Music[(int)music];
+                m_IndepandanteSource[(int)IndependantSource.Musics].Play();
+
+            }
+
+        
+
     }
 
 
